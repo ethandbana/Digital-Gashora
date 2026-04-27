@@ -385,9 +385,8 @@
             <h2>📸 Digital Gashora in Action</h2>
             <p>Real moments from our computer skills training in Gashora Centre.</p>
             <div class="gallery-grid" id="galleryGrid">
-                <img src="images/photo1.png" alt="Teaching computer skills">
-                <img src="images/photo2.png" alt="Kids learning">
-                <img src="images/photo3.png" alt="Computer class session">
+                <img src="images/photo3.png" alt="Teaching computer skills">
+                <img src="images/photo4.png" alt="Kids learning">
             </div>
             <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #888;">📅 Updated: April 27, 2026 — Week 1</p>
         </div>
@@ -437,103 +436,126 @@
             }
         });
 
-             // ========== SKILL MEDIA GALLERY ==========
-        // TEST VERSION - Using working internet images
-        const skillMedia = {
-          mouse: {
-    title: '🖱️ Mouse Skills - In Action',
-    media: [
-        { type: 'image', src: 'images/mouse-skills/mouse1.png', caption: 'Student practicing mouse click' },
-        { type: 'image', src: 'images/mouse-skills/mouse2.png', caption: 'Learning to drag and drop' }
-    ]
-},
-         keyboard: {
-    title: '⌨️ Keyboard Basics - Practice Session',
-    media: [
-        { type: 'image', src: 'images/keyboard-basics/keyboard1.png', caption: 'Typing practice session' },
-        { type: 'image', src: 'images/keyboard-basics/keyboard2.png', caption: 'Learning shortcuts' }
-    ]
-},
-file: {
-    title: '📁 File Management - Creating Folders',
-    media: [
-        { type: 'image', src: 'images/file-management/file1.png', caption: 'Creating new folders' }
-    ]
-},
-computer: {
-    title: '🖥️ Computer Basics - Startup & Shutdown',
-    media: [
-        { type: 'image', src: 'images/computer-basics/computer1.png', caption: 'Computer startup demonstration' }
-    ]
-},
-typing: {
-    title: '📝 Typing Documents - Using Notepad',
-    media: [
-        { type: 'image', src: 'images/typing-documents/typing1.png', caption: 'Typing in Notepad' }
-    ]
-},
-sound: {
-    title: '🔊 Sound & Display - Volume Control',
-    media: [
-        { type: 'image', src: 'images/sound-display/sound1.png', caption: 'Adjusting volume settings' }
-    ]
-}
+        // ========== SKILL MEDIA GALLERY - AUTO SCAN FOLDERS ==========
+        // Define which folder each skill uses
+        const skillFolders = {
+            mouse: 'mouse-skills',
+            keyboard: 'keyboard-basics',
+            file: 'file-management',
+            computer: 'computer-basics',
+            typing: 'typing-documents',
+            sound: 'sound-display'
+        };
+
+        const skillTitles = {
+            mouse: '🖱️ Mouse Skills - In Action',
+            keyboard: '⌨️ Keyboard Basics - Practice Session',
+            file: '📁 File Management - Creating Folders',
+            computer: '🖥️ Computer Basics - Startup & Shutdown',
+            typing: '📝 Typing Documents - Using Notepad',
+            sound: '🔊 Sound & Display - Volume Control'
+        };
 
         // Get elements
         const mediaContainer = document.getElementById('skill-media-container');
         const mediaTitle = document.getElementById('media-title');
         const mediaGrid = document.getElementById('media-grid');
 
+        // Function to scan a folder and display all images/videos
+        function loadMediaForSkill(skillKey) {
+            const folderName = skillFolders[skillKey];
+            const title = skillTitles[skillKey];
+            
+            if (!folderName) return;
+            
+            // Show the container
+            mediaContainer.classList.add('show');
+            mediaTitle.innerHTML = title;
+            
+            // Clear the grid
+            mediaGrid.innerHTML = '<div class="media-placeholder">Loading media files...</div>';
+            
+            // This is a list of common image and video extensions
+            const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'];
+            const videoExtensions = ['mp4', 'webm', 'mov', 'avi'];
+            
+            // Since we can't auto-scan folders with JavaScript only,
+            // we need to manually list files.
+            // BUT you can easily add files here when you put them in the folder.
+            
+            // For now, we'll use the images you already have
+            // When you add new photos, just add the filename to the array below
+            
+            const mediaFiles = {
+                'mouse-skills': [
+                    { type: 'image', file: 'mouse1.png', caption: 'Mouse practice session' },
+                    { type: 'image', file: 'mouse2.png', caption: 'Learning to click' }
+                ],
+                'keyboard-basics': [
+                    { type: 'image', file: 'keyboard1.png', caption: 'Keyboard practice' },
+                    { type: 'image', file: 'keyboard2.png', caption: 'Learning shortcuts' }
+                ],
+                'file-management': [
+                    { type: 'image', file: 'file1.png', caption: 'Creating folders' }
+                ],
+                'computer-basics': [
+                    { type: 'image', file: 'computer1.png', caption: 'Computer basics' }
+                ],
+                'typing-documents': [
+                    { type: 'image', file: 'typing1.png', caption: 'Typing practice' }
+                ],
+                'sound-display': [
+                    { type: 'image', file: 'sound1.png', caption: 'Volume control' }
+                ]
+            };
+            
+            const files = mediaFiles[folderName] || [];
+            
+            if (files.length === 0) {
+                mediaGrid.innerHTML = '<div class="media-placeholder">📸 No photos yet. Drop your images in the ' + folderName + ' folder and add them to the list!</div>';
+            } else {
+                mediaGrid.innerHTML = '';
+                files.forEach(item => {
+                    const mediaDiv = document.createElement('div');
+                    mediaDiv.className = 'media-item';
+                    
+                    const filePath = `images/${folderName}/${item.file}`;
+                    
+                    if (item.type === 'image') {
+                        mediaDiv.innerHTML = `
+                            <img src="${filePath}" alt="${item.caption}" onerror="this.src='https://via.placeholder.com/200x150?text=Image+Not+Found'">
+                            <p>${item.caption}</p>
+                        `;
+                        // Add click to open in lightbox
+                        const img = mediaDiv.querySelector('img');
+                        img.style.cursor = 'pointer';
+                        img.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            lightbox.style.display = 'flex';
+                            lightboxImg.src = this.src;
+                        });
+                    } else if (item.type === 'video') {
+                        mediaDiv.innerHTML = `
+                            <video controls>
+                                <source src="${filePath}" type="video/mp4">
+                                Your browser doesn't support video.
+                            </video>
+                            <p>${item.caption}</p>
+                        `;
+                    }
+                    mediaGrid.appendChild(mediaDiv);
+                });
+            }
+            
+            // Smooth scroll to media section
+            mediaContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
         // Add click listeners to skill cards
         document.querySelectorAll('.skill-card').forEach(card => {
             card.addEventListener('click', function() {
                 const skillKey = this.getAttribute('data-skill');
-                const data = skillMedia[skillKey];
-                
-                if (data) {
-                    // Show the container
-                    mediaContainer.classList.add('show');
-                    mediaTitle.innerHTML = data.title;
-                    
-                    // Clear and rebuild media grid
-                    mediaGrid.innerHTML = '';
-                    
-                    if (data.media.length === 0) {
-                        mediaGrid.innerHTML = '<div class="media-placeholder">📸 No photos yet. We\'ll add them after our next class!</div>';
-                    } else {
-                        data.media.forEach(item => {
-                            const mediaDiv = document.createElement('div');
-                            mediaDiv.className = 'media-item';
-                            
-                            if (item.type === 'image') {
-                                mediaDiv.innerHTML = `
-                                    <img src="${item.src}" alt="${item.caption}" onerror="this.src='https://via.placeholder.com/200x150?text=Photo+Coming+Soon'">
-                                    <p>${item.caption}</p>
-                                `;
-                                // Add click to open in lightbox for these images too
-                                const img = mediaDiv.querySelector('img');
-                                img.style.cursor = 'pointer';
-                                img.addEventListener('click', function(e) {
-                                    e.stopPropagation();
-                                    lightbox.style.display = 'flex';
-                                    lightboxImg.src = this.src;
-                                });
-                            } else if (item.type === 'video') {
-                                mediaDiv.innerHTML = `
-                                    <video controls>
-                                        <source src="${item.src}" type="video/mp4">
-                                        Your browser doesn't support video.
-                                    </video>
-                                    <p>${item.caption}</p>
-                                `;
-                            }
-                            mediaGrid.appendChild(mediaDiv);
-                        });
-                    }
-                    
-                    // Smooth scroll to media section
-                    mediaContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                loadMediaForSkill(skillKey);
             });
         });
     </script>
