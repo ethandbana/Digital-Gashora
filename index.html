@@ -286,6 +286,38 @@
         <p>&copy; 2026 Digital Gashora | Gashora Centre, Bugesera | Building digital skills for a better tomorrow</p>
         <p style="margin-top: 10px; font-size: 14px;">"One computer. Many minds. Big future."</p>
         <p style="margin-top: 15px; font-size: 12px;">Digital Gashora is an initiative of Journey House Actions Rwanda (JHA)</p>
+<!-- Lightbox for clicking photos -->
+<div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; cursor: pointer; align-items: center; justify-content: center;">
+    <img id="lightbox-img" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+</div>
+
+<script>
+    // Get all gallery images
+    const galleryImages = document.querySelectorAll('.gallery-grid img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    // Add click to each image
+    galleryImages.forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function() {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = this.src;
+        });
+    });
+
+    // Close lightbox when clicked
+    lightbox.addEventListener('click', function() {
+        lightbox.style.display = 'none';
+    });
+
+    // Close with ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+            lightbox.style.display = 'none';
+        }
+    });
+</script>
     </div>
 
 </body>
