@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Gashora | Teaching Computer Skills in Bugesera</title>
-    <style>
+       <style>
         * {
             margin: 0;
             padding: 0;
@@ -14,27 +14,29 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #f4f4f4;
+            color: #e0e0e0;
+            background: #0a0a0a;
         }
 
-    .header {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/photo3.png');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-align: center;
-    padding: 60px 20px;
-         }
+        .header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/photo3.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
 
         .header h1 {
             font-size: 48px;
             margin-bottom: 10px;
+            color: #ffffff;
         }
 
         .header p {
             font-size: 20px;
             margin-bottom: 15px;
+            color: #dddddd;
         }
 
         .tagline {
@@ -45,15 +47,16 @@
         }
 
         .nav {
-            background: #0a2e6b;
+            background: #1a1a2e;
             text-align: center;
             padding: 15px;
             position: sticky;
             top: 0;
+            border-bottom: 1px solid #ffd54f;
         }
 
         .nav a {
-            color: white;
+            color: #e0e0e0;
             text-decoration: none;
             margin: 0 20px;
             font-size: 18px;
@@ -63,7 +66,8 @@
         }
 
         .nav a:hover {
-            background: #1976d2;
+            background: #ffd54f;
+            color: #1a1a2e;
         }
 
         .container {
@@ -73,15 +77,16 @@
         }
 
         .section {
-            background: white;
+            background: #1e1e2e;
             border-radius: 15px;
             padding: 40px;
             margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid #2a2a3e;
         }
 
         .section h2 {
-            color: #0d47a1;
+            color: #ffd54f;
             margin-bottom: 20px;
             font-size: 32px;
             border-left: 5px solid #ffd54f;
@@ -89,7 +94,7 @@
         }
 
         .section h3 {
-            color: #1976d2;
+            color: #ffd54f;
             margin: 20px 0 10px 0;
         }
 
@@ -101,34 +106,48 @@
         }
 
         .skill-card {
-            background: #e3f2fd;
+            background: #2a2a3e;
             padding: 20px;
             border-radius: 10px;
             text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid #3a3a4e;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffd54f;
         }
 
         .skill-card h3 {
+            color: #ffd54f;
             margin-bottom: 10px;
         }
 
+        .skill-card p {
+            color: #c0c0c0;
+        }
+
         .quote {
-            background: #0d47a1;
-            color: white;
+            background: #2a2a3e;
+            color: #e0e0e0;
             text-align: center;
             padding: 50px;
             border-radius: 15px;
             margin: 30px 0;
+            border: 1px solid #ffd54f;
         }
 
         .quote p {
             font-size: 24px;
             font-style: italic;
+            color: #ffd54f;
         }
 
         .quote-author {
             margin-top: 15px;
             font-size: 18px;
-            color: #ffd54f;
+            color: #c0c0c0;
         }
 
         .gallery-grid {
@@ -144,42 +163,59 @@
             height: 180px;
             object-fit: cover;
             border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            border: 2px solid #3a3a4e;
+            transition: transform 0.3s;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+            border-color: #ffd54f;
         }
 
         .footer {
-            background: #0a2e6b;
-            color: white;
+            background: #1a1a2e;
+            color: #c0c0c0;
             text-align: center;
             padding: 30px;
             margin-top: 40px;
+            border-top: 1px solid #ffd54f;
         }
 
         .button {
             display: inline-block;
             background: #ffd54f;
-            color: #0d47a1;
+            color: #1a1a2e;
             padding: 12px 25px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
             margin-top: 15px;
+            transition: background 0.3s;
         }
 
         .button:hover {
             background: #ffca28;
+            color: #0a0a0a;
         }
 
         .daily-log {
             margin-top: 50px;
-            background: #e3f2fd;
+            background: #2a2a3e;
             padding: 25px;
             border-radius: 15px;
+            border-left: 4px solid #ffd54f;
+        }
+
+        .daily-log h3 {
+            color: #ffd54f;
+            margin-bottom: 15px;
         }
 
         .daily-log ul {
             line-height: 1.8;
             margin-left: 20px;
+            color: #c0c0c0;
         }
 
         @media (max-width: 700px) {
