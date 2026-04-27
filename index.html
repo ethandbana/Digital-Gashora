@@ -135,6 +135,28 @@
             color: #ffd54f;
         }
 
+        /* Gallery */
+        .gallery-grid {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .gallery-grid img {
+            width: 250px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+        }
+
         /* Footer */
         .footer {
             background: #0a2e6b;
@@ -161,9 +183,28 @@
             background: #ffca28;
         }
 
+        /* Daily Log */
+        .daily-log {
+            margin-top: 50px;
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .daily-log h3 {
+            color: #0d47a1;
+            margin-bottom: 15px;
+        }
+
+        .daily-log ul {
+            line-height: 1.8;
+            margin-left: 20px;
+        }
+
         @media (max-width: 700px) {
             .header h1 { font-size: 32px; }
             .nav a { display: block; margin: 10px 0; }
+            .gallery-grid img { width: 100%; height: auto; }
         }
     </style>
 </head>
@@ -179,6 +220,7 @@
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#what-we-teach">What We Teach</a>
+        <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
     </div>
 
@@ -202,29 +244,63 @@
             <p><strong>Our challenge:</strong> Limited computers. Mixed skill levels. But we don't wait for perfect conditions — we teach with what we have.</p>
         </div>
 
-<div id="what-we-teach" class="section">
-    <h2>What We Teach</h2>
-    <div class="skills-grid">
-        <div class="skill-card">
-            <h3>🖱️ Mouse Skills</h3>
-            <p>Clicking, double-clicking, right-click, moving the cursor</p>
+        <!-- What We Teach Section -->
+        <div id="what-we-teach" class="section">
+            <h2>What We Teach</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>🖱️ Mouse Skills</h3>
+                    <p>Clicking, double-clicking, right-click, moving the cursor</p>
+                </div>
+                <div class="skill-card">
+                    <h3>⌨️ Keyboard Basics</h3>
+                    <p>Typing, shortcuts (Ctrl+C, Ctrl+V, Ctrl+Z), volume control</p>
+                </div>
+                <div class="skill-card">
+                    <h3>📁 File Management</h3>
+                    <p>Creating folders, deleting files, organizing documents</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🖥️ Computer Basics</h3>
+                    <p>Startup, shutdown, using the desktop, understanding icons</p>
+                </div>
+                <div class="skill-card">
+                    <h3>📝 Typing Documents</h3>
+                    <p>Using Notepad, saving files, typing sentences</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🔊 Sound & Display</h3>
+                    <p>Volume control, mute/unmute, screen brightness</p>
+                </div>
+            </div>
+
+            <!-- Daily Log Section -->
+            <div class="daily-log">
+                <h3>📅 What We Learned This Week</h3>
+                <ul>
+                    <li><strong>Week 1, Day 1:</strong> Mouse skills - clicking, double-clicking, right-click</li>
+                    <li><strong>Week 1, Day 2:</strong> Keyboard basics - volume control, mute/unmute</li>
+                    <li><strong>Week 1, Day 3:</strong> Creating and deleting folders</li>
+                    <li><strong>Week 1, Day 4:</strong> Using Notepad - typing and saving files</li>
+                </ul>
+                <p style="margin-top: 15px; font-style: italic;">✨ One computer. Many minds. Progress every day.</p>
+            </div>
         </div>
-        ... rest of your skill cards ...
-    </div>
 
-    <!-- Daily Log Section -->
-    <div style="margin-top: 50px; background: #e3f2fd; padding: 25px; border-radius: 15px;">
-        <h3 style="color: #0d47a1; margin-bottom: 15px;">📅 What We Learned This Week</h3>
-        <ul style="line-height: 1.8;">
-            <li><strong>Week 1, Day 1:</strong> Mouse skills - clicking, double-clicking, right-click</li>
-            <li><strong>Week 1, Day 2:</strong> Keyboard basics - volume control, mute/unmute</li>
-            <li><strong>Week 1, Day 3:</strong> Creating and deleting folders</li>
-            <li><strong>Week 1, Day 4:</strong> Using Notepad - typing and saving files</li>
-        </ul>
-        <p style="margin-top: 15px; font-style: italic;">✨ One computer. Many minds. Progress every day.</p>
-    </div>
+        <!-- Gallery Section -->
+        <div id="gallery" class="section">
+            <h2>📸 Digital Gashora in Action</h2>
+            <p>Real moments from our computer skills training in Gashora Centre.</p>
+            <div class="gallery-grid">
+                <!-- Replace "photo1.jpg" with your actual image filenames -->
+                <img src="images/photo1.jpg" alt="Teaching computer skills" onerror="this.style.display='none'">
+                <img src="images/photo2.jpg" alt="Kids learning" onerror="this.style.display='none'">
+                <img src="images/photo3.jpg" alt="Computer basics session" onerror="this.style.display='none'">
+            </div>
+            <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #666;">📅 Updated: April 27, 2026 — Week 1</p>
+            <p style="text-align: center; font-size: 13px; color: #888;">More photos coming soon!</p>
+        </div>
 
-</div>
         <!-- Contact Section -->
         <div id="contact" class="section">
             <h2>Contact Us</h2>
@@ -236,8 +312,11 @@
         </div>
     </div>
 
-   <div class="footer">
-    <p>&copy; 2026 Digital Gashora | Gashora Centre, Bugesera | Building digital skills for a better tomorrow</p>
-    <p style="margin-top: 10px; font-size: 14px;">"One computer. Many minds. Big future."</p>
-    <p style="margin-top: 15px; font-size: 12px;">Digital Gashora is an initiative of Journey House Actions Rwanda (JHA)</p>
-</div>
+    <div class="footer">
+        <p>&copy; 2026 Digital Gashora | Gashora Centre, Bugesera | Building digital skills for a better tomorrow</p>
+        <p style="margin-top: 10px; font-size: 14px;">"One computer. Many minds. Big future."</p>
+        <p style="margin-top: 15px; font-size: 12px;">Digital Gashora is an initiative of Journey House Actions Rwanda (JHA)</p>
+    </div>
+
+</body>
+</html>
