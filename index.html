@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Gashora | Teaching Computer Skills in Bugesera</title>
-       <style>
-            * {
+    <style>
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -112,11 +112,16 @@
             text-align: center;
             transition: transform 0.3s;
             border: 1px solid #3a3a4e;
+            cursor: pointer;
         }
 
         .skill-card:hover {
             transform: translateY(-5px);
             border-color: #ffd54f;
+        }
+
+        .skill-card:active {
+            transform: scale(0.98);
         }
 
         .skill-card h3 {
@@ -219,11 +224,75 @@
             color: #c0c0c0;
         }
 
+        .media-container {
+            margin-top: 40px;
+            display: none;
+        }
+
+        .media-container.show {
+            display: block;
+        }
+
+        .media-card {
+            background: #2a2a3e;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid #ffd54f;
+        }
+
+        .media-card h3 {
+            color: #ffd54f;
+            margin-bottom: 15px;
+        }
+
+        .media-grid {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .media-item {
+            width: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #1e1e2e;
+            border: 1px solid #3a3a4e;
+            transition: transform 0.3s;
+        }
+
+        .media-item:hover {
+            transform: scale(1.05);
+            border-color: #ffd54f;
+        }
+
+        .media-item img, .media-item video {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .media-item p {
+            padding: 8px;
+            font-size: 12px;
+            text-align: center;
+            color: #c0c0c0;
+        }
+
+        .media-placeholder {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            width: 100%;
+        }
+
         @media (max-width: 700px) {
             .header h1 { font-size: 32px; }
             .nav a { display: block; margin: 10px 0; }
             .gallery-grid img { width: 100%; height: auto; }
+            .media-item { width: 100%; }
         }
+    </style>
 </head>
 <body>
 
@@ -261,30 +330,42 @@
 
         <div id="what-we-teach" class="section">
             <h2>What We Teach</h2>
+            <p style="margin-bottom: 15px;">👇 <strong>Click any skill below</strong> to see photos and videos from our actual lessons!</p>
             <div class="skills-grid">
-                <div class="skill-card">
+                <div class="skill-card" data-skill="mouse">
                     <h3>🖱️ Mouse Skills</h3>
                     <p>Clicking, double-clicking, right-click, moving the cursor</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="keyboard">
                     <h3>⌨️ Keyboard Basics</h3>
                     <p>Typing, shortcuts (Ctrl+C, Ctrl+V, Ctrl+Z), volume control</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="file">
                     <h3>📁 File Management</h3>
                     <p>Creating folders, deleting files, organizing documents</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="computer">
                     <h3>🖥️ Computer Basics</h3>
                     <p>Startup, shutdown, using the desktop, understanding icons</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="typing">
                     <h3>📝 Typing Documents</h3>
                     <p>Using Notepad, saving files, typing sentences</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="sound">
                     <h3>🔊 Sound & Display</h3>
                     <p>Volume control, mute/unmute, screen brightness</p>
+                </div>
+            </div>
+
+            <!-- Media Gallery Container (appears when skill is clicked) -->
+            <div id="skill-media-container" class="media-container">
+                <div class="media-card">
+                    <h3 id="media-title">📸 Lesson Media</h3>
+                    <div id="media-grid" class="media-grid">
+                        <div class="media-placeholder">Click a skill above to see photos and videos from that lesson</div>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #888;">📱 Photos and videos from our actual training sessions</p>
                 </div>
             </div>
 
@@ -303,18 +384,19 @@
         <div id="gallery" class="section">
             <h2>📸 Digital Gashora in Action</h2>
             <p>Real moments from our computer skills training in Gashora Centre.</p>
-      <div class="gallery-grid" id="galleryGrid">
-    <img src="images/photo1.png" alt="Teaching computer skills">
-    <img src="images/photo2.png" alt="Kids learning">
-</div>
-            <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #666;">📅 Updated: April 27, 2026 — Week 1</p>
+            <div class="gallery-grid" id="galleryGrid">
+                <img src="images/photo1.png" alt="Teaching computer skills">
+                <img src="images/photo2.png" alt="Kids learning">
+                <img src="images/photo3.png" alt="Computer class session">
+            </div>
+            <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #888;">📅 Updated: April 27, 2026 — Week 1</p>
         </div>
 
         <div id="contact" class="section">
             <h2>Contact Us</h2>
             <p><strong>📍 Location:</strong> Gashora Centre, Bugesera District, Rwanda</p>
             <p><strong>👨‍🏫 Program Manager:</strong> Level 4 Student, Computer Systems & Architecture, ESSA Nyarugungaso</p>
-            <p><strong>📱 WhatsApp:</strong> Coming soon</p>
+            <p><strong>📱 WhatsApp:</strong> +250 (coming soon)</p>
             <p><strong>📘 Facebook:</strong> Digital Gashora Initiative (coming soon)</p>
             <a href="#" class="button">Get in Touch</a>
         </div>
@@ -327,38 +409,135 @@
     </div>
 
     <!-- Lightbox for clicking photos -->
-<div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; cursor: pointer; align-items: center; justify-content: center;">
-    <img id="lightbox-img" style="max-width: 90%; max-height: 90%; object-fit: contain;">
-</div>
+    <div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; cursor: pointer; align-items: center; justify-content: center;">
+        <img id="lightbox-img" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    </div>
 
-<script>
-    // Get all gallery images
-    const galleryImages = document.querySelectorAll('.gallery-grid img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
+    <script>
+        // Lightbox functionality
+        const galleryImages = document.querySelectorAll('.gallery-grid img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
 
-    // Add click to each image
-    galleryImages.forEach(img => {
-        img.style.cursor = 'pointer';
-        img.addEventListener('click', function() {
-            lightbox.style.display = 'flex';
-            lightboxImg.src = this.src;
+        galleryImages.forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', function() {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = this.src;
+            });
         });
-    });
 
-    // Close lightbox when clicked
-    lightbox.addEventListener('click', function() {
-        lightbox.style.display = 'none';
-    });
-
-    // Close with ESC key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+        lightbox.addEventListener('click', function() {
             lightbox.style.display = 'none';
-        }
-    });
-</script>
+        });
 
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                lightbox.style.display = 'none';
+            }
+        });
+
+        // ========== SKILL MEDIA GALLERY ==========
+        // Define media for each skill (add your photos/videos here)
+        const skillMedia = {
+            mouse: {
+                title: '🖱️ Mouse Skills - In Action',
+                media: [
+                    { type: 'image', src: 'images/mouse-skills/photo1.jpg', caption: 'Learning to click and drag' },
+                    { type: 'image', src: 'images/mouse-skills/photo2.jpg', caption: 'Practice with mouse' }
+                ]
+            },
+            keyboard: {
+                title: '⌨️ Keyboard Basics - Practice Session',
+                media: [
+                    { type: 'image', src: 'images/keyboard-basics/typing1.jpg', caption: 'Learning keyboard shortcuts' },
+                    { type: 'image', src: 'images/keyboard-basics/keys.jpg', caption: 'Practicing Ctrl+C, Ctrl+V' }
+                ]
+            },
+            file: {
+                title: '📁 File Management - Creating Folders',
+                media: [
+                    { type: 'image', src: 'images/file-management/folder1.jpg', caption: 'Creating new folders' }
+                ]
+            },
+            computer: {
+                title: '🖥️ Computer Basics - Startup & Shutdown',
+                media: [
+                    { type: 'image', src: 'images/computer-basics/startup.jpg', caption: 'Turning on the computer' }
+                ]
+            },
+            typing: {
+                title: '📝 Typing Documents - Using Notepad',
+                media: [
+                    { type: 'image', src: 'images/typing-documents/notepad.jpg', caption: 'Typing sentences in Notepad' }
+                ]
+            },
+            sound: {
+                title: '🔊 Sound & Display - Volume Control',
+                media: [
+                    { type: 'image', src: 'images/sound-display/volume.jpg', caption: 'Adjusting volume on keyboard' }
+                ]
+            }
+        };
+
+        // Get elements
+        const mediaContainer = document.getElementById('skill-media-container');
+        const mediaTitle = document.getElementById('media-title');
+        const mediaGrid = document.getElementById('media-grid');
+
+        // Add click listeners to skill cards
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const skillKey = this.getAttribute('data-skill');
+                const data = skillMedia[skillKey];
+                
+                if (data) {
+                    // Show the container
+                    mediaContainer.classList.add('show');
+                    mediaTitle.innerHTML = data.title;
+                    
+                    // Clear and rebuild media grid
+                    mediaGrid.innerHTML = '';
+                    
+                    if (data.media.length === 0) {
+                        mediaGrid.innerHTML = '<div class="media-placeholder">📸 No photos yet. We\'ll add them after our next class!</div>';
+                    } else {
+                        data.media.forEach(item => {
+                            const mediaDiv = document.createElement('div');
+                            mediaDiv.className = 'media-item';
+                            
+                            if (item.type === 'image') {
+                                mediaDiv.innerHTML = `
+                                    <img src="${item.src}" alt="${item.caption}" onerror="this.src='https://via.placeholder.com/200x150?text=Photo+Coming+Soon'">
+                                    <p>${item.caption}</p>
+                                `;
+                                // Add click to open in lightbox for these images too
+                                const img = mediaDiv.querySelector('img');
+                                img.style.cursor = 'pointer';
+                                img.addEventListener('click', function(e) {
+                                    e.stopPropagation();
+                                    lightbox.style.display = 'flex';
+                                    lightboxImg.src = this.src;
+                                });
+                            } else if (item.type === 'video') {
+                                mediaDiv.innerHTML = `
+                                    <video controls>
+                                        <source src="${item.src}" type="video/mp4">
+                                        Your browser doesn't support video.
+                                    </video>
+                                    <p>${item.caption}</p>
+                                `;
+                            }
+                            mediaGrid.appendChild(mediaDiv);
+                        });
+                    }
+                    
+                    // Smooth scroll to media section
+                    mediaContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
