@@ -332,40 +332,40 @@
             <h2>What We Teach</h2>
             <p style="margin-bottom: 15px;">👇 <strong>Click any skill below</strong> to see photos and videos from our actual lessons!</p>
             <div class="skills-grid">
-                <div class="skill-card" data-skill="mouse">
+                <div class="skill-card" data-folder="mouse-skills">
                     <h3>🖱️ Mouse Skills</h3>
                     <p>Clicking, double-clicking, right-click, moving the cursor</p>
                 </div>
-                <div class="skill-card" data-skill="keyboard">
+                <div class="skill-card" data-folder="keyboard-basics">
                     <h3>⌨️ Keyboard Basics</h3>
                     <p>Typing, shortcuts (Ctrl+C, Ctrl+V, Ctrl+Z), volume control</p>
                 </div>
-                <div class="skill-card" data-skill="file">
+                <div class="skill-card" data-folder="file-management">
                     <h3>📁 File Management</h3>
                     <p>Creating folders, deleting files, organizing documents</p>
                 </div>
-                <div class="skill-card" data-skill="computer">
+                <div class="skill-card" data-folder="computer-basics">
                     <h3>🖥️ Computer Basics</h3>
                     <p>Startup, shutdown, using the desktop, understanding icons</p>
                 </div>
-                <div class="skill-card" data-skill="typing">
+                <div class="skill-card" data-folder="typing-documents">
                     <h3>📝 Typing Documents</h3>
                     <p>Using Notepad, saving files, typing sentences</p>
                 </div>
-                <div class="skill-card" data-skill="sound">
+                <div class="skill-card" data-folder="sound-display">
                     <h3>🔊 Sound & Display</h3>
                     <p>Volume control, mute/unmute, screen brightness</p>
                 </div>
             </div>
 
-            <!-- Media Gallery Container (appears when skill is clicked) -->
+            <!-- Media Gallery Container -->
             <div id="skill-media-container" class="media-container">
                 <div class="media-card">
                     <h3 id="media-title">📸 Lesson Media</h3>
                     <div id="media-grid" class="media-grid">
-                        <div class="media-placeholder">Click a skill above to see photos and videos from that lesson</div>
+                        <div class="media-placeholder">Click a skill above to see photos from that lesson</div>
                     </div>
-                    <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #888;">📱 Photos and videos from our actual training sessions</p>
+                    <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #888;">📱 Photos from our actual training sessions</p>
                 </div>
             </div>
 
@@ -388,14 +388,14 @@
                 <img src="images/photo3.png" alt="Teaching computer skills">
                 <img src="images/photo4.png" alt="Kids learning">
             </div>
-            <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #888;">📅 Updated: April 27, 2026 — Week 1</p>
+            <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #888;">📅 Updated regularly with new photos</p>
         </div>
 
         <div id="contact" class="section">
             <h2>Contact Us</h2>
             <p><strong>📍 Location:</strong> Gashora Centre, Bugesera District, Rwanda</p>
             <p><strong>👨‍🏫 Program Manager:</strong> Level 4 Student, Computer Systems & Architecture, ESSA Nyarugungaso</p>
-            <p><strong>📱 WhatsApp:</strong> +250 (coming soon)</p>
+            <p><strong>📱 WhatsApp:</strong> Coming soon</p>
             <p><strong>📘 Facebook:</strong> Digital Gashora Initiative (coming soon)</p>
             <a href="#" class="button">Get in Touch</a>
         </div>
@@ -407,7 +407,7 @@
         <p style="margin-top: 15px; font-size: 12px;">Digital Gashora is an initiative of Journey House Actions Rwanda (JHA)</p>
     </div>
 
-    <!-- Lightbox for clicking photos -->
+    <!-- Lightbox -->
     <div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; cursor: pointer; align-items: center; justify-content: center;">
         <img id="lightbox-img" style="max-width: 90%; max-height: 90%; object-fit: contain;">
     </div>
@@ -436,126 +436,79 @@
             }
         });
 
-        // ========== SKILL MEDIA GALLERY - AUTO SCAN FOLDERS ==========
-        // Define which folder each skill uses
-        const skillFolders = {
-            mouse: 'mouse-skills',
-            keyboard: 'keyboard-basics',
-            file: 'file-management',
-            computer: 'computer-basics',
-            typing: 'typing-documents',
-            sound: 'sound-display'
-        };
-
-        const skillTitles = {
-            mouse: '🖱️ Mouse Skills - In Action',
-            keyboard: '⌨️ Keyboard Basics - Practice Session',
-            file: '📁 File Management - Creating Folders',
-            computer: '🖥️ Computer Basics - Startup & Shutdown',
-            typing: '📝 Typing Documents - Using Notepad',
-            sound: '🔊 Sound & Display - Volume Control'
-        };
-
-        // Get elements
+        // ========== LOAD PHOTOS FROM photos.json ==========
         const mediaContainer = document.getElementById('skill-media-container');
         const mediaTitle = document.getElementById('media-title');
         const mediaGrid = document.getElementById('media-grid');
-
-        // Function to scan a folder and display all images/videos
-        function loadMediaForSkill(skillKey) {
-            const folderName = skillFolders[skillKey];
-            const title = skillTitles[skillKey];
-            
-            if (!folderName) return;
-            
-            // Show the container
-            mediaContainer.classList.add('show');
-            mediaTitle.innerHTML = title;
-            
-            // Clear the grid
-            mediaGrid.innerHTML = '<div class="media-placeholder">Loading media files...</div>';
-            
-            // This is a list of common image and video extensions
-            const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'];
-            const videoExtensions = ['mp4', 'webm', 'mov', 'avi'];
-            
-            // Since we can't auto-scan folders with JavaScript only,
-            // we need to manually list files.
-            // BUT you can easily add files here when you put them in the folder.
-            
-            // For now, we'll use the images you already have
-            // When you add new photos, just add the filename to the array below
-            
-            const mediaFiles = {
-                'mouse-skills': [
-                    { type: 'image', file: 'mouse1.png', caption: 'Mouse practice session' },
-                    { type: 'image', file: 'mouse2.png', caption: 'Learning to click' }
-                ],
-                'keyboard-basics': [
-                    { type: 'image', file: 'keyboard1.png', caption: 'Keyboard practice' },
-                    { type: 'image', file: 'keyboard2.png', caption: 'Learning shortcuts' }
-                ],
-                'file-management': [
-                    { type: 'image', file: 'file1.png', caption: 'Creating folders' }
-                ],
-                'computer-basics': [
-                    { type: 'image', file: 'computer1.png', caption: 'Computer basics' }
-                ],
-                'typing-documents': [
-                    { type: 'image', file: 'typing1.png', caption: 'Typing practice' }
-                ],
-                'sound-display': [
-                    { type: 'image', file: 'sound1.png', caption: 'Volume control' }
-                ]
-            };
-            
-            const files = mediaFiles[folderName] || [];
-            
-            if (files.length === 0) {
-                mediaGrid.innerHTML = '<div class="media-placeholder">📸 No photos yet. Drop your images in the ' + folderName + ' folder and add them to the list!</div>';
-            } else {
-                mediaGrid.innerHTML = '';
-                files.forEach(item => {
-                    const mediaDiv = document.createElement('div');
-                    mediaDiv.className = 'media-item';
-                    
-                    const filePath = `images/${folderName}/${item.file}`;
-                    
-                    if (item.type === 'image') {
-                        mediaDiv.innerHTML = `
-                            <img src="${filePath}" alt="${item.caption}" onerror="this.src='https://via.placeholder.com/200x150?text=Image+Not+Found'">
-                            <p>${item.caption}</p>
-                        `;
-                        // Add click to open in lightbox
-                        const img = mediaDiv.querySelector('img');
-                        img.style.cursor = 'pointer';
-                        img.addEventListener('click', function(e) {
-                            e.stopPropagation();
-                            lightbox.style.display = 'flex';
-                            lightboxImg.src = this.src;
-                        });
-                    } else if (item.type === 'video') {
-                        mediaDiv.innerHTML = `
-                            <video controls>
-                                <source src="${filePath}" type="video/mp4">
-                                Your browser doesn't support video.
-                            </video>
-                            <p>${item.caption}</p>
-                        `;
-                    }
-                    mediaGrid.appendChild(mediaDiv);
-                });
-            }
-            
-            // Smooth scroll to media section
-            mediaContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
+        
+        const folderNames = {
+            'mouse-skills': '🖱️ Mouse Skills - In Action',
+            'keyboard-basics': '⌨️ Keyboard Basics - Practice Session',
+            'file-management': '📁 File Management - Creating Folders',
+            'computer-basics': '🖥️ Computer Basics - Startup & Shutdown',
+            'typing-documents': '📝 Typing Documents - Using Notepad',
+            'sound-display': '🔊 Sound & Display - Volume Control'
+        };
+        
+        // Load the photos.json file
+        let allPhotos = {};
+        
+        fetch('photos.json')
+            .then(response => response.json())
+            .then(data => {
+                allPhotos = data;
+                console.log('Photos loaded:', allPhotos);
+            })
+            .catch(error => {
+                console.error('Error loading photos.json:', error);
+            });
+        
         // Add click listeners to skill cards
         document.querySelectorAll('.skill-card').forEach(card => {
             card.addEventListener('click', function() {
-                const skillKey = this.getAttribute('data-skill');
-                loadMediaForSkill(skillKey);
+                const folder = this.getAttribute('data-folder');
+                const title = folderNames[folder] || '📸 Lesson Media';
+                
+                mediaContainer.classList.add('show');
+                mediaTitle.innerHTML = title;
+                mediaGrid.innerHTML = '<div class="media-placeholder">Loading...</div>';
+                
+                // Get photos for this folder
+                const photos = allPhotos[folder] || [];
+                
+                if (photos.length === 0) {
+                    mediaGrid.innerHTML = `
+                        <div class="media-placeholder">
+                            📸 No photos in this folder yet.<br><br>
+                            To add photos:<br>
+                            1. Put photos in images/${folder}/<br>
+                            2. Run the update-photos.bat script<br>
+                            3. Push to GitHub
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Display all photos
+                mediaGrid.innerHTML = '';
+                photos.forEach(photo => {
+                    const mediaDiv = document.createElement('div');
+                    mediaDiv.className = 'media-item';
+                    mediaDiv.innerHTML = `
+                        <img src="images/${folder}/${photo.file}" alt="${photo.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23333%22/%3E%3Ctext x=%22100%22 y=%2275%22 text-anchor=%22middle%22 fill=%22%23888%22%3EPhoto not found%3C/text%3E%3C/svg%3E'">
+                        <p>${photo.name}</p>
+                    `;
+                    const img = mediaDiv.querySelector('img');
+                    img.style.cursor = 'pointer';
+                    img.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        lightbox.style.display = 'flex';
+                        lightboxImg.src = this.src;
+                    });
+                    mediaGrid.appendChild(mediaDiv);
+                });
+                
+                mediaContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
     </script>
