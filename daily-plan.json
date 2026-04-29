@@ -1,0 +1,59 @@
+{
+  "currentDay": 4,
+  "schedule": [
+    {
+      "day": 1,
+      "date": "April 27, 2026",
+      "title": "Mouse Skills",
+      "whatWeLearned": "Students learned how to click, double-click, right-click, and move the cursor. They practiced dragging icons across the screen.",
+      "photosFolder": "mouse-skills",
+      "photos": [],
+      "nextLesson": "Keyboard Basics - learning letter positions and basic shortcuts"
+    },
+    {
+      "day": 2,
+      "date": "April 28, 2026",
+      "title": "Keyboard Basics",
+      "whatWeLearned": "Introduced the keyboard layout. Students practiced typing their names and learned Ctrl+C, Ctrl+V shortcuts.",
+      "photosFolder": "keyboard-basics",
+      "photos": [],
+      "nextLesson": "File Management - creating and organizing folders"
+    },
+    {
+      "day": 3,
+      "date": "April 29, 2026",
+      "title": "File Management",
+      "whatWeLearned": "Students learned to create folders, rename them, delete files, and organize documents.",
+      "photosFolder": "file-management",
+      "photos": [],
+      "nextLesson": "Computer Basics - startup, shutdown, and desktop navigation"
+    },
+    {
+      "day": 4,
+      "date": "April 30, 2026",
+      "title": "Computer Basics",
+      "whatWeLearned": "Today we covered how to properly start up and shut down a computer, understanding the desktop, and identifying common icons.",
+      "photosFolder": "computer-basics",
+      "photos": [],
+      "nextLesson": "Typing Documents - using Notepad to write and save files"
+    },
+    {
+      "day": 5,
+      "date": "May 1, 2026",
+      "title": "Typing Documents",
+      "whatWeLearned": "",
+      "photosFolder": "typing-documents",
+      "photos": [],
+      "nextLesson": "Sound & Display - volume control and screen settings"
+    },
+    {
+      "day": 6,
+      "date": "May 2, 2026",
+      "title": "Sound & Display",
+      "whatWeLearned": "",
+      "photosFolder": "sound-display",
+      "photos": [],
+      "nextLesson": "Review and practice - all skills"
+    }
+  ]
+}

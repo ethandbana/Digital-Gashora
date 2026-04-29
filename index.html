@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Digital Gashora | Teaching Computer Skills in Bugesera</title>
+    <title>Digital Gashora | Daily Computer Skills Training</title>
     <style>
         * {
             margin: 0;
@@ -30,14 +30,6 @@
         .header h1 {
             font-size: clamp(28px, 8vw, 48px);
             margin-bottom: 10px;
-            color: #ffffff;
-            word-break: break-word;
-        }
-
-        .header p {
-            font-size: clamp(14px, 4vw, 20px);
-            margin-bottom: 15px;
-            color: #dddddd;
         }
 
         .tagline {
@@ -55,17 +47,19 @@
             top: 0;
             border-bottom: 1px solid #ffd54f;
             z-index: 100;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
         }
 
         .nav a {
             color: #e0e0e0;
             text-decoration: none;
-            margin: 0 8px;
-            font-size: clamp(12px, 4vw, 18px);
             padding: 8px 12px;
             border-radius: 5px;
             transition: all 0.3s;
-            display: inline-block;
+            font-size: clamp(12px, 4vw, 16px);
         }
 
         .nav a:hover {
@@ -84,7 +78,6 @@
             border-radius: 15px;
             padding: 25px 20px;
             margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             border: 1px solid #2a2a3e;
         }
 
@@ -96,6 +89,47 @@
             padding-left: 15px;
         }
 
+        /* Today's Lesson Card */
+        .today-card {
+            background: linear-gradient(135deg, #2a2a3e, #1e1e2e);
+            border: 2px solid #ffd54f;
+        }
+
+        .today-badge {
+            display: inline-block;
+            background: #ffd54f;
+            color: #1a1a2e;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .lesson-date {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .lesson-title {
+            font-size: clamp(24px, 6vw, 32px);
+            color: #ffd54f;
+            margin-bottom: 15px;
+        }
+
+        .lesson-description {
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+
+        /* Tomorrow Card */
+        .tomorrow-card {
+            background: #2a2a3e;
+            border: 1px dashed #ffd54f;
+        }
+
+        /* Grid layouts */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -121,34 +155,12 @@
         .skill-card h3 {
             color: #ffd54f;
             margin-bottom: 10px;
-            font-size: clamp(16px, 5vw, 20px);
-        }
-
-        .skill-card p {
-            color: #c0c0c0;
-            font-size: clamp(12px, 3.5vw, 14px);
-        }
-
-        .quote {
-            background: #2a2a3e;
-            text-align: center;
-            padding: 30px 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border: 1px solid #ffd54f;
-        }
-
-        .quote p {
-            font-size: clamp(16px, 5vw, 24px);
-            font-style: italic;
-            color: #ffd54f;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            justify-content: center;
             margin-top: 20px;
         }
 
@@ -159,26 +171,40 @@
             border-radius: 10px;
             border: 2px solid #3a3a4e;
             cursor: pointer;
-            transition: transform 0.3s;
         }
 
-        .gallery-grid img:hover {
-            transform: scale(1.02);
-            border-color: #ffd54f;
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
+        .media-item {
+            border-radius: 10px;
+            overflow: hidden;
+            background: #1e1e2e;
+            border: 1px solid #3a3a4e;
+            cursor: pointer;
+        }
+
+        .media-item img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .media-item p {
+            padding: 8px;
+            font-size: 12px;
+            text-align: center;
         }
 
         .footer {
             background: #1a1a2e;
-            color: #c0c0c0;
             text-align: center;
             padding: 25px 15px;
             margin-top: 30px;
             border-top: 1px solid #ffd54f;
-        }
-
-        .footer p {
-            font-size: clamp(11px, 3.5vw, 14px);
-            margin: 5px 0;
         }
 
         .button {
@@ -190,183 +216,11 @@
             text-decoration: none;
             font-weight: bold;
             margin-top: 15px;
-            transition: background 0.3s;
-            font-size: clamp(12px, 4vw, 16px);
         }
 
-        .button:hover {
-            background: #ffca28;
-            color: #0a0a0a;
-        }
-
-        .daily-log {
-            margin-top: 30px;
-            background: #2a2a3e;
-            padding: 20px;
-            border-radius: 15px;
-            border-left: 4px solid #ffd54f;
-        }
-
-        .daily-log h3 {
-            color: #ffd54f;
-            margin-bottom: 15px;
-            font-size: clamp(16px, 5vw, 20px);
-        }
-
-        .daily-log ul {
-            line-height: 1.8;
-            margin-left: 20px;
-            color: #c0c0c0;
-        }
-
-        .daily-log li {
-            font-size: clamp(12px, 4vw, 14px);
-            margin-bottom: 5px;
-        }
-
-        .media-container {
-            margin-top: 30px;
-            display: none;
-        }
-
-        .media-container.show {
-            display: block;
-        }
-
-        .media-card {
-            background: #2a2a3e;
-            border-radius: 15px;
-            padding: 20px;
-            border-left: 4px solid #ffd54f;
-        }
-
-        .media-card h3 {
-            color: #ffd54f;
-            margin-bottom: 15px;
-            font-size: clamp(16px, 5vw, 20px);
-        }
-
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .media-item {
-            border-radius: 10px;
-            overflow: hidden;
-            background: #1e1e2e;
-            border: 1px solid #3a3a4e;
-            transition: transform 0.3s;
-        }
-
-        .media-item:hover {
-            transform: scale(1.03);
-            border-color: #ffd54f;
-        }
-
-        .media-item img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            cursor: pointer;
-        }
-
-        .media-item p {
-            padding: 8px;
-            font-size: clamp(10px, 3.5vw, 12px);
-            text-align: center;
-            color: #c0c0c0;
-            word-break: break-word;
-        }
-
-        .media-placeholder {
-            text-align: center;
-            padding: 40px 20px;
-            color: #888;
-            width: 100%;
-            font-size: clamp(12px, 4vw, 14px);
-        }
-
-        /* Contact section spacing */
-        #contact p {
-            margin-bottom: 10px;
-            font-size: clamp(12px, 4vw, 16px);
-            word-break: break-word;
-        }
-
-        /* Lightbox for mobile */
-        #lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        #lightbox-img {
-            max-width: 95%;
-            max-height: 95%;
-            object-fit: contain;
-        }
-
-        /* Mobile-specific adjustments */
         @media (max-width: 768px) {
-            .section {
-                padding: 20px 15px;
-            }
-            
-            .skills-grid {
+            .skills-grid, .gallery-grid, .media-grid {
                 grid-template-columns: 1fr;
-                gap: 12px;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .gallery-grid img {
-                height: 200px;
-            }
-            
-            .media-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .media-item img {
-                height: 180px;
-            }
-            
-            .nav a {
-                margin: 0 5px;
-                padding: 6px 10px;
-            }
-            
-            .quote {
-                padding: 20px 15px;
-            }
-        }
-
-        /* Tablet adjustments */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .media-grid {
-                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -375,138 +229,97 @@
 
     <div class="header">
         <h1>Digital Gashora</h1>
-        <p>Gashora Centre, Bugesera | Rwanda</p>
         <div class="tagline">"One computer. Many minds. Big future."</div>
     </div>
 
     <div class="nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#what-we-teach">What We Teach</a>
+        <a href="#today">Today</a>
+        <a href="#tomorrow">Tomorrow</a>
+        <a href="#skills">Skills</a>
         <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
     </div>
 
     <div class="container">
-        <div id="home" class="section">
-            <h2>Welcome to Digital Gashora</h2>
-            <p>We are teaching computer skills to children in Gashora Centre, Bugesera. With limited resources but unlimited determination, we believe every child deserves a chance to learn digital skills.</p>
-            <p>Currently run by a Level 4 Computer Systems and Architecture student from ESSA Nyarugungaso, our program is hands-on, practical, and built for real learning.</p>
-            <div class="quote">
-                <p>"Technology opens opportunities. We open the door."</p>
-                <div class="quote-author">— Digital Gashora</div>
+        <!-- Today's Lesson -->
+        <div id="today" class="section today-card">
+            <span class="today-badge">📅 TODAY'S LESSON</span>
+            <div id="today-date" class="lesson-date">Loading...</div>
+            <div id="today-title" class="lesson-title">Loading...</div>
+            <div id="today-description" class="lesson-description">Loading...</div>
+            <div id="today-photos" class="media-grid"></div>
+        </div>
+
+        <!-- Tomorrow's Plan -->
+        <div id="tomorrow" class="section tomorrow-card">
+            <h2>🔮 Tomorrow's Plan</h2>
+            <div id="tomorrow-title" style="font-size: 20px; color: #ffd54f; margin-bottom: 10px;">Loading...</div>
+            <div id="tomorrow-preview">Loading...</div>
+        </div>
+
+        <!-- Skills Overview -->
+        <div id="skills" class="section">
+            <h2>📚 All Skills We Teach</h2>
+            <div class="skills-grid" id="skills-grid">
+                <!-- Skills will load here -->
             </div>
         </div>
 
-        <div id="about" class="section">
-            <h2>About Digital Gashora</h2>
-            <p><strong>Who we are:</strong> We are a small but passionate computer literacy program based in Gashora Centre, Bugesera. What started as an internship has become a mission to bring digital skills to children who have limited access to computers.</p>
-            <p><strong>Our story:</strong> I am a Level 4 Computer Systems student at ESSA Nyarugungaso. During my holiday internship, I was given the opportunity to manage Digital Gashora. With one computer and a group of eager learners, we are building something real.</p>
-            <p><strong>Our challenge:</strong> Limited computers. Mixed skill levels. But we don't wait for perfect conditions — we teach with what we have.</p>
-        </div>
-
-        <div id="what-we-teach" class="section">
-            <h2>What We Teach</h2>
-            <p style="margin-bottom: 15px;">👇 <strong>Click any skill below</strong> to see photos from our actual lessons!</p>
-            <div class="skills-grid">
-                <div class="skill-card" data-folder="mouse-skills" data-title="🖱️ Mouse Skills - In Action">
-                    <h3>🖱️ Mouse Skills</h3>
-                    <p>Clicking, double-clicking, right-click, moving the cursor</p>
-                </div>
-                <div class="skill-card" data-folder="keyboard-basics" data-title="⌨️ Keyboard Basics - Practice Session">
-                    <h3>⌨️ Keyboard Basics</h3>
-                    <p>Typing, shortcuts (Ctrl+C, Ctrl+V, Ctrl+Z), volume control</p>
-                </div>
-                <div class="skill-card" data-folder="file-management" data-title="📁 File Management - Creating Folders">
-                    <h3>📁 File Management</h3>
-                    <p>Creating folders, deleting files, organizing documents</p>
-                </div>
-                <div class="skill-card" data-folder="computer-basics" data-title="🖥️ Computer Basics - Startup & Shutdown">
-                    <h3>🖥️ Computer Basics</h3>
-                    <p>Startup, shutdown, using the desktop, understanding icons</p>
-                </div>
-                <div class="skill-card" data-folder="typing-documents" data-title="📝 Typing Documents - Using Notepad">
-                    <h3>📝 Typing Documents</h3>
-                    <p>Using Notepad, saving files, typing sentences</p>
-                </div>
-                <div class="skill-card" data-folder="sound-display" data-title="🔊 Sound & Display - Volume Control">
-                    <h3>🔊 Sound & Display</h3>
-                    <p>Volume control, mute/unmute, screen brightness</p>
-                </div>
-            </div>
-
-            <div id="skill-media-container" class="media-container">
-                <div class="media-card">
-                    <h3 id="media-title">📸 Lesson Media</h3>
-                    <div id="media-grid" class="media-grid">
-                        <div class="media-placeholder">Click a skill above to see photos</div>
-                    </div>
-                    <p style="text-align: center; margin-top: 15px; font-size: clamp(10px, 3.5vw, 12px); color: #888;">📱 Photos from our training sessions</p>
-                </div>
-            </div>
-
-            <div class="daily-log">
-                <h3>📅 What We Learned This Week</h3>
-                <ul>
-                    <li><strong>Week 1, Day 1:</strong> Mouse skills - clicking, double-clicking, right-click</li>
-                    <li><strong>Week 1, Day 2:</strong> Keyboard basics - volume control, mute/unmute</li>
-                    <li><strong>Week 1, Day 3:</strong> Creating and deleting folders</li>
-                    <li><strong>Week 1, Day 4:</strong> Using Notepad - typing and saving files</li>
-                </ul>
-                <p style="margin-top: 15px; font-style: italic;">✨ One computer. Many minds. Progress every day.</p>
-            </div>
-        </div>
-
+        <!-- Photo Gallery -->
         <div id="gallery" class="section">
-            <h2>📸 Digital Gashora in Action</h2>
-            <p>Real moments from our computer skills training in Gashora Centre.</p>
-            <div class="gallery-grid" id="galleryGrid">
-                <img src="images/photo3.png" alt="Teaching computer skills" onerror="this.style.display='none'">
-                <img src="images/photo4.png" alt="Kids learning" onerror="this.style.display='none'">
-            </div>
-            <p style="text-align: center; margin-top: 20px; font-size: clamp(11px, 3.5vw, 14px); color: #888;">📅 Updated regularly</p>
+            <h2>📸 Class Gallery</h2>
+            <div class="gallery-grid" id="main-gallery"></div>
         </div>
 
+        <!-- Contact -->
         <div id="contact" class="section">
             <h2>Contact Us</h2>
-            <p><strong>📍 Location:</strong> Gashora Centre, Bugesera District, Rwanda</p>
-            <p><strong>👨‍🏫 Program Manager:</strong> Level 4 Student, Computer Systems & Architecture, ESSA Nyarugungaso</p>
-            <p><strong>📱 WhatsApp:</strong> Coming soon</p>
-            <p><strong>📘 Facebook:</strong> Digital Gashora Initiative (coming soon)</p>
-            <a href="#" class="button">Get in Touch</a>
+            <p>📍 Gashora Centre, Bugesera District, Rwanda</p>
+            <p>👨‍🏫 Level 4 Student, Computer Systems & Architecture, ESSA Nyarugungaso</p>
+            <p>📱 WhatsApp: Coming soon</p>
+            <p>📘 Facebook: Digital Gashora Initiative</p>
         </div>
     </div>
 
     <div class="footer">
-        <p>&copy; 2026 Digital Gashora | Gashora Centre, Bugesera | Building digital skills for a better tomorrow</p>
-        <p style="margin-top: 10px;">"One computer. Many minds. Big future."</p>
-        <p style="margin-top: 10px; font-size: clamp(10px, 3vw, 12px);">Digital Gashora is an initiative of Journey House Actions Rwanda (JHA)</p>
+        <p>&copy; 2026 Digital Gashora | Building digital skills in Gashora Centre, Bugesera</p>
+        <p>Digital Gashora is an initiative of Journey House Actions Rwanda (JHA)</p>
     </div>
 
-    <div id="lightbox">
-        <img id="lightbox-img" style="max-width: 95%; max-height: 95%; object-fit: contain;">
+    <div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; cursor: pointer; align-items: center; justify-content: center;">
+        <img id="lightbox-img" style="max-width: 90%; max-height: 90%; object-fit: contain;">
     </div>
 
     <script>
         // Lightbox
-        const galleryImages = document.querySelectorAll('.gallery-grid img');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
-
-        galleryImages.forEach(img => {
-            img.style.cursor = 'pointer';
-            img.addEventListener('click', function() {
-                lightbox.style.display = 'flex';
-                lightboxImg.src = this.src;
+        
+        function openLightbox(src) {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = src;
+        }
+        
+        lightbox.addEventListener('click', () => lightbox.style.display = 'none');
+        
+        // Load the daily plan
+        let dailyPlan = null;
+        
+        fetch('daily-plan.json')
+            .then(response => response.json())
+            .then(data => {
+                dailyPlan = data;
+                updateTodaySection();
+                updateTomorrowSection();
+                loadSkillsGrid();
+                loadMainGallery();
+            })
+            .catch(error => {
+                console.error('Error loading daily plan:', error);
+                document.getElementById('today-description').innerHTML = 'Loading schedule... Please refresh.';
             });
-        });
-
-        lightbox.addEventListener('click', function() { lightbox.style.display = 'none'; });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && lightbox.style.display === 'flex') lightbox.style.display = 'none';
-        });
-
-        // Your photos
+        
+        // Photo data for each folder
         const skillPhotos = {
             'mouse-skills': [
                 { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Mouse practice session' },
@@ -517,56 +330,113 @@
                 { file: 'keyboard2.png', name: 'Learning shortcuts' }
             ],
             'file-management': [
-                { file: 'photo1.png', name: 'Creating and organizing folders' }
+                { file: 'photo1.png', name: 'Creating folders' }
             ],
             'computer-basics': [
-                { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Computer startup basics' },
-                { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Understanding the desktop' },
-                { file: '675948469_1339105404771762_6931199817119341293_n.jpg', name: 'Computer hardware introduction' },
+                { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Computer startup' },
+                { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Desktop navigation' },
+                { file: '675948469_1339105404771762_6931199817119341293_n.jpg', name: 'Hardware intro' },
                 { file: 'photo2.png', name: 'Shutdown procedure' }
             ],
             'typing-documents': [],
             'sound-display': []
         };
-
-        const mediaContainer = document.getElementById('skill-media-container');
-        const mediaTitle = document.getElementById('media-title');
-        const mediaGrid = document.getElementById('media-grid');
-
-        document.querySelectorAll('.skill-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const folder = this.getAttribute('data-folder');
-                const title = this.getAttribute('data-title');
-                const photos = skillPhotos[folder] || [];
+        
+        function updateTodaySection() {
+            if (!dailyPlan) return;
+            
+            const currentDay = dailyPlan.currentDay;
+            const todayLesson = dailyPlan.schedule.find(day => day.day === currentDay);
+            
+            if (todayLesson) {
+                document.getElementById('today-date').innerHTML = `📅 ${todayLesson.date}`;
+                document.getElementById('today-title').innerHTML = todayLesson.title;
+                document.getElementById('today-description').innerHTML = todayLesson.whatWeLearned || 'No description yet. Check back after class!';
                 
-                mediaContainer.classList.add('show');
-                mediaTitle.innerHTML = title;
+                // Load photos for today's lesson
+                const photos = skillPhotos[todayLesson.photosFolder] || [];
+                const photosContainer = document.getElementById('today-photos');
                 
                 if (photos.length === 0) {
-                    mediaGrid.innerHTML = '<div class="media-placeholder">📸 No photos yet. Check back after our next class!</div>';
+                    photosContainer.innerHTML = '<p style="color: #888; text-align: center; grid-column: 1/-1;">📸 No photos yet. Will add after class!</p>';
                 } else {
-                    mediaGrid.innerHTML = '';
+                    photosContainer.innerHTML = '';
                     photos.forEach(photo => {
-                        const mediaDiv = document.createElement('div');
-                        mediaDiv.className = 'media-item';
-                        mediaDiv.innerHTML = `
-                            <img src="images/${folder}/${photo.file}" alt="${photo.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23333%22/%3E%3Ctext x=%22100%22 y=%2275%22 text-anchor=%22middle%22 fill=%22%23888%22%3EImage not found%3C/text%3E%3C/svg%3E'">
+                        const div = document.createElement('div');
+                        div.className = 'media-item';
+                        div.innerHTML = `
+                            <img src="images/${todayLesson.photosFolder}/${photo.file}" alt="${photo.name}" onclick="openLightbox(this.src)">
                             <p>${photo.name}</p>
                         `;
-                        const img = mediaDiv.querySelector('img');
-                        img.style.cursor = 'pointer';
-                        img.addEventListener('click', function(e) {
-                            e.stopPropagation();
-                            lightbox.style.display = 'flex';
-                            lightboxImg.src = this.src;
-                        });
-                        mediaGrid.appendChild(mediaDiv);
+                        photosContainer.appendChild(div);
                     });
                 }
-                mediaContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        function updateTomorrowSection() {
+            if (!dailyPlan) return;
+            
+            const currentDay = dailyPlan.currentDay;
+            const tomorrowLesson = dailyPlan.schedule.find(day => day.day === currentDay + 1);
+            
+            if (tomorrowLesson) {
+                document.getElementById('tomorrow-title').innerHTML = `📖 ${tomorrowLesson.title}`;
+                document.getElementById('tomorrow-preview').innerHTML = tomorrowLesson.nextLesson || 'Stay tuned for updates!';
+            } else {
+                document.getElementById('tomorrow-title').innerHTML = '🎉 Graduation Day!';
+                document.getElementById('tomorrow-preview').innerHTML = 'We\'ve completed all our lessons! Time to celebrate what we\'ve learned.';
+            }
+        }
+        
+        function loadSkillsGrid() {
+            const container = document.getElementById('skills-grid');
+            const skills = [
+                { name: '🖱️ Mouse Skills', desc: 'Clicking, double-clicking, right-click, moving the cursor', folder: 'mouse-skills' },
+                { name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts (Ctrl+C, Ctrl+V, Ctrl+Z), volume control', folder: 'keyboard-basics' },
+                { name: '📁 File Management', desc: 'Creating folders, deleting files, organizing documents', folder: 'file-management' },
+                { name: '🖥️ Computer Basics', desc: 'Startup, shutdown, using the desktop, understanding icons', folder: 'computer-basics' },
+                { name: '📝 Typing Documents', desc: 'Using Notepad, saving files, typing sentences', folder: 'typing-documents' },
+                { name: '🔊 Sound & Display', desc: 'Volume control, mute/unmute, screen brightness', folder: 'sound-display' }
+            ];
+            
+            container.innerHTML = '';
+            skills.forEach(skill => {
+                const card = document.createElement('div');
+                card.className = 'skill-card';
+                const photoCount = skillPhotos[skill.folder]?.length || 0;
+                card.innerHTML = `
+                    <h3>${skill.name}</h3>
+                    <p>${skill.desc}</p>
+                    <p style="font-size: 11px; margin-top: 10px; color: #ffd54f;">📸 ${photoCount} photos</p>
+                `;
+                container.appendChild(card);
             });
-        });
+        }
+        
+        function loadMainGallery() {
+            const container = document.getElementById('main-gallery');
+            const mainPhotos = [
+                { src: 'images/photo3.png', alt: 'Teaching session' },
+                { src: 'images/photo4.png', alt: 'Kids learning' },
+                { src: 'images/mouse-skills/674466373_932257053134443_8229112906871439629_n.jpg', alt: 'Mouse practice' },
+                { src: 'images/mouse-skills/674994811_981099904335215_7658704008394680199_n.jpg', alt: 'Clicking practice' },
+                { src: 'images/computer-basics/675948469_1339105404771762_6931199817119341293_n.jpg', alt: 'Computer hardware' }
+            ];
+            
+            container.innerHTML = '';
+            mainPhotos.forEach(photo => {
+                const img = document.createElement('img');
+                img.src = photo.src;
+                img.alt = photo.alt;
+                img.onerror = () => img.style.display = 'none';
+                img.onclick = () => openLightbox(photo.src);
+                container.appendChild(img);
+            });
+        }
+        
+        // Add openLightbox to window for onclick access
+        window.openLightbox = openLightbox;
     </script>
-
 </body>
 </html>
