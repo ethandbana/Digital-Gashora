@@ -27,24 +27,9 @@
             padding: 60px 20px;
         }
 
-        .header h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
-            color: #ffffff;
-        }
-
-        .header p {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #dddddd;
-        }
-
-        .tagline {
-            font-size: 24px;
-            font-style: italic;
-            margin-top: 15px;
-            color: #ffd54f;
-        }
+        .header h1 { font-size: 48px; margin-bottom: 10px; color: #ffffff; }
+        .header p { font-size: 20px; margin-bottom: 15px; color: #dddddd; }
+        .tagline { font-size: 24px; font-style: italic; margin-top: 15px; color: #ffd54f; }
 
         .nav {
             background: #1a1a2e;
@@ -65,16 +50,9 @@
             transition: all 0.3s;
         }
 
-        .nav a:hover {
-            background: #ffd54f;
-            color: #1a1a2e;
-        }
+        .nav a:hover { background: #ffd54f; color: #1a1a2e; }
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 40px 20px;
-        }
+        .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
 
         .section {
             background: #1e1e2e;
@@ -91,11 +69,6 @@
             font-size: 32px;
             border-left: 5px solid #ffd54f;
             padding-left: 20px;
-        }
-
-        .section h3 {
-            color: #ffd54f;
-            margin: 20px 0 10px 0;
         }
 
         .skills-grid {
@@ -115,27 +88,12 @@
             cursor: pointer;
         }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: #ffd54f;
-        }
-
-        .skill-card:active {
-            transform: scale(0.98);
-        }
-
-        .skill-card h3 {
-            color: #ffd54f;
-            margin-bottom: 10px;
-        }
-
-        .skill-card p {
-            color: #c0c0c0;
-        }
+        .skill-card:hover { transform: translateY(-5px); border-color: #ffd54f; }
+        .skill-card h3 { color: #ffd54f; margin-bottom: 10px; }
+        .skill-card p { color: #c0c0c0; }
 
         .quote {
             background: #2a2a3e;
-            color: #e0e0e0;
             text-align: center;
             padding: 50px;
             border-radius: 15px;
@@ -143,17 +101,7 @@
             border: 1px solid #ffd54f;
         }
 
-        .quote p {
-            font-size: 24px;
-            font-style: italic;
-            color: #ffd54f;
-        }
-
-        .quote-author {
-            margin-top: 15px;
-            font-size: 18px;
-            color: #c0c0c0;
-        }
+        .quote p { font-size: 24px; font-style: italic; color: #ffd54f; }
 
         .gallery-grid {
             display: flex;
@@ -168,16 +116,11 @@
             height: 180px;
             object-fit: cover;
             border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
             border: 2px solid #3a3a4e;
-            transition: transform 0.3s;
             cursor: pointer;
         }
 
-        .gallery-grid img:hover {
-            transform: scale(1.05);
-            border-color: #ffd54f;
-        }
+        .gallery-grid img:hover { border-color: #ffd54f; }
 
         .footer {
             background: #1a1a2e;
@@ -197,12 +140,6 @@
             text-decoration: none;
             font-weight: bold;
             margin-top: 15px;
-            transition: background 0.3s;
-        }
-
-        .button:hover {
-            background: #ffca28;
-            color: #0a0a0a;
         }
 
         .daily-log {
@@ -213,25 +150,10 @@
             border-left: 4px solid #ffd54f;
         }
 
-        .daily-log h3 {
-            color: #ffd54f;
-            margin-bottom: 15px;
-        }
+        .daily-log ul { line-height: 1.8; margin-left: 20px; color: #c0c0c0; }
 
-        .daily-log ul {
-            line-height: 1.8;
-            margin-left: 20px;
-            color: #c0c0c0;
-        }
-
-        .media-container {
-            margin-top: 40px;
-            display: none;
-        }
-
-        .media-container.show {
-            display: block;
-        }
+        .media-container { margin-top: 40px; display: none; }
+        .media-container.show { display: block; }
 
         .media-card {
             background: #2a2a3e;
@@ -240,10 +162,7 @@
             border-left: 4px solid #ffd54f;
         }
 
-        .media-card h3 {
-            color: #ffd54f;
-            margin-bottom: 15px;
-        }
+        .media-card h3 { color: #ffd54f; margin-bottom: 15px; }
 
         .media-grid {
             display: flex;
@@ -261,35 +180,15 @@
             transition: transform 0.3s;
         }
 
-        .media-item:hover {
-            transform: scale(1.05);
-            border-color: #ffd54f;
-        }
+        .media-item:hover { transform: scale(1.05); border-color: #ffd54f; }
+        .media-item img { width: 100%; height: 150px; object-fit: cover; cursor: pointer; }
+        .media-item p { padding: 8px; font-size: 12px; text-align: center; color: #c0c0c0; }
 
-        .media-item img, .media-item video {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .media-item p {
-            padding: 8px;
-            font-size: 12px;
-            text-align: center;
-            color: #c0c0c0;
-        }
-
-        .media-placeholder {
-            text-align: center;
-            padding: 40px;
-            color: #888;
-            width: 100%;
-        }
+        .media-placeholder { text-align: center; padding: 40px; color: #888; width: 100%; }
 
         @media (max-width: 700px) {
             .header h1 { font-size: 32px; }
             .nav a { display: block; margin: 10px 0; }
-            .gallery-grid img { width: 100%; height: auto; }
             .media-item { width: 100%; }
         }
     </style>
@@ -330,7 +229,7 @@
 
         <div id="what-we-teach" class="section">
             <h2>What We Teach</h2>
-            <p style="margin-bottom: 15px;">👇 <strong>Click any skill below</strong> to see photos and videos from our actual lessons!</p>
+            <p style="margin-bottom: 15px;">👇 <strong>Click any skill below</strong> to see photos from our actual lessons!</p>
             <div class="skills-grid">
                 <div class="skill-card" data-folder="mouse-skills" data-title="🖱️ Mouse Skills - In Action">
                     <h3>🖱️ Mouse Skills</h3>
@@ -364,7 +263,7 @@
                     <div id="media-grid" class="media-grid">
                         <div class="media-placeholder">Click a skill above to see photos</div>
                     </div>
-                    <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #888;">📱 Photos from our actual training sessions</p>
+                    <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #888;">📱 Photos from our training sessions</p>
                 </div>
             </div>
 
@@ -384,8 +283,9 @@
             <h2>📸 Digital Gashora in Action</h2>
             <p>Real moments from our computer skills training in Gashora Centre.</p>
             <div class="gallery-grid" id="galleryGrid">
-                <img src="images/photo3.png" alt="Teaching computer skills">
-                <img src="images/photo4.png" alt="Kids learning">
+                <img src="images/photo3.png" alt="Teaching computer skills" onerror="this.style.display='none'">
+                <img src="images/photo4.png" alt="Kids learning" onerror="this.style.display='none'">
+                <img src="images/photo3 - Copy.png" alt="Computer class" onerror="this.style.display='none'">
             </div>
             <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #888;">📅 Updated regularly</p>
         </div>
@@ -424,38 +324,35 @@
             });
         });
 
-        lightbox.addEventListener('click', function() {
-            lightbox.style.display = 'none';
-        });
-
+        lightbox.addEventListener('click', function() { lightbox.style.display = 'none'; });
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-                lightbox.style.display = 'none';
-            }
+            if (e.key === 'Escape' && lightbox.style.display === 'flex') lightbox.style.display = 'none';
         });
 
-        // Skill Gallery - DIRECT PHOTO LISTING
-        // Add YOUR photos here - just put the filename and description
+        // ========== YOUR ACTUAL PHOTOS ==========
         const skillPhotos = {
             'mouse-skills': [
-                { file: 'mouse1.png', name: 'Mouse practice session' },
-                { file: 'mouse2.png', name: 'Learning to click' }
+                { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Mouse practice session' },
+                { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Learning to click' }
             ],
             'keyboard-basics': [
                 { file: 'keyboard1.png', name: 'Keyboard practice' },
-                { file: 'keyboard2.png', name: 'Shortcuts practice' }
+                { file: 'keyboard2.png', name: 'Learning shortcuts' }
             ],
             'file-management': [
-                { file: 'file1.png', name: 'Creating folders' }
+                { file: 'photo1.png', name: 'Creating and organizing folders' }
             ],
             'computer-basics': [
-                { file: 'computer1.png', name: 'Computer startup' }
+                { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Computer startup basics' },
+                { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Understanding the desktop' },
+                { file: '675948469_1339105404771762_6931199817119341293_n.jpg', name: 'Computer hardware introduction' },
+                { file: 'photo2.png', name: 'Shutdown procedure' }
             ],
             'typing-documents': [
-                { file: 'typing1.png', name: 'Typing practice' }
+                // Add your photos here when you have them
             ],
             'sound-display': [
-                { file: 'sound1.png', name: 'Volume control' }
+                // Add your photos here when you have them
             ]
         };
 
@@ -473,14 +370,14 @@
                 mediaTitle.innerHTML = title;
                 
                 if (photos.length === 0) {
-                    mediaGrid.innerHTML = '<div class="media-placeholder">📸 No photos added yet. Add them to the skillPhotos list in the script.</div>';
+                    mediaGrid.innerHTML = '<div class="media-placeholder">📸 No photos added yet. Check back after our next class!</div>';
                 } else {
                     mediaGrid.innerHTML = '';
                     photos.forEach(photo => {
                         const mediaDiv = document.createElement('div');
                         mediaDiv.className = 'media-item';
                         mediaDiv.innerHTML = `
-                            <img src="images/${folder}/${photo.file}" alt="${photo.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23333%22/%3E%3Ctext x=%22100%22 y=%2275%22 text-anchor=%22middle%22 fill=%22%23888%22%3EMissing%3C/text%3E%3C/svg%3E'">
+                            <img src="images/${folder}/${photo.file}" alt="${photo.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23333%22/%3E%3Ctext x=%22100%22 y=%2275%22 text-anchor=%22middle%22 fill=%22%23888%22%3EImage not found%3C/text%3E%3C/svg%3E'">
                             <p>${photo.name}</p>
                         `;
                         const img = mediaDiv.querySelector('img');
@@ -493,7 +390,6 @@
                         mediaGrid.appendChild(mediaDiv);
                     });
                 }
-                
                 mediaContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
