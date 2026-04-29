@@ -332,38 +332,37 @@
             <h2>What We Teach</h2>
             <p style="margin-bottom: 15px;">👇 <strong>Click any skill below</strong> to see photos and videos from our actual lessons!</p>
             <div class="skills-grid">
-                <div class="skill-card" data-folder="mouse-skills">
+                <div class="skill-card" data-folder="mouse-skills" data-title="🖱️ Mouse Skills - In Action">
                     <h3>🖱️ Mouse Skills</h3>
                     <p>Clicking, double-clicking, right-click, moving the cursor</p>
                 </div>
-                <div class="skill-card" data-folder="keyboard-basics">
+                <div class="skill-card" data-folder="keyboard-basics" data-title="⌨️ Keyboard Basics - Practice Session">
                     <h3>⌨️ Keyboard Basics</h3>
                     <p>Typing, shortcuts (Ctrl+C, Ctrl+V, Ctrl+Z), volume control</p>
                 </div>
-                <div class="skill-card" data-folder="file-management">
+                <div class="skill-card" data-folder="file-management" data-title="📁 File Management - Creating Folders">
                     <h3>📁 File Management</h3>
                     <p>Creating folders, deleting files, organizing documents</p>
                 </div>
-                <div class="skill-card" data-folder="computer-basics">
+                <div class="skill-card" data-folder="computer-basics" data-title="🖥️ Computer Basics - Startup & Shutdown">
                     <h3>🖥️ Computer Basics</h3>
                     <p>Startup, shutdown, using the desktop, understanding icons</p>
                 </div>
-                <div class="skill-card" data-folder="typing-documents">
+                <div class="skill-card" data-folder="typing-documents" data-title="📝 Typing Documents - Using Notepad">
                     <h3>📝 Typing Documents</h3>
                     <p>Using Notepad, saving files, typing sentences</p>
                 </div>
-                <div class="skill-card" data-folder="sound-display">
+                <div class="skill-card" data-folder="sound-display" data-title="🔊 Sound & Display - Volume Control">
                     <h3>🔊 Sound & Display</h3>
                     <p>Volume control, mute/unmute, screen brightness</p>
                 </div>
             </div>
 
-            <!-- Media Gallery Container -->
             <div id="skill-media-container" class="media-container">
                 <div class="media-card">
                     <h3 id="media-title">📸 Lesson Media</h3>
                     <div id="media-grid" class="media-grid">
-                        <div class="media-placeholder">Click a skill above to see photos from that lesson</div>
+                        <div class="media-placeholder">Click a skill above to see photos</div>
                     </div>
                     <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #888;">📱 Photos from our actual training sessions</p>
                 </div>
@@ -388,7 +387,7 @@
                 <img src="images/photo3.png" alt="Teaching computer skills">
                 <img src="images/photo4.png" alt="Kids learning">
             </div>
-            <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #888;">📅 Updated regularly with new photos</p>
+            <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #888;">📅 Updated regularly</p>
         </div>
 
         <div id="contact" class="section">
@@ -407,13 +406,12 @@
         <p style="margin-top: 15px; font-size: 12px;">Digital Gashora is an initiative of Journey House Actions Rwanda (JHA)</p>
     </div>
 
-    <!-- Lightbox -->
     <div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; cursor: pointer; align-items: center; justify-content: center;">
         <img id="lightbox-img" style="max-width: 90%; max-height: 90%; object-fit: contain;">
     </div>
 
     <script>
-        // Lightbox functionality
+        // Lightbox
         const galleryImages = document.querySelectorAll('.gallery-grid img');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
@@ -436,77 +434,65 @@
             }
         });
 
-        // ========== LOAD PHOTOS FROM photos.json ==========
+        // Skill Gallery - DIRECT PHOTO LISTING
+        // Add YOUR photos here - just put the filename and description
+        const skillPhotos = {
+            'mouse-skills': [
+                { file: 'mouse1.png', name: 'Mouse practice session' },
+                { file: 'mouse2.png', name: 'Learning to click' }
+            ],
+            'keyboard-basics': [
+                { file: 'keyboard1.png', name: 'Keyboard practice' },
+                { file: 'keyboard2.png', name: 'Shortcuts practice' }
+            ],
+            'file-management': [
+                { file: 'file1.png', name: 'Creating folders' }
+            ],
+            'computer-basics': [
+                { file: 'computer1.png', name: 'Computer startup' }
+            ],
+            'typing-documents': [
+                { file: 'typing1.png', name: 'Typing practice' }
+            ],
+            'sound-display': [
+                { file: 'sound1.png', name: 'Volume control' }
+            ]
+        };
+
         const mediaContainer = document.getElementById('skill-media-container');
         const mediaTitle = document.getElementById('media-title');
         const mediaGrid = document.getElementById('media-grid');
-        
-        const folderNames = {
-            'mouse-skills': '🖱️ Mouse Skills - In Action',
-            'keyboard-basics': '⌨️ Keyboard Basics - Practice Session',
-            'file-management': '📁 File Management - Creating Folders',
-            'computer-basics': '🖥️ Computer Basics - Startup & Shutdown',
-            'typing-documents': '📝 Typing Documents - Using Notepad',
-            'sound-display': '🔊 Sound & Display - Volume Control'
-        };
-        
-        // Load the photos.json file
-        let allPhotos = {};
-        
-        fetch('photos.json')
-            .then(response => response.json())
-            .then(data => {
-                allPhotos = data;
-                console.log('Photos loaded:', allPhotos);
-            })
-            .catch(error => {
-                console.error('Error loading photos.json:', error);
-            });
-        
-        // Add click listeners to skill cards
+
         document.querySelectorAll('.skill-card').forEach(card => {
             card.addEventListener('click', function() {
                 const folder = this.getAttribute('data-folder');
-                const title = folderNames[folder] || '📸 Lesson Media';
+                const title = this.getAttribute('data-title');
+                const photos = skillPhotos[folder] || [];
                 
                 mediaContainer.classList.add('show');
                 mediaTitle.innerHTML = title;
-                mediaGrid.innerHTML = '<div class="media-placeholder">Loading...</div>';
-                
-                // Get photos for this folder
-                const photos = allPhotos[folder] || [];
                 
                 if (photos.length === 0) {
-                    mediaGrid.innerHTML = `
-                        <div class="media-placeholder">
-                            📸 No photos in this folder yet.<br><br>
-                            To add photos:<br>
-                            1. Put photos in images/${folder}/<br>
-                            2. Run the update-photos.bat script<br>
-                            3. Push to GitHub
-                        </div>
-                    `;
-                    return;
-                }
-                
-                // Display all photos
-                mediaGrid.innerHTML = '';
-                photos.forEach(photo => {
-                    const mediaDiv = document.createElement('div');
-                    mediaDiv.className = 'media-item';
-                    mediaDiv.innerHTML = `
-                        <img src="images/${folder}/${photo.file}" alt="${photo.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23333%22/%3E%3Ctext x=%22100%22 y=%2275%22 text-anchor=%22middle%22 fill=%22%23888%22%3EPhoto not found%3C/text%3E%3C/svg%3E'">
-                        <p>${photo.name}</p>
-                    `;
-                    const img = mediaDiv.querySelector('img');
-                    img.style.cursor = 'pointer';
-                    img.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        lightbox.style.display = 'flex';
-                        lightboxImg.src = this.src;
+                    mediaGrid.innerHTML = '<div class="media-placeholder">📸 No photos added yet. Add them to the skillPhotos list in the script.</div>';
+                } else {
+                    mediaGrid.innerHTML = '';
+                    photos.forEach(photo => {
+                        const mediaDiv = document.createElement('div');
+                        mediaDiv.className = 'media-item';
+                        mediaDiv.innerHTML = `
+                            <img src="images/${folder}/${photo.file}" alt="${photo.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23333%22/%3E%3Ctext x=%22100%22 y=%2275%22 text-anchor=%22middle%22 fill=%22%23888%22%3EMissing%3C/text%3E%3C/svg%3E'">
+                            <p>${photo.name}</p>
+                        `;
+                        const img = mediaDiv.querySelector('img');
+                        img.style.cursor = 'pointer';
+                        img.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            lightbox.style.display = 'flex';
+                            lightboxImg.src = this.src;
+                        });
+                        mediaGrid.appendChild(mediaDiv);
                     });
-                    mediaGrid.appendChild(mediaDiv);
-                });
+                }
                 
                 mediaContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
