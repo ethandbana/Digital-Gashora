@@ -89,7 +89,6 @@
             padding-left: 15px;
         }
 
-        /* Today's Lesson Card */
         .today-card {
             background: linear-gradient(135deg, #2a2a3e, #1e1e2e);
             border: 2px solid #ffd54f;
@@ -118,18 +117,11 @@
             margin-bottom: 15px;
         }
 
-        .lesson-description {
-            margin: 20px 0;
-            line-height: 1.8;
-        }
-
-        /* Tomorrow Card */
         .tomorrow-card {
             background: #2a2a3e;
             border: 1px dashed #ffd54f;
         }
 
-        /* Grid layouts */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -173,10 +165,15 @@
             cursor: pointer;
         }
 
+        .gallery-grid img:hover {
+            border-color: #ffd54f;
+        }
+
         .media-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 15px;
+            margin-top: 20px;
         }
 
         .media-item {
@@ -185,6 +182,12 @@
             background: #1e1e2e;
             border: 1px solid #3a3a4e;
             cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .media-item:hover {
+            transform: scale(1.03);
+            border-color: #ffd54f;
         }
 
         .media-item img {
@@ -218,9 +221,89 @@
             margin-top: 15px;
         }
 
+        /* Modal for skill photos */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: #1e1e2e;
+            margin: 50px auto;
+            padding: 20px;
+            max-width: 600px;
+            border-radius: 15px;
+            border: 2px solid #ffd54f;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .modal-header h2 {
+            color: #ffd54f;
+            margin: 0;
+        }
+
+        .close-modal {
+            background: #ffd54f;
+            color: #1a1a2e;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .close-modal:hover {
+            background: #ffca28;
+        }
+
+        .modal-media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .modal-media-item {
+            border-radius: 10px;
+            overflow: hidden;
+            background: #2a2a3e;
+            border: 1px solid #3a3a4e;
+            cursor: pointer;
+        }
+
+        .modal-media-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .modal-media-item p {
+            padding: 8px;
+            font-size: 11px;
+            text-align: center;
+        }
+
         @media (max-width: 768px) {
             .skills-grid, .gallery-grid, .media-grid {
                 grid-template-columns: 1fr;
+            }
+            .modal-content {
+                margin: 20px;
+                padding: 15px;
             }
         }
     </style>
@@ -241,7 +324,6 @@
     </div>
 
     <div class="container">
-        <!-- Today's Lesson -->
         <div id="today" class="section today-card">
             <span class="today-badge">📅 TODAY'S LESSON</span>
             <div id="today-date" class="lesson-date">Loading...</div>
@@ -250,28 +332,23 @@
             <div id="today-photos" class="media-grid"></div>
         </div>
 
-        <!-- Tomorrow's Plan -->
         <div id="tomorrow" class="section tomorrow-card">
             <h2>🔮 Tomorrow's Plan</h2>
             <div id="tomorrow-title" style="font-size: 20px; color: #ffd54f; margin-bottom: 10px;">Loading...</div>
             <div id="tomorrow-preview">Loading...</div>
         </div>
 
-        <!-- Skills Overview -->
         <div id="skills" class="section">
             <h2>📚 All Skills We Teach</h2>
-            <div class="skills-grid" id="skills-grid">
-                <!-- Skills will load here -->
-            </div>
+            <p style="margin-bottom: 15px;">👇 <strong>Tap any skill</strong> to see all photos from that lesson!</p>
+            <div class="skills-grid" id="skills-grid"></div>
         </div>
 
-        <!-- Photo Gallery -->
         <div id="gallery" class="section">
             <h2>📸 Class Gallery</h2>
             <div class="gallery-grid" id="main-gallery"></div>
         </div>
 
-        <!-- Contact -->
         <div id="contact" class="section">
             <h2>Contact Us</h2>
             <p>📍 Gashora Centre, Bugesera District, Rwanda</p>
@@ -286,12 +363,25 @@
         <p>Digital Gashora is an initiative of Journey House Actions Rwanda (JHA)</p>
     </div>
 
-    <div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; cursor: pointer; align-items: center; justify-content: center;">
+    <!-- Modal for skill photos -->
+    <div id="skillModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">📸 Lesson Photos</h2>
+                <button class="close-modal" onclick="closeModal()">✕ Close</button>
+            </div>
+            <div id="modal-media-grid" class="modal-media-grid"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox for fullscreen image -->
+    <div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 1100; cursor: pointer; align-items: center; justify-content: center;">
         <img id="lightbox-img" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+        <button onclick="closeLightbox()" style="position: absolute; top: 20px; right: 20px; background: #ffd54f; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer;">✕ Close</button>
     </div>
 
     <script>
-        // Lightbox
+        // Lightbox functions
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         
@@ -300,9 +390,73 @@
             lightboxImg.src = src;
         }
         
-        lightbox.addEventListener('click', () => lightbox.style.display = 'none');
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
         
-        // Load the daily plan
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        
+        // Modal functions
+        const modal = document.getElementById('skillModal');
+        
+        function openModal() {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        window.openLightbox = openLightbox;
+        window.closeLightbox = closeLightbox;
+        window.closeModal = closeModal;
+        
+        // All photos data - YOUR ACTUAL PHOTOS
+        const skillPhotos = {
+            'mouse-skills': {
+                name: '🖱️ Mouse Skills',
+                photos: [
+                    { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Mouse practice session' },
+                    { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Learning to click' }
+                ]
+            },
+            'keyboard-basics': {
+                name: '⌨️ Keyboard Basics',
+                photos: [
+                    { file: 'keyboard1.png', name: 'Keyboard practice' },
+                    { file: 'keyboard2.png', name: 'Learning shortcuts' }
+                ]
+            },
+            'file-management': {
+                name: '📁 File Management',
+                photos: [
+                    { file: 'photo1.png', name: 'Creating and organizing folders' }
+                ]
+            },
+            'computer-basics': {
+                name: '🖥️ Computer Basics',
+                photos: [
+                    { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Computer startup basics' },
+                    { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Understanding the desktop' },
+                    { file: '675948469_1339105404771762_6931199817119341293_n.jpg', name: 'Computer hardware introduction' },
+                    { file: 'photo2.png', name: 'Shutdown procedure' }
+                ]
+            },
+            'typing-documents': {
+                name: '📝 Typing Documents',
+                photos: []
+            },
+            'sound-display': {
+                name: '🔊 Sound & Display',
+                photos: []
+            }
+        };
+        
+        // Load daily plan
         let dailyPlan = null;
         
         fetch('daily-plan.json')
@@ -311,50 +465,23 @@
                 dailyPlan = data;
                 updateTodaySection();
                 updateTomorrowSection();
-                loadSkillsGrid();
-                loadMainGallery();
             })
             .catch(error => {
                 console.error('Error loading daily plan:', error);
                 document.getElementById('today-description').innerHTML = 'Loading schedule... Please refresh.';
             });
         
-        // Photo data for each folder
-        const skillPhotos = {
-            'mouse-skills': [
-                { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Mouse practice session' },
-                { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Learning to click' }
-            ],
-            'keyboard-basics': [
-                { file: 'keyboard1.png', name: 'Keyboard practice' },
-                { file: 'keyboard2.png', name: 'Learning shortcuts' }
-            ],
-            'file-management': [
-                { file: 'photo1.png', name: 'Creating folders' }
-            ],
-            'computer-basics': [
-                { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Computer startup' },
-                { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Desktop navigation' },
-                { file: '675948469_1339105404771762_6931199817119341293_n.jpg', name: 'Hardware intro' },
-                { file: 'photo2.png', name: 'Shutdown procedure' }
-            ],
-            'typing-documents': [],
-            'sound-display': []
-        };
-        
         function updateTodaySection() {
             if (!dailyPlan) return;
-            
             const currentDay = dailyPlan.currentDay;
             const todayLesson = dailyPlan.schedule.find(day => day.day === currentDay);
             
             if (todayLesson) {
                 document.getElementById('today-date').innerHTML = `📅 ${todayLesson.date}`;
                 document.getElementById('today-title').innerHTML = todayLesson.title;
-                document.getElementById('today-description').innerHTML = todayLesson.whatWeLearned || 'No description yet. Check back after class!';
+                document.getElementById('today-description').innerHTML = todayLesson.whatWeLearned || 'No description yet.';
                 
-                // Load photos for today's lesson
-                const photos = skillPhotos[todayLesson.photosFolder] || [];
+                const photos = skillPhotos[todayLesson.photosFolder]?.photos || [];
                 const photosContainer = document.getElementById('today-photos');
                 
                 if (photos.length === 0) {
@@ -376,47 +503,81 @@
         
         function updateTomorrowSection() {
             if (!dailyPlan) return;
-            
             const currentDay = dailyPlan.currentDay;
             const tomorrowLesson = dailyPlan.schedule.find(day => day.day === currentDay + 1);
             
             if (tomorrowLesson) {
                 document.getElementById('tomorrow-title').innerHTML = `📖 ${tomorrowLesson.title}`;
-                document.getElementById('tomorrow-preview').innerHTML = tomorrowLesson.nextLesson || 'Stay tuned for updates!';
+                document.getElementById('tomorrow-preview').innerHTML = tomorrowLesson.nextLesson || 'Stay tuned!';
             } else {
                 document.getElementById('tomorrow-title').innerHTML = '🎉 Graduation Day!';
-                document.getElementById('tomorrow-preview').innerHTML = 'We\'ve completed all our lessons! Time to celebrate what we\'ve learned.';
+                document.getElementById('tomorrow-preview').innerHTML = 'We\'ve completed all our lessons!';
             }
         }
         
+        // Build skills grid with click handlers
         function loadSkillsGrid() {
             const container = document.getElementById('skills-grid');
             const skills = [
-                { name: '🖱️ Mouse Skills', desc: 'Clicking, double-clicking, right-click, moving the cursor', folder: 'mouse-skills' },
-                { name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts (Ctrl+C, Ctrl+V, Ctrl+Z), volume control', folder: 'keyboard-basics' },
-                { name: '📁 File Management', desc: 'Creating folders, deleting files, organizing documents', folder: 'file-management' },
-                { name: '🖥️ Computer Basics', desc: 'Startup, shutdown, using the desktop, understanding icons', folder: 'computer-basics' },
-                { name: '📝 Typing Documents', desc: 'Using Notepad, saving files, typing sentences', folder: 'typing-documents' },
-                { name: '🔊 Sound & Display', desc: 'Volume control, mute/unmute, screen brightness', folder: 'sound-display' }
+                { key: 'mouse-skills', name: '🖱️ Mouse Skills', desc: 'Clicking, double-clicking, right-click, moving the cursor' },
+                { key: 'keyboard-basics', name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts (Ctrl+C, Ctrl+V, Ctrl+Z), volume control' },
+                { key: 'file-management', name: '📁 File Management', desc: 'Creating folders, deleting files, organizing documents' },
+                { key: 'computer-basics', name: '🖥️ Computer Basics', desc: 'Startup, shutdown, using the desktop, understanding icons' },
+                { key: 'typing-documents', name: '📝 Typing Documents', desc: 'Using Notepad, saving files, typing sentences' },
+                { key: 'sound-display', name: '🔊 Sound & Display', desc: 'Volume control, mute/unmute, screen brightness' }
             ];
             
             container.innerHTML = '';
             skills.forEach(skill => {
+                const photos = skillPhotos[skill.key]?.photos || [];
+                const photoCount = photos.length;
+                
                 const card = document.createElement('div');
                 card.className = 'skill-card';
-                const photoCount = skillPhotos[skill.folder]?.length || 0;
+                card.setAttribute('data-skill-key', skill.key);
+                card.onclick = () => showSkillPhotos(skill.key);
+                
                 card.innerHTML = `
                     <h3>${skill.name}</h3>
                     <p>${skill.desc}</p>
-                    <p style="font-size: 11px; margin-top: 10px; color: #ffd54f;">📸 ${photoCount} photos</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: #ffd54f;">📸 ${photoCount} photo${photoCount !== 1 ? 's' : ''}</p>
+                    <p style="font-size: 11px; margin-top: 5px; color: #888;">👇 Tap to view</p>
                 `;
                 container.appendChild(card);
             });
         }
         
+        function showSkillPhotos(skillKey) {
+            const skill = skillPhotos[skillKey];
+            if (!skill) return;
+            
+            const modalTitle = document.getElementById('modal-title');
+            const modalGrid = document.getElementById('modal-media-grid');
+            
+            modalTitle.innerHTML = `📸 ${skill.name}`;
+            
+            if (skill.photos.length === 0) {
+                modalGrid.innerHTML = '<p style="color: #888; text-align: center; padding: 40px;">📸 No photos yet. Check back after our lesson!</p>';
+            } else {
+                modalGrid.innerHTML = '';
+                skill.photos.forEach(photo => {
+                    const div = document.createElement('div');
+                    div.className = 'modal-media-item';
+                    div.innerHTML = `
+                        <img src="images/${skillKey}/${photo.file}" alt="${photo.name}" onclick="openLightbox(this.src)">
+                        <p>${photo.name}</p>
+                    `;
+                    modalGrid.appendChild(div);
+                });
+            }
+            
+            openModal();
+        }
+        
+        // Load main gallery
         function loadMainGallery() {
             const container = document.getElementById('main-gallery');
-            const mainPhotos = [
+            const allPhotos = [
                 { src: 'images/photo3.png', alt: 'Teaching session' },
                 { src: 'images/photo4.png', alt: 'Kids learning' },
                 { src: 'images/mouse-skills/674466373_932257053134443_8229112906871439629_n.jpg', alt: 'Mouse practice' },
@@ -425,7 +586,7 @@
             ];
             
             container.innerHTML = '';
-            mainPhotos.forEach(photo => {
+            allPhotos.forEach(photo => {
                 const img = document.createElement('img');
                 img.src = photo.src;
                 img.alt = photo.alt;
@@ -435,8 +596,9 @@
             });
         }
         
-        // Add openLightbox to window for onclick access
-        window.openLightbox = openLightbox;
+        // Initialize everything
+        loadSkillsGrid();
+        loadMainGallery();
     </script>
 </body>
 </html>
