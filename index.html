@@ -13,22 +13,28 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0a2a;
             min-height: 100vh;
             color: #fff;
+            background: url('images/teta.png') center center fixed;
+            background-size: cover;
+            position: relative;
+            overflow-x: hidden;
         }
 
         /* Dashboard Layout */
         .dashboard-container {
             display: flex;
             min-height: 100vh;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Sidebar */
+        /* Sidebar - Fully Transparent */
         .sidebar {
             width: 280px;
-            background: linear-gradient(180deg, #0f0f1a, #0a0a15);
-            border-right: 1px solid rgba(255, 213, 79, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border-right: 1px solid rgba(255, 213, 79, 0.15);
             padding: 30px 20px;
             position: sticky;
             top: 0;
@@ -53,7 +59,7 @@
 
         .logo p {
             font-size: 11px;
-            opacity: 0.6;
+            opacity: 0.8;
             margin-top: 5px;
         }
 
@@ -66,7 +72,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #ffd54f;
-            opacity: 0.7;
+            opacity: 0.8;
             margin-bottom: 15px;
         }
 
@@ -84,7 +90,7 @@
         }
 
         .nav-item:hover {
-            background: rgba(255, 213, 79, 0.1);
+            background: rgba(255, 213, 79, 0.15);
             transform: translateX(5px);
         }
 
@@ -98,7 +104,6 @@
             flex: 1;
             padding: 25px 30px;
             overflow-x: hidden;
-            background: rgba(10, 10, 42, 0.5);
         }
 
         /* Top Bar */
@@ -117,15 +122,17 @@
         }
 
         .welcome-section p {
-            opacity: 0.6;
+            opacity: 0.7;
             font-size: 14px;
         }
 
         .date-time {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
             padding: 10px 20px;
             border-radius: 12px;
             font-size: 14px;
+            border: 1px solid rgba(255, 213, 79, 0.15);
         }
 
         /* Stats Grid */
@@ -137,7 +144,8 @@
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 20px;
             text-align: center;
@@ -175,9 +183,10 @@
             margin-bottom: 30px;
         }
 
-        /* Cards */
+        /* Cards - Fully Transparent */
         .card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
             border-radius: 20px;
             padding: 20px;
             border: 1px solid rgba(255, 213, 79, 0.1);
@@ -222,7 +231,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
@@ -251,7 +260,7 @@
         .progress-bar {
             width: 100%;
             height: 6px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 3px;
             overflow: hidden;
             margin-top: 8px;
@@ -295,7 +304,7 @@
         }
 
         .photo-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
@@ -336,6 +345,18 @@
             box-shadow: 0 5px 15px rgba(255, 213, 79, 0.3);
         }
 
+        input, textarea {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 213, 79, 0.2);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
         /* Modal */
         .modal {
             display: none;
@@ -351,7 +372,7 @@
         }
 
         .modal-content {
-            background: rgba(20, 20, 40, 0.95);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(20px);
             margin: 50px auto;
             padding: 25px;
@@ -565,7 +586,7 @@
                         <h3>🔐 Your Progress</h3>
                         <span class="badge">Student Portal</span>
                     </div>
-                    <input type="text" id="studentName" placeholder="Enter your name" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; background: rgba(255,255,255,0.1); border: none; color: white;">
+                    <input type="text" id="studentName" placeholder="Enter your name" style="width: 100%; margin-bottom: 10px;">
                     <button onclick="loginStudent()" class="button" style="width: 100%;">Login / Track Progress</button>
                     <div id="studentProgress" style="margin-top: 15px; display: none;">
                         <div id="completedSkillsList"></div>
@@ -669,7 +690,7 @@
                 <p id="certStatus">Login and complete all skills to earn your certificate!</p>
                 <div class="progress-bar"><div id="certProgressFill" class="progress-fill" style="width: 0%"></div></div>
                 <p id="certProgressText" style="margin: 10px 0;">0/6 skills completed</p>
-                <div id="certificateDisplay" style="background: linear-gradient(135deg, #fff, #f0f0f0); padding: 30px; border-radius: 16px; color: #333; display: none; margin-top: 20px;">
+                <div id="certificateDisplay" style="background: rgba(255,255,255,0.9); padding: 30px; border-radius: 16px; color: #333; display: none; margin-top: 20px;">
                     <h2 style="color: #ff8c00;">🎓 Certificate of Completion</h2>
                     <p>This certificate is awarded to</p>
                     <h3 id="certName" style="margin: 15px 0;">___________</h3>
@@ -701,8 +722,8 @@
                 <div id="announcementsList"></div>
                 <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
                     <h4 style="color: #ffd54f; margin-bottom: 10px;">Post Announcement</h4>
-                    <input type="text" id="announcementTitle" placeholder="Title" style="width: 100%; padding: 8px; margin-bottom: 8px; border-radius: 8px; background: rgba(255,255,255,0.1); border: none; color: white;">
-                    <textarea id="announcementMessage" placeholder="Message" rows="2" style="width: 100%; padding: 8px; margin-bottom: 8px; border-radius: 8px; background: rgba(255,255,255,0.1); border: none; color: white;"></textarea>
+                    <input type="text" id="announcementTitle" placeholder="Title" style="width: 100%; margin-bottom: 8px;">
+                    <textarea id="announcementMessage" placeholder="Message" rows="2" style="width: 100%; margin-bottom: 8px;"></textarea>
                     <button onclick="postAnnouncement()" class="button">Post</button>
                 </div>
             </div>
@@ -720,9 +741,9 @@
                 <p>📧 Supervisor: <a href="mailto:gakumbajohn@gmail.com" style="color: #ffd54f;">gakumbajohn@gmail.com</a></p>
                 <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
                     <h4 style="color: #ffd54f;">Send a Message</h4>
-                    <input type="text" id="contactName" placeholder="Your name" style="width: 100%; padding: 8px; margin-bottom: 8px; border-radius: 8px; background: rgba(255,255,255,0.1); border: none;">
-                    <input type="email" id="contactEmail" placeholder="Your email" style="width: 100%; padding: 8px; margin-bottom: 8px; border-radius: 8px; background: rgba(255,255,255,0.1); border: none;">
-                    <textarea id="contactMessage" placeholder="Message" rows="3" style="width: 100%; padding: 8px; margin-bottom: 8px; border-radius: 8px; background: rgba(255,255,255,0.1); border: none;"></textarea>
+                    <input type="text" id="contactName" placeholder="Your name" style="width: 100%; margin-bottom: 8px;">
+                    <input type="email" id="contactEmail" placeholder="Your email" style="width: 100%; margin-bottom: 8px;">
+                    <textarea id="contactMessage" placeholder="Message" rows="3" style="width: 100%; margin-bottom: 8px;"></textarea>
                     <button onclick="sendMessageContact()" class="button">Send</button>
                     <div id="contactStatus" style="margin-top: 10px;"></div>
                 </div>
