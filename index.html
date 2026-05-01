@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Digital Gashora | Professional Computer Skills Training</title>
+    <title>Digital Gashora | Professional Dashboard</title>
     <style>
         * {
             margin: 0;
@@ -13,264 +13,282 @@
 
         body {
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #ffffff;
             background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             min-height: 100vh;
             background-attachment: fixed;
+            color: #fff;
         }
 
-        /* Glass effect base */
-        .glass {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-        }
-
-        .header {
-            text-align: center;
-            padding: 60px 20px;
-            margin: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 32px;
-        }
-
-        .header h1 {
-            font-size: clamp(32px, 8vw, 56px);
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #fff, #ffd54f);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .tagline {
-            font-size: clamp(16px, 5vw, 20px);
-            font-style: italic;
-            margin-top: 15px;
-            color: #ffd54f;
-            opacity: 0.9;
-        }
-
-        .nav {
+        /* Dashboard Layout */
+        .dashboard {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 60px;
+            min-height: 100vh;
+        }
+
+        /* Sidebar - Left Menu */
+        .sidebar {
+            width: 280px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
             position: sticky;
-            top: 20px;
-            z-index: 100;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
         }
 
-        .nav a {
-            color: #ffffff;
-            text-decoration: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            transition: all 0.3s;
-            font-size: clamp(12px, 4vw, 16px);
-            font-weight: 500;
+        .logo {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 213, 79, 0.3);
         }
 
-        .nav a:hover {
-            background: #ffd54f;
-            color: #1a1a2e;
-            transform: translateY(-2px);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        .section {
-            padding: 30px;
-            margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 28px;
-            transition: transform 0.3s;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 213, 79, 0.3);
-        }
-
-        .section h2 {
-            color: #ffd54f;
-            margin-bottom: 25px;
-            font-size: clamp(24px, 6vw, 32px);
-            font-weight: 600;
-            letter-spacing: -0.5px;
-        }
-
-        /* Today's Lesson Special Card */
-        .today-card {
-            background: linear-gradient(135deg, rgba(255, 213, 79, 0.15), rgba(255, 255, 255, 0.05));
-            border: 2px solid rgba(255, 213, 79, 0.5);
-        }
-
-        .today-badge {
-            display: inline-block;
-            background: #ffd54f;
-            color: #1a1a2e;
-            padding: 6px 18px;
-            border-radius: 40px;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .lesson-date {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .lesson-title {
-            font-size: clamp(28px, 7vw, 40px);
+        .logo h1 {
+            font-size: 24px;
             background: linear-gradient(135deg, #ffd54f, #fff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 20px;
+            margin-bottom: 8px;
         }
 
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+        .logo p {
+            font-size: 12px;
+            opacity: 0.7;
+            font-style: italic;
         }
 
-        .skill-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(8px);
-            padding: 25px 20px;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
+        .sidebar-menu {
+            list-style: none;
         }
 
-        .skill-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 213, 79, 0.15);
-            border-color: #ffd54f;
-        }
-
-        .skill-card h3 {
-            color: #ffd54f;
-            font-size: 22px;
+        .sidebar-menu li {
             margin-bottom: 12px;
         }
 
-        .skill-card p {
-            color: rgba(255, 255, 255, 0.7);
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s;
+            font-size: 15px;
+        }
+
+        .sidebar-menu a:hover {
+            background: rgba(255, 213, 79, 0.15);
+            transform: translateX(5px);
+        }
+
+        .sidebar-menu .active a {
+            background: rgba(255, 213, 79, 0.2);
+            border-left: 3px solid #ffd54f;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            overflow-x: hidden;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .top-nav a {
+            padding: 8px 20px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
             font-size: 14px;
         }
 
-        .skill-stats {
+        .top-nav a:hover {
+            background: #ffd54f;
+            color: #1a1a2e;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 213, 79, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-header h2 {
+            color: #ffd54f;
+            font-size: 24px;
+        }
+
+        .badge {
+            background: rgba(255, 213, 79, 0.15);
+            padding: 5px 15px;
+            border-radius: 20px;
             font-size: 12px;
-            margin-top: 12px;
             color: #ffd54f;
         }
 
-        /* Gallery Grid */
-        .gallery-grid {
+        /* Today's Lesson Special */
+        .today-card {
+            background: linear-gradient(135deg, rgba(255, 213, 79, 0.1), rgba(255, 255, 255, 0.03));
+            border: 1px solid rgba(255, 213, 79, 0.3);
+        }
+
+        .lesson-title {
+            font-size: 32px;
+            background: linear-gradient(135deg, #ffd54f, #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .lesson-description {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Skills Grid - 2 columns on desktop */
+        .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-item:hover {
+            background: rgba(255, 213, 79, 0.1);
+            transform: translateX(5px);
+            border-color: rgba(255, 213, 79, 0.3);
+        }
+
+        .skill-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .skill-info p {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        .skill-count {
+            background: rgba(255, 213, 79, 0.15);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #ffd54f;
+        }
+
+        /* Photo Grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
             margin-top: 20px;
         }
 
-        .gallery-grid img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        .photo-card {
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
+            overflow: hidden;
             cursor: pointer;
             transition: all 0.3s;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .gallery-grid img:hover {
+        .photo-card:hover {
             transform: scale(1.02);
             border-color: #ffd54f;
         }
 
-        /* Media Grid for photos */
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .media-item {
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .media-item:hover {
-            transform: scale(1.03);
-            background: rgba(255, 213, 79, 0.1);
-        }
-
-        .media-item img {
+        .photo-card img {
             width: 100%;
             height: 150px;
             object-fit: cover;
         }
 
-        .media-item p {
+        .photo-card p {
             padding: 10px;
             font-size: 12px;
             text-align: center;
-            color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Tomorrow Card */
-        .tomorrow-card {
+        /* Two column layout for content */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 213, 79, 0.3);
-        }
-
-        /* Footer */
-        .footer {
+            border-radius: 16px;
+            padding: 20px;
             text-align: center;
-            padding: 30px;
-            margin-top: 40px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .footer p {
-            margin: 5px 0;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
+        .stat-number {
+            font-size: 32px;
+            color: #ffd54f;
+            font-weight: bold;
         }
 
-        /* Modal for skill photos (Glass version) */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -278,8 +296,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             overflow-y: auto;
         }
@@ -305,52 +323,38 @@
 
         .modal-header h2 {
             color: #ffd54f;
-            margin: 0;
         }
 
         .close-modal {
-            background: rgba(255, 213, 79, 0.2);
+            background: rgba(255, 213, 79, 0.15);
             color: #ffd54f;
-            border: 1px solid rgba(255, 213, 79, 0.3);
+            border: none;
             padding: 8px 20px;
-            border-radius: 40px;
+            border-radius: 30px;
             cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
         }
 
-        .close-modal:hover {
-            background: #ffd54f;
-            color: #1a1a2e;
-        }
-
-        .modal-media-grid {
+        .modal-photo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 15px;
         }
 
-        .modal-media-item {
+        .modal-photo-item {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.3s;
         }
 
-        .modal-media-item:hover {
-            transform: scale(1.02);
-            background: rgba(255, 213, 79, 0.1);
-        }
-
-        .modal-media-item img {
+        .modal-photo-item img {
             width: 100%;
-            height: 130px;
+            height: 120px;
             object-fit: cover;
         }
 
-        .modal-media-item p {
-            padding: 10px;
+        .modal-photo-item p {
+            padding: 8px;
             font-size: 11px;
             text-align: center;
         }
@@ -366,7 +370,6 @@
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(15px);
             z-index: 1100;
-            cursor: pointer;
             align-items: center;
             justify-content: center;
         }
@@ -375,118 +378,178 @@
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
-            border-radius: 16px;
         }
 
-        .close-lightbox {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 213, 79, 0.2);
-            border: 1px solid rgba(255, 213, 79, 0.3);
-            color: #ffd54f;
-            padding: 10px 20px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* Button */
-        .button {
-            display: inline-block;
-            background: linear-gradient(135deg, #ffd54f, #ffb347);
-            color: #1a1a2e;
-            padding: 12px 28px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: all 0.3s;
-            border: none;
-        }
-
-        .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 213, 79, 0.3);
-        }
-
-        @media (max-width: 768px) {
-            .section {
-                padding: 20px;
+        /* Responsive */
+        @media (max-width: 900px) {
+            .dashboard {
+                flex-direction: column;
             }
-            .skills-grid, .gallery-grid, .media-grid {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 15px;
+            }
+            .sidebar-menu {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .sidebar-menu li {
+                margin-bottom: 0;
+            }
+            .sidebar-menu a {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+            .logo {
+                display: none;
+            }
+            .skills-grid {
                 grid-template-columns: 1fr;
             }
-            .modal-content {
-                margin: 20px;
-                padding: 20px;
+            .two-columns {
+                grid-template-columns: 1fr;
             }
-            .nav {
-                border-radius: 30px;
-                padding: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .main-content {
+                padding: 15px;
+            }
+            .lesson-title {
+                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
-
-    <div class="header glass">
-        <h1>Digital Gashora</h1>
-        <div class="tagline">"One computer. Many minds. Big future."</div>
-    </div>
-
-    <div class="nav">
-        <a href="#today">Today</a>
-        <a href="#tomorrow">Tomorrow</a>
-        <a href="#skills">Skills</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-    </div>
-
-    <div class="container">
-        <!-- Today's Lesson -->
-        <div id="today" class="section today-card">
-            <span class="today-badge">📅 TODAY'S LESSON</span>
-            <div id="today-date" class="lesson-date">Loading...</div>
-            <div id="today-title" class="lesson-title">Loading...</div>
-            <div id="today-description" class="lesson-description">Loading...</div>
-            <div id="today-photos" class="media-grid"></div>
+    <div class="dashboard">
+        <!-- Left Sidebar Menu -->
+        <div class="sidebar">
+            <div class="logo">
+                <h1>Digital Gashora</h1>
+                <p>"One computer. Many minds. Big future."</p>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#today">🏠 Dashboard</a></li>
+                <li><a href="#skills">📚 All Skills</a></li>
+                <li><a href="#gallery">📸 Class Gallery</a></li>
+                <li><a href="#projects">🎯 Projects</a></li>
+                <li><a href="#contact">📞 Contact</a></li>
+            </ul>
         </div>
 
-        <!-- Tomorrow's Plan -->
-        <div id="tomorrow" class="section tomorrow-card">
-            <h2>🔮 Tomorrow's Plan</h2>
-            <div id="tomorrow-title" style="font-size: 22px; color: #ffd54f; margin-bottom: 12px;">Loading...</div>
-            <div id="tomorrow-preview" style="color: rgba(255,255,255,0.7);">Loading...</div>
-        </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <a href="#today">Today</a>
+                <a href="#tomorrow">Tomorrow</a>
+                <a href="#skills">Skills</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+            </div>
 
-        <!-- Skills Overview -->
-        <div id="skills" class="section">
-            <h2>📚 All Skills We Teach</h2>
-            <p style="margin-bottom: 20px; opacity: 0.7;">👇 <strong>Tap any skill</strong> to see all photos from that lesson</p>
-            <div class="skills-grid" id="skills-grid"></div>
-        </div>
+            <!-- Two Column Layout -->
+            <div class="two-columns">
+                <!-- Left Column -->
+                <div>
+                    <!-- Today's Lesson Card -->
+                    <div id="today" class="card today-card">
+                        <div class="card-header">
+                            <h2>📅 TODAY'S LESSON</h2>
+                            <span class="badge" id="today-date">Loading...</span>
+                        </div>
+                        <div id="today-title" class="lesson-title">Loading...</div>
+                        <div id="today-description" class="lesson-description">Loading...</div>
+                        <div id="today-photos" class="photo-grid"></div>
+                    </div>
 
-        <!-- Photo Gallery -->
-        <div id="gallery" class="section">
-            <h2>📸 Class Gallery</h2>
-            <div class="gallery-grid" id="main-gallery"></div>
-        </div>
+                    <!-- All Skills Card -->
+                    <div id="skills" class="card">
+                        <div class="card-header">
+                            <h2>📚 ALL SKILLS WE TEACH</h2>
+                            <span class="badge">Click any skill to view photos</span>
+                        </div>
+                        <div id="skills-grid" class="skills-grid"></div>
+                    </div>
+                </div>
 
-        <!-- Contact -->
-        <div id="contact" class="section">
-            <h2>Contact Us</h2>
-            <p style="margin-bottom: 10px;">📍 Gashora Centre, Bugesera District, Rwanda</p>
-            <p style="margin-bottom: 10px;">👨‍🏫 Level 4 Computer Systems Student, ESSA Nyarugungaso</p>
-            <p style="margin-bottom: 10px;">📱 WhatsApp: Coming soon</p>
-            <p style="margin-bottom: 10px;">📘 Facebook: Digital Gashora Initiative</p>
-            <a href="#" class="button">Get in Touch</a>
-        </div>
-    </div>
+                <!-- Right Column -->
+                <div>
+                    <!-- Stats / Features Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>✨ Professional Features</h2>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">Glass</div>
+                                <p>Glassmorphism Design</p>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">📱</div>
+                                <p>Responsive All Devices</p>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">🎯</div>
+                                <p>Interactive Skill Popups</p>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">📸</div>
+                                <p>Photo Galleries</p>
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="footer">
-        <p>&copy; 2026 Digital Gashora | Building digital skills in Gashora Centre, Bugesera</p>
-        <p>Digital Gashora is an initiative of Journey House Actions Rwanda (JHA)</p>
+                    <!-- Tomorrow's Plan Card -->
+                    <div id="tomorrow" class="card">
+                        <div class="card-header">
+                            <h2>🔮 Tomorrow's Plan</h2>
+                        </div>
+                        <div id="tomorrow-title" style="font-size: 20px; color: #ffd54f; margin-bottom: 12px;">Loading...</div>
+                        <div id="tomorrow-preview" style="opacity: 0.8;">Loading...</div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>📊 Program Stats</h2>
+                        </div>
+                        <div id="stats-content" style="line-height: 2;">
+                            Loading...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Class Gallery Section -->
+            <div id="gallery" class="card">
+                <div class="card-header">
+                    <h2>📸 Class Gallery</h2>
+                    <span class="badge">Latest moments</span>
+                </div>
+                <div id="main-gallery" class="photo-grid"></div>
+            </div>
+
+            <!-- Contact Section -->
+            <div id="contact" class="card">
+                <div class="card-header">
+                    <h2>📞 Contact Us</h2>
+                </div>
+                <p>📍 Gashora Centre, Bugesera District, Rwanda</p>
+                <p>👨‍🏫 Level 4 Computer Systems Student, ESSA Nyarugungaso</p>
+                <p>📱 WhatsApp: Coming soon</p>
+                <p>📘 Facebook: Digital Gashora Initiative</p>
+            </div>
+
+            <div class="card" style="text-align: center;">
+                <p>&copy; 2026 Digital Gashora | Building digital skills in Gashora Centre, Bugesera</p>
+                <p style="font-size: 12px; opacity: 0.6;">An initiative of Journey House Actions Rwanda (JHA)</p>
+            </div>
+        </div>
     </div>
 
     <!-- Modal for skill photos -->
@@ -496,52 +559,38 @@
                 <h2 id="modal-title">📸 Lesson Photos</h2>
                 <button class="close-modal" onclick="closeModal()">✕ Close</button>
             </div>
-            <div id="modal-media-grid" class="modal-media-grid"></div>
+            <div id="modal-photo-grid" class="modal-photo-grid"></div>
         </div>
     </div>
 
     <!-- Lightbox -->
-    <div id="lightbox">
+    <div id="lightbox" onclick="closeLightbox()">
         <img id="lightbox-img" alt="Full size photo">
-        <button class="close-lightbox" onclick="closeLightbox()">✕ Close</button>
     </div>
 
     <script>
-        // Lightbox functions
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        
+        // Lightbox
         function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
             lightbox.style.display = 'flex';
             lightboxImg.src = src;
         }
         
         function closeLightbox() {
-            lightbox.style.display = 'none';
+            document.getElementById('lightbox').style.display = 'none';
         }
         
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
-        
-        // Modal functions
+        // Modal
         const modal = document.getElementById('skillModal');
-        
-        function openModal() {
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeModal() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+        function openModal() { modal.style.display = 'block'; }
+        function closeModal() { modal.style.display = 'none'; }
         
         window.openLightbox = openLightbox;
         window.closeLightbox = closeLightbox;
         window.closeModal = closeModal;
         
-        // All photos data
+        // All photos data - Updated with correct counts
         const skillPhotos = {
             'mouse-skills': {
                 name: '🖱️ Mouse Skills',
@@ -592,10 +641,7 @@
                 updateTodaySection();
                 updateTomorrowSection();
             })
-            .catch(error => {
-                console.error('Error loading daily plan:', error);
-                document.getElementById('today-description').innerHTML = 'Loading schedule... Please refresh.';
-            });
+            .catch(error => console.error('Error:', error));
         
         function updateTodaySection() {
             if (!dailyPlan) return;
@@ -603,25 +649,22 @@
             const todayLesson = dailyPlan.schedule.find(day => day.day === currentDay);
             
             if (todayLesson) {
-                document.getElementById('today-date').innerHTML = `📅 ${todayLesson.date}`;
+                document.getElementById('today-date').innerHTML = todayLesson.date;
                 document.getElementById('today-title').innerHTML = todayLesson.title;
                 document.getElementById('today-description').innerHTML = todayLesson.whatWeLearned || 'No description yet.';
                 
                 const photos = skillPhotos[todayLesson.photosFolder]?.photos || [];
-                const photosContainer = document.getElementById('today-photos');
+                const container = document.getElementById('today-photos');
                 
                 if (photos.length === 0) {
-                    photosContainer.innerHTML = '<p style="color: rgba(255,255,255,0.5); text-align: center; grid-column: 1/-1;">📸 No photos yet. Will add after class!</p>';
+                    container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; opacity: 0.5;">📸 No photos yet. Will add after class!</p>';
                 } else {
-                    photosContainer.innerHTML = '';
+                    container.innerHTML = '';
                     photos.forEach(photo => {
                         const div = document.createElement('div');
-                        div.className = 'media-item';
-                        div.innerHTML = `
-                            <img src="images/${todayLesson.photosFolder}/${photo.file}" alt="${photo.name}" onclick="openLightbox(this.src)">
-                            <p>${photo.name}</p>
-                        `;
-                        photosContainer.appendChild(div);
+                        div.className = 'photo-card';
+                        div.innerHTML = `<img src="images/${todayLesson.photosFolder}/${photo.file}" onclick="openLightbox(this.src)"><p>${photo.name}</p>`;
+                        container.appendChild(div);
                     });
                 }
             }
@@ -637,7 +680,7 @@
                 document.getElementById('tomorrow-preview').innerHTML = tomorrowLesson.nextLesson || 'Stay tuned!';
             } else {
                 document.getElementById('tomorrow-title').innerHTML = '🎉 Graduation Day!';
-                document.getElementById('tomorrow-preview').innerHTML = 'We\'ve completed all our lessons! Time to celebrate.';
+                document.getElementById('tomorrow-preview').innerHTML = 'We\'ve completed all our lessons!';
             }
         }
         
@@ -645,57 +688,62 @@
         function loadSkillsGrid() {
             const container = document.getElementById('skills-grid');
             const skills = [
-                { key: 'mouse-skills', name: '🖱️ Mouse Skills', desc: 'Clicking, double-clicking, right-click, moving the cursor' },
-                { key: 'keyboard-basics', name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts (Ctrl+C, Ctrl+V, Ctrl+Z), volume control' },
-                { key: 'file-management', name: '📁 File Management', desc: 'Creating folders, deleting files, organizing documents' },
-                { key: 'computer-basics', name: '🖥️ Computer Basics', desc: 'Startup, shutdown, using the desktop, understanding icons' },
-                { key: 'typing-documents', name: '📝 Typing Documents', desc: 'Using Notepad, saving files, typing sentences' },
-                { key: 'sound-display', name: '🔊 Sound & Display', desc: 'Volume control, mute/unmute, screen brightness' }
+                { key: 'mouse-skills', name: '🖱️ Mouse Skills', desc: 'Clicking, double-clicking, right-click' },
+                { key: 'keyboard-basics', name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts, volume control' },
+                { key: 'file-management', name: '📁 File Management', desc: 'Folders, organizing documents' },
+                { key: 'computer-basics', name: '🖥️ Computer Basics', desc: 'Startup, shutdown, desktop' },
+                { key: 'typing-documents', name: '📝 Typing Documents', desc: 'Notepad, saving files' },
+                { key: 'sound-display', name: '🔊 Sound & Display', desc: 'Volume, mute, brightness' }
             ];
             
             container.innerHTML = '';
+            let totalPhotos = 0;
+            
             skills.forEach(skill => {
                 const photos = skillPhotos[skill.key]?.photos || [];
-                const photoCount = photos.length;
+                const count = photos.length;
+                totalPhotos += count;
                 
-                const card = document.createElement('div');
-                card.className = 'skill-card';
-                card.onclick = () => showSkillPhotos(skill.key);
-                
-                card.innerHTML = `
-                    <h3>${skill.name}</h3>
-                    <p>${skill.desc}</p>
-                    <div class="skill-stats">📸 ${photoCount} photo${photoCount !== 1 ? 's' : ''}</div>
-                    <div style="font-size: 11px; margin-top: 10px; opacity: 0.6;">👇 Tap to view</div>
+                const div = document.createElement('div');
+                div.className = 'skill-item';
+                div.onclick = () => showSkillPhotos(skill.key);
+                div.innerHTML = `
+                    <div class="skill-info">
+                        <h4>${skill.name}</h4>
+                        <p>${skill.desc}</p>
+                    </div>
+                    <div class="skill-count">${count} photo${count !== 1 ? 's' : ''}</div>
                 `;
-                container.appendChild(card);
+                container.appendChild(div);
             });
+            
+            // Update stats
+            document.getElementById('stats-content').innerHTML = `
+                <p>📸 Total Photos: ${totalPhotos}</p>
+                <p>📚 Skills Taught: 6</p>
+                <p>🎓 Students: In progress</p>
+                <p>💻 One Computer, Many Minds</p>
+            `;
         }
         
         function showSkillPhotos(skillKey) {
             const skill = skillPhotos[skillKey];
             if (!skill) return;
             
-            const modalTitle = document.getElementById('modal-title');
-            const modalGrid = document.getElementById('modal-media-grid');
-            
-            modalTitle.innerHTML = `📸 ${skill.name}`;
+            document.getElementById('modal-title').innerHTML = `📸 ${skill.name}`;
+            const grid = document.getElementById('modal-photo-grid');
             
             if (skill.photos.length === 0) {
-                modalGrid.innerHTML = '<p style="color: rgba(255,255,255,0.5); text-align: center; padding: 40px;">📸 No photos yet. Check back after our lesson!</p>';
+                grid.innerHTML = '<p style="text-align: center; padding: 40px; opacity: 0.6;">📸 No photos yet. Check back after our lesson!</p>';
             } else {
-                modalGrid.innerHTML = '';
+                grid.innerHTML = '';
                 skill.photos.forEach(photo => {
                     const div = document.createElement('div');
-                    div.className = 'modal-media-item';
-                    div.innerHTML = `
-                        <img src="images/${skillKey}/${photo.file}" alt="${photo.name}" onclick="openLightbox(this.src)">
-                        <p>${photo.name}</p>
-                    `;
-                    modalGrid.appendChild(div);
+                    div.className = 'modal-photo-item';
+                    div.innerHTML = `<img src="images/${skillKey}/${photo.file}" onclick="openLightbox(this.src)"><p>${photo.name}</p>`;
+                    grid.appendChild(div);
                 });
             }
-            
             openModal();
         }
         
@@ -712,12 +760,10 @@
             
             container.innerHTML = '';
             allPhotos.forEach(photo => {
-                const img = document.createElement('img');
-                img.src = photo.src;
-                img.alt = photo.alt;
-                img.onerror = () => img.style.display = 'none';
-                img.onclick = () => openLightbox(photo.src);
-                container.appendChild(img);
+                const div = document.createElement('div');
+                div.className = 'photo-card';
+                div.innerHTML = `<img src="${photo.src}" onclick="openLightbox(this.src)"><p>${photo.alt}</p>`;
+                container.appendChild(div);
             });
         }
         
