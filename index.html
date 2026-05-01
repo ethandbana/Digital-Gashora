@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Digital Gashora | Professional Computer Skills Training</title>
+    <title>Digital Gashora | Complete Learning Platform</title>
     <style>
         * {
             margin: 0;
@@ -49,7 +49,6 @@
             color: #ff8c00;
         }
 
-        /* Dark overlay for text readability */
         body::before {
             content: '';
             position: fixed;
@@ -66,7 +65,6 @@
             display: none;
         }
 
-        /* Dashboard Layout */
         .dashboard {
             display: flex;
             min-height: 100vh;
@@ -74,7 +72,6 @@
             z-index: 1;
         }
 
-        /* Sidebar */
         .sidebar {
             width: 280px;
             background: rgba(0, 0, 0, 0.4);
@@ -127,6 +124,7 @@
             border-radius: 12px;
             transition: all 0.3s;
             font-size: 15px;
+            cursor: pointer;
         }
 
         body.light-mode .sidebar-menu a {
@@ -138,14 +136,12 @@
             transform: translateX(5px);
         }
 
-        /* Main Content */
         .main-content {
             flex: 1;
             padding: 30px;
             overflow-x: hidden;
         }
 
-        /* Top Navigation */
         .top-nav {
             display: flex;
             gap: 10px;
@@ -165,6 +161,7 @@
             border-radius: 30px;
             transition: all 0.3s;
             font-size: 14px;
+            cursor: pointer;
         }
 
         body.light-mode .top-nav a {
@@ -176,7 +173,6 @@
             color: #1a1a2e;
         }
 
-        /* Cards */
         .card {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(12px);
@@ -214,7 +210,6 @@
             color: #ffd54f;
         }
 
-        /* Today's Lesson */
         .today-card {
             background: linear-gradient(135deg, rgba(255, 213, 79, 0.1), rgba(0, 0, 0, 0.4));
             border: 1px solid rgba(255, 213, 79, 0.3);
@@ -229,13 +224,6 @@
             margin-bottom: 15px;
         }
 
-        .lesson-description {
-            opacity: 0.9;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -265,11 +253,6 @@
             margin-bottom: 5px;
         }
 
-        .skill-info p {
-            font-size: 12px;
-            opacity: 0.7;
-        }
-
         .skill-count {
             background: rgba(255, 213, 79, 0.2);
             padding: 5px 12px;
@@ -278,7 +261,6 @@
             color: #ffd54f;
         }
 
-        /* Photo Grid */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -306,13 +288,6 @@
             object-fit: cover;
         }
 
-        .photo-card p {
-            padding: 10px;
-            font-size: 12px;
-            text-align: center;
-        }
-
-        /* Two Columns */
         .two-columns {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -384,54 +359,86 @@
             object-fit: cover;
         }
 
-        .modal-photo-item p {
-            padding: 8px;
-            font-size: 11px;
-            text-align: center;
+        /* Quiz Styles */
+        .quiz-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
         }
 
-        /* Lightbox */
-        #lightbox {
-            display: none;
-            position: fixed;
+        .quiz-option {
+            display: block;
+            margin: 10px 0;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 213, 79, 0.2);
+        }
+
+        .quiz-option input {
+            margin-right: 10px;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .announcement {
+            background: rgba(255, 213, 79, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border-left: 3px solid #ffd54f;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .video-container video, .video-container iframe {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(15px);
-            z-index: 1100;
-            align-items: center;
-            justify-content: center;
+            border-radius: 16px;
         }
 
-        #lightbox-img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-        }
-
-        /* Input Styles */
-        input, textarea {
+        input, textarea, select {
             font-family: inherit;
-        }
-        
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #ffd54f !important;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
         }
 
-        /* Button */
+        body.light-mode input, body.light-mode textarea, body.light-mode select {
+            background: rgba(0, 0, 0, 0.05);
+            color: #333;
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
         .button {
-            display: inline-block;
             background: linear-gradient(135deg, #ffd54f, #ffb347);
             color: #1a1a2e;
             padding: 10px 20px;
             border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
             border: none;
             cursor: pointer;
+            font-weight: bold;
             transition: all 0.3s;
         }
 
@@ -440,7 +447,6 @@
             box-shadow: 0 5px 15px rgba(255, 213, 79, 0.3);
         }
 
-        /* Theme Toggle */
         .theme-toggle {
             background: rgba(255, 213, 79, 0.2);
             border: 1px solid #ffd54f;
@@ -450,112 +456,77 @@
             cursor: pointer;
             margin-top: 20px;
             width: 100%;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-        
-        .theme-toggle:hover {
-            background: rgba(255, 213, 79, 0.4);
         }
 
-        /* Visitor Counter */
-        .visitor-count {
-            font-size: 36px;
-            color: #ffd54f;
-            font-weight: bold;
-        }
-
-        /* Staff Info */
         .staff-info {
             margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid rgba(255,213,79,0.2);
         }
-        
+
         .staff-info p {
             font-size: 11px;
             opacity: 0.7;
             margin-bottom: 5px;
         }
 
-        /* Responsive */
         @media (max-width: 900px) {
-            .dashboard {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                padding: 15px;
-            }
-            .sidebar-menu {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-            .sidebar-menu li {
-                margin-bottom: 0;
-            }
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            .two-columns {
-                grid-template-columns: 1fr;
-            }
+            .dashboard { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; padding: 15px; }
+            .sidebar-menu { display: flex; flex-wrap: wrap; gap: 8px; }
+            .sidebar-menu li { margin-bottom: 0; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .two-columns { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="dashboard">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <h1>Digital Gashora</h1>
-                <p>"One computer. Many minds. Big future."</p>
-            </div>
-            <ul class="sidebar-menu">
-                <li><a href="#today">🏠 Dashboard</a></li>
-                <li><a href="#skills">📚 All Skills</a></li>
-                <li><a href="#gallery">📸 Class Gallery</a></li>
-                <li><a href="#contact">📞 Contact</a></li>
-            </ul>
-            
-            <div class="staff-info">
-                <p>👨‍🏫 Manager: <strong>Ethandbana</strong></p>
-                <p>👔 Supervisor: <strong>John Gakumba</strong></p>
-            </div>
-            
-            <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Light/Dark Mode</button>
+<div class="dashboard">
+    <div class="sidebar">
+        <div class="logo">
+            <h1>Digital Gashora</h1>
+            <p>"One computer. Many minds. Big future."</p>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a onclick="showSection('dashboard')">🏠 Dashboard</a></li>
+            <li><a onclick="showSection('videos')">🎬 Video Tutorials</a></li>
+            <li><a onclick="showSection('quizzes')">📝 Quizzes</a></li>
+            <li><a onclick="showSection('certificate')">📜 Certificate</a></li>
+            <li><a onclick="showSection('leaderboard')">🏆 Leaderboard</a></li>
+            <li><a onclick="showSection('announcements')">📢 Announcements</a></li>
+            <li><a onclick="showSection('contact')">📞 Contact</a></li>
+        </ul>
+        <div class="staff-info">
+            <p>👨‍🏫 Manager: <strong>Ethandbana</strong></p>
+            <p>👔 Supervisor: <strong>John Gakumba</strong></p>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Light/Dark Mode</button>
+    </div>
+
+    <div class="main-content">
+        <div class="top-nav">
+            <a onclick="showSection('dashboard')">Dashboard</a>
+            <a onclick="showSection('videos')">Videos</a>
+            <a onclick="showSection('quizzes')">Quizzes</a>
+            <a onclick="showSection('certificate')">Certificate</a>
+            <a onclick="showSection('leaderboard')">Leaderboard</a>
+            <a onclick="showSection('announcements')">Announcements</a>
         </div>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Top Nav -->
-            <div class="top-nav">
-                <a href="#today">Today</a>
-                <a href="#skills">Skills</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#contact">Contact</a>
-            </div>
-
-            <!-- Two Columns -->
+        <!-- Dashboard Section -->
+        <div id="dashboardSection" class="section-container">
             <div class="two-columns">
-                <!-- Left Column -->
                 <div>
-                    <!-- Today's Lesson -->
                     <div id="today" class="card today-card">
                         <div class="card-header">
                             <h2>📅 TODAY'S LESSON</h2>
                             <span class="badge" id="today-date">Loading...</span>
                         </div>
                         <div id="today-title" class="lesson-title">Loading...</div>
-                        <div id="today-description" class="lesson-description">Loading...</div>
+                        <div id="today-description" class="lesson-description" style="opacity:0.9; line-height:1.8;">Loading...</div>
                         <div id="today-photos" class="photo-grid"></div>
                     </div>
-
-                    <!-- All Skills -->
                     <div id="skills" class="card">
                         <div class="card-header">
                             <h2>📚 ALL SKILLS WE TEACH</h2>
@@ -564,369 +535,213 @@
                         <div id="skills-grid" class="skills-grid"></div>
                     </div>
                 </div>
-
-                <!-- Right Column -->
                 <div>
-                    <!-- Student Achievements -->
                     <div class="card">
-                        <div class="card-header">
-                            <h2>🎓 Student Achievements</h2>
-                            <span class="badge">This Week</span>
-                        </div>
-                        <div style="line-height: 2.2;">
-                            <p>⭐ <strong>Mouse Skills:</strong> 8 students</p>
-                            <p>⭐ <strong>Keyboard Basics:</strong> 6 students</p>
-                            <p>⭐ <strong>File Management:</strong> 4 students</p>
-                            <p>⭐ <strong>Computer Basics:</strong> 2 students</p>
-                            <p>⭐ <strong>Typing Documents:</strong> 0 students</p>
-                            <p>⭐ <strong>Sound & Display:</strong> 0 students</p>
-                        </div>
-                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
-                            <p>🎯 <strong>Next Goal:</strong> Complete Computer Basics by Friday!</p>
-                        </div>
+                        <div class="card-header"><h2>🎓 Student Achievements</h2><span class="badge">This Week</span></div>
+                        <div id="achievementsList" style="line-height: 2.2;"></div>
                     </div>
-
-                    <!-- Weekly Schedule -->
                     <div class="card">
-                        <div class="card-header">
-                            <h2>📅 This Week's Schedule</h2>
-                            <span class="badge">May 1-7, 2026</span>
-                        </div>
+                        <div class="card-header"><h2>📅 This Week's Schedule</h2><span class="badge">May 1-7, 2026</span></div>
                         <div style="line-height: 2;">
-                            <p>📆 <strong>Monday:</strong> Mouse Skills ✅</p>
-                            <p>📆 <strong>Tuesday:</strong> Keyboard Basics ✅</p>
-                            <p>📆 <strong>Wednesday:</strong> File Management ✅</p>
-                            <p>📆 <strong>Thursday:</strong> Computer Basics 🔄 (Today)</p>
-                            <p>📆 <strong>Friday:</strong> Typing Documents ⏳</p>
-                            <p>📆 <strong>Next Week:</strong> Sound & Display</p>
+                            <p>📆 Monday: Mouse Skills ✅</p><p>📆 Tuesday: Keyboard Basics ✅</p>
+                            <p>📆 Wednesday: File Management ✅</p><p>📆 Thursday: Computer Basics 🔄 (Today)</p>
+                            <p>📆 Friday: Typing Documents ⏳</p><p>📆 Next Week: Sound & Display</p>
                         </div>
                     </div>
-
-                    <!-- Student Login -->
                     <div class="card">
-                        <div class="card-header">
-                            <h2>🔐 Student Portal</h2>
-                            <span class="badge">Track Progress</span>
-                        </div>
-                        <div style="text-align: center;">
-                            <p style="margin-bottom: 15px;">Enter your name to track your progress</p>
-                            <input type="text" id="studentName" placeholder="Your name" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white;">
-                            <button onclick="loginStudent()" class="button" style="width: 100%;">Login / Track Progress</button>
-                            <div id="studentProgress" style="margin-top: 15px; display: none;">
-                                <p>⭐ Your completed skills:</p>
-                                <div id="completedSkills"></div>
-                            </div>
-                        </div>
+                        <div class="card-header"><h2>🔐 Student Portal</h2><span class="badge">Track Progress</span></div>
+                        <div style="text-align:center;"><p style="margin-bottom:15px;">Enter your name to track your progress</p>
+                        <input type="text" id="studentName" placeholder="Your name" style="width:100%; padding:10px; margin-bottom:10px; border-radius:10px;">
+                        <button onclick="loginStudent()" class="button" style="width:100%;">Login / Track Progress</button>
+                        <div id="studentProgress" style="margin-top:15px; display:none;"><p>⭐ Your completed skills:</p><div id="completedSkills"></div></div></div>
                     </div>
-
-                    <!-- Visitor Counter -->
-                    <div class="card" style="text-align: center;">
-                        <h2>👀 Site Visitors</h2>
-                        <div id="visitorCount" class="visitor-count">Loading...</div>
-                        <p style="font-size: 12px; opacity: 0.6; margin-top: 10px;">Total visits to this site</p>
-                    </div>
+                    <div class="card" style="text-align:center;"><h2>👀 Site Visitors</h2><div id="visitorCount" style="font-size:36px; color:#ffd54f;">Loading...</div><p>Total visits</p></div>
                 </div>
             </div>
+            <div id="gallery" class="card"><div class="card-header"><h2>📸 Class Gallery</h2><span class="badge">Latest moments</span></div><div id="main-gallery" class="photo-grid"></div></div>
+        </div>
 
-            <!-- Class Gallery -->
-            <div id="gallery" class="card">
-                <div class="card-header">
-                    <h2>📸 Class Gallery</h2>
-                    <span class="badge">Latest moments</span>
+        <!-- Video Tutorials Section -->
+        <div id="videosSection" class="section-container" style="display:none;">
+            <div class="card">
+                <div class="card-header"><h2>🎬 Video Tutorials</h2><span class="badge">Watch and Learn</span></div>
+                <div class="skills-grid">
+                    <div class="skill-item" onclick="playVideo('mouse')"><div><h4>🖱️ Mouse Skills</h4><p>Learn how to use a mouse</p></div><span class="skill-count">▶️ Watch</span></div>
+                    <div class="skill-item" onclick="playVideo('keyboard')"><div><h4>⌨️ Keyboard Basics</h4><p>Typing and shortcuts</p></div><span class="skill-count">▶️ Watch</span></div>
+                    <div class="skill-item" onclick="playVideo('file')"><div><h4>📁 File Management</h4><p>Organize your files</p></div><span class="skill-count">▶️ Watch</span></div>
+                    <div class="skill-item" onclick="playVideo('computer')"><div><h4>🖥️ Computer Basics</h4><p>Startup and shutdown</p></div><span class="skill-count">▶️ Watch</span></div>
                 </div>
-                <div id="main-gallery" class="photo-grid"></div>
+                <div id="videoPlayer" style="margin-top:20px; display:none;">
+                    <div class="video-container"><video id="videoElement" controls style="width:100%;"><source src="" type="video/mp4">Your browser doesn't support video.</video></div>
+                    <button class="button" style="margin-top:15px;" onclick="closeVideo()">Close Video</button>
+                </div>
+                <p style="margin-top:15px; opacity:0.7;">🎥 Videos will be added soon. Check back after our lessons!</p>
             </div>
+        </div>
 
-            <!-- Contact -->
-            <div id="contact" class="card">
-                <div class="card-header">
-                    <h2>📞 Contact Us</h2>
+        <!-- Quizzes Section -->
+        <div id="quizzesSection" class="section-container" style="display:none;">
+            <div class="card">
+                <div class="card-header"><h2>📝 Skills Quizzes</h2><span class="badge">Test Your Knowledge</span></div>
+                <div class="skills-grid" id="quizList"></div>
+                <div id="quizDisplay" style="margin-top:20px;"></div>
+                <div id="quizResult"></div>
+            </div>
+        </div>
+
+        <!-- Certificate Section -->
+        <div id="certificateSection" class="section-container" style="display:none;">
+            <div class="card" style="text-align:center;">
+                <div class="card-header"><h2>📜 Get Your Certificate</h2><span class="badge">Complete all skills</span></div>
+                <p id="certStatus" style="margin-bottom:20px;">Complete all 6 skills to earn your certificate!</p>
+                <div id="certificateDisplay" style="background:linear-gradient(135deg,#fff,#f0f0f0); padding:40px; border-radius:20px; color:#333; display:none;">
+                    <h2 style="color:#ff8c00;">🎓 Certificate of Completion</h2>
+                    <p>This certificate is awarded to</p>
+                    <h3 id="certName" style="margin:20px 0;">___________</h3>
+                    <p>for successfully completing all computer skills at</p>
+                    <h3>Digital Gashora</h3>
+                    <p style="margin-top:20px;">Date: <span id="certDate"></span></p>
+                    <button class="button" style="margin-top:20px;" onclick="downloadCertificate()">📥 Download Certificate</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Section -->
+        <div id="leaderboardSection" class="section-container" style="display:none;">
+            <div class="card">
+                <div class="card-header"><h2>🏆 Student Leaderboard</h2><span class="badge">Top Performers</span></div>
+                <div id="leaderboardList"></div>
+                <p style="margin-top:15px; opacity:0.7;">Complete quizzes to earn points!</p>
+            </div>
+        </div>
+
+        <!-- Announcements Section -->
+        <div id="announcementsSection" class="section-container" style="display:none;">
+            <div class="card">
+                <div class="card-header"><h2>📢 Announcements & News</h2><span class="badge">Stay Updated</span></div>
+                <div id="announcementsList"></div>
+                <div style="margin-top:20px;">
+                    <h3 style="color:#ffd54f; margin-bottom:10px;">Post an Announcement (Staff)</h3>
+                    <input type="text" id="announcementTitle" placeholder="Title" style="width:100%; margin-bottom:10px;">
+                    <textarea id="announcementMessage" placeholder="Message" rows="3" style="width:100%; margin-bottom:10px;"></textarea>
+                    <button onclick="postAnnouncement()" class="button">Post Announcement</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contactSection" class="section-container" style="display:none;">
+            <div class="card">
+                <div class="card-header"><h2>📞 Contact Us</h2></div>
                 <p>📍 Gashora Centre, Bugesera District, Rwanda</p>
-                <p>👨‍🏫 <strong>Program Manager:</strong> Level 4 Computer Systems Student, ESSA Nyarugungaso</p>
-                <p>📧 <strong>Manager Email:</strong> <a href="mailto:iamkushdj@gmail.com" style="color: #ffd54f;">iamkushdj@gmail.com</a></p>
-                <p>👔 <strong>Supervisor:</strong> John Gakumba</p>
-                <p>📧 <strong>Supervisor Email:</strong> <a href="mailto:gakumbajohn@gmail.com" style="color: #ffd54f;">gakumbajohn@gmail.com</a></p>
-                <p>📱 WhatsApp: Coming soon</p>
-                <p>📘 Facebook: Digital Gashora Initiative</p>
-                
-                <!-- Contact Form -->
-                <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                    <h3 style="color: #ffd54f; margin-bottom: 15px;">Send us a message</h3>
-                    <input type="text" id="contactName" placeholder="Your name" style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white;">
-                    <input type="email" id="contactEmail" placeholder="Your email" style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white;">
-                    <textarea id="contactMessage" placeholder="Your message" rows="4" style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white;"></textarea>
-                    <button onclick="sendMessage()" class="button">Send Message</button>
-                    <div id="messageStatus" style="margin-top: 12px; font-size: 13px;"></div>
+                <p>👨‍🏫 Program Manager: Level 4 Computer Systems Student</p>
+                <p>📧 Manager: <a href="mailto:iamkushdj@gmail.com" style="color:#ffd54f;">iamkushdj@gmail.com</a></p>
+                <p>👔 Supervisor: John Gakumba</p>
+                <p>📧 Supervisor: <a href="mailto:gakumbajohn@gmail.com" style="color:#ffd54f;">gakumbajohn@gmail.com</a></p>
+                <div style="margin-top:25px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1);">
+                    <h3 style="color:#ffd54f;">Send us a message</h3>
+                    <input type="text" id="contactName" placeholder="Your name" style="width:100%; padding:12px; margin-bottom:12px; border-radius:10px;">
+                    <input type="email" id="contactEmail" placeholder="Your email" style="width:100%; padding:12px; margin-bottom:12px; border-radius:10px;">
+                    <textarea id="contactMessage" placeholder="Your message" rows="4" style="width:100%; padding:12px; margin-bottom:12px; border-radius:10px;"></textarea>
+                    <button onclick="sendMessageContact()" class="button">Send Message</button>
+                    <div id="contactStatus" style="margin-top:12px;"></div>
                 </div>
             </div>
-
-            <!-- Footer -->
-            <div class="card" style="text-align: center;">
-                <p>&copy; 2026 Digital Gashora | Building digital skills in Gashora Centre, Bugesera</p>
-                <p style="font-size: 12px; opacity: 0.6;">An initiative of Journey House Actions Rwanda (JHA)</p>
-            </div>
         </div>
-    </div>
 
-    <!-- Modal -->
-    <div id="skillModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modal-title">📸 Lesson Photos</h2>
-                <button class="close-modal" onclick="closeModal()">✕ Close</button>
-            </div>
-            <div id="modal-photo-grid" class="modal-photo-grid"></div>
-        </div>
+        <div class="card" style="text-align:center;"><p>&copy; 2026 Digital Gashora | Building digital skills in Gashora Centre, Bugesera</p><p style="font-size:12px; opacity:0.6;">An initiative of Journey House Actions Rwanda (JHA)</p></div>
     </div>
+</div>
 
-    <!-- Lightbox -->
-    <div id="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-img" alt="Full size photo">
-    </div>
+<!-- Modals -->
+<div id="skillModal" class="modal"><div class="modal-content"><div class="modal-header"><h2 id="modal-title">📸 Lesson Photos</h2><button class="close-modal" onclick="closeModal()">✕ Close</button></div><div id="modal-photo-grid" class="modal-photo-grid"></div></div></div>
+<div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" alt="Full size photo"></div>
 
-    <script>
-        // Lightbox
-        function openLightbox(src) {
-            document.getElementById('lightbox').style.display = 'flex';
-            document.getElementById('lightbox-img').src = src;
-        }
-        
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-        
-        // Modal
-        function openModal() { document.getElementById('skillModal').style.display = 'block'; }
-        function closeModal() { document.getElementById('skillModal').style.display = 'none'; }
-        
-        window.openLightbox = openLightbox;
-        window.closeLightbox = closeLightbox;
-        window.closeModal = closeModal;
-        
-        // Theme Toggle
-        function toggleTheme() {
-            if (document.body.classList.contains('light-mode')) {
-                document.body.classList.remove('light-mode');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                document.body.classList.add('light-mode');
-                localStorage.setItem('theme', 'light');
-            }
-        }
-        
-        // Load saved theme
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-mode');
-        }
-        
-        // Visitor Counter
-        function updateVisitorCount() {
-            let count = localStorage.getItem('visitorCount');
-            if (!count) {
-                count = 1247;
-                localStorage.setItem('visitorCount', count);
-            }
-            document.getElementById('visitorCount').innerHTML = parseInt(count).toLocaleString();
-            
-            const lastVisit = localStorage.getItem('lastVisit');
-            const today = new Date().toDateString();
-            if (lastVisit !== today) {
-                localStorage.setItem('visitorCount', parseInt(count) + 1);
-                localStorage.setItem('lastVisit', today);
-                document.getElementById('visitorCount').innerHTML = (parseInt(count) + 1).toLocaleString();
-            }
-        }
-        updateVisitorCount();
-        
-        // Contact Form
-        function sendMessage() {
-            const name = document.getElementById('contactName').value;
-            const email = document.getElementById('contactEmail').value;
-            const message = document.getElementById('contactMessage').value;
-            
-            if (name && email && message) {
-                const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
-                messages.push({ name, email, message, date: new Date().toISOString() });
-                localStorage.setItem('contactMessages', JSON.stringify(messages));
-                document.getElementById('messageStatus').innerHTML = '<span style="color: #ffd54f;">✅ Message sent! We\'ll get back to you soon.</span>';
-                document.getElementById('contactName').value = '';
-                document.getElementById('contactEmail').value = '';
-                document.getElementById('contactMessage').value = '';
-                
-                setTimeout(() => {
-                    document.getElementById('messageStatus').innerHTML = '';
-                }, 3000);
-            } else {
-                document.getElementById('messageStatus').innerHTML = '<span style="color: #ff8888;">❌ Please fill all fields.</span>';
-            }
-        }
-        
-        // Student Login
-        function loginStudent() {
-            const name = document.getElementById('studentName').value.trim();
-            if (name) {
-                localStorage.setItem('studentName', name);
-                document.getElementById('studentProgress').style.display = 'block';
-                showStudentProgress(name);
-            }
-        }
-        
-        function showStudentProgress(name) {
-            let completed = localStorage.getItem(`progress_${name}`);
-            if (!completed) {
-                completed = JSON.stringify(['Mouse Skills', 'Keyboard Basics', 'File Management']);
-                localStorage.setItem(`progress_${name}`, completed);
-            }
-            const skills = JSON.parse(completed);
-            const container = document.getElementById('completedSkills');
-            container.innerHTML = skills.map(s => `<p>✅ ${s}</p>`).join('');
-        }
-        
-        if (localStorage.getItem('studentName')) {
-            const savedName = localStorage.getItem('studentName');
-            document.getElementById('studentName').value = savedName;
-            document.getElementById('studentProgress').style.display = 'block';
-            showStudentProgress(savedName);
-        }
-        
-        // Photo Data
-        const skillPhotos = {
-            'mouse-skills': {
-                name: '🖱️ Mouse Skills',
-                photos: [
-                    { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Mouse practice session' },
-                    { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Learning to click' }
-                ]
-            },
-            'keyboard-basics': {
-                name: '⌨️ Keyboard Basics',
-                photos: [
-                    { file: 'keyboard1.png', name: 'Keyboard practice' },
-                    { file: 'keyboard2.png', name: 'Learning shortcuts' }
-                ]
-            },
-            'file-management': {
-                name: '📁 File Management',
-                photos: [
-                    { file: 'photo1.png', name: 'Creating folders' }
-                ]
-            },
-            'computer-basics': {
-                name: '🖥️ Computer Basics',
-                photos: [
-                    { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Computer startup' },
-                    { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Desktop navigation' },
-                    { file: '675948469_1339105404771762_6931199817119341293_n.jpg', name: 'Hardware intro' },
-                    { file: 'photo2.png', name: 'Shutdown procedure' }
-                ]
-            },
-            'typing-documents': {
-                name: '📝 Typing Documents',
-                photos: []
-            },
-            'sound-display': {
-                name: '🔊 Sound & Display',
-                photos: []
-            }
-        };
-        
-        // Daily Plan
-        let dailyPlan = null;
-        
-        fetch('daily-plan.json')
-            .then(response => response.json())
-            .then(data => {
-                dailyPlan = data;
-                updateTodaySection();
-            })
-            .catch(error => console.error('Error:', error));
-        
-        function updateTodaySection() {
-            if (!dailyPlan) return;
-            const todayLesson = dailyPlan.schedule.find(day => day.day === dailyPlan.currentDay);
-            if (todayLesson) {
-                document.getElementById('today-date').innerHTML = todayLesson.date;
-                document.getElementById('today-title').innerHTML = todayLesson.title;
-                document.getElementById('today-description').innerHTML = todayLesson.whatWeLearned || '';
-                const photos = skillPhotos[todayLesson.photosFolder]?.photos || [];
-                const container = document.getElementById('today-photos');
-                if (photos.length === 0) {
-                    container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; opacity: 0.5;">📸 No photos yet. Will add after class!</p>';
-                } else {
-                    container.innerHTML = '';
-                    photos.forEach(photo => {
-                        const div = document.createElement('div');
-                        div.className = 'photo-card';
-                        div.innerHTML = `<img src="images/${todayLesson.photosFolder}/${photo.file}" onclick="openLightbox(this.src)"><p>${photo.name}</p>`;
-                        container.appendChild(div);
-                    });
-                }
-            }
-        }
-        
-        function loadSkillsGrid() {
-            const container = document.getElementById('skills-grid');
-            const skills = [
-                { key: 'mouse-skills', name: '🖱️ Mouse Skills', desc: 'Clicking, double-clicking, right-click' },
-                { key: 'keyboard-basics', name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts, volume' },
-                { key: 'file-management', name: '📁 File Management', desc: 'Folders, organizing' },
-                { key: 'computer-basics', name: '🖥️ Computer Basics', desc: 'Startup, shutdown, desktop' },
-                { key: 'typing-documents', name: '📝 Typing Documents', desc: 'Notepad, saving files' },
-                { key: 'sound-display', name: '🔊 Sound & Display', desc: 'Volume, mute, brightness' }
-            ];
-            container.innerHTML = '';
-            let totalPhotos = 0;
-            skills.forEach(skill => {
-                const photos = skillPhotos[skill.key]?.photos || [];
-                const count = photos.length;
-                totalPhotos += count;
-                const div = document.createElement('div');
-                div.className = 'skill-item';
-                div.onclick = () => showSkillPhotos(skill.key);
-                div.innerHTML = `<div class="skill-info"><h4>${skill.name}</h4><p>${skill.desc}</p></div><div class="skill-count">${count} photo${count !== 1 ? 's' : ''}</div>`;
-                container.appendChild(div);
-            });
-        }
-        
-        function showSkillPhotos(skillKey) {
-            const skill = skillPhotos[skillKey];
-            if (!skill) return;
-            document.getElementById('modal-title').innerHTML = `📸 ${skill.name}`;
-            const grid = document.getElementById('modal-photo-grid');
-            if (skill.photos.length === 0) {
-                grid.innerHTML = '<p style="text-align: center; padding: 40px; opacity: 0.6;">📸 No photos yet. Check back after our lesson!</p>';
-            } else {
-                grid.innerHTML = '';
-                skill.photos.forEach(photo => {
-                    const div = document.createElement('div');
-                    div.className = 'modal-photo-item';
-                    div.innerHTML = `<img src="images/${skillKey}/${photo.file}" onclick="openLightbox(this.src)"><p>${photo.name}</p>`;
-                    grid.appendChild(div);
-                });
-            }
-            openModal();
-        }
-        
-        function loadMainGallery() {
-            const container = document.getElementById('main-gallery');
-            const allPhotos = [
-                { src: 'images/photo3.png', alt: 'Teaching session' },
-                { src: 'images/photo4.png', alt: 'Kids learning' },
-                { src: 'images/mouse-skills/674466373_932257053134443_8229112906871439629_n.jpg', alt: 'Mouse practice' },
-                { src: 'images/mouse-skills/674994811_981099904335215_7658704008394680199_n.jpg', alt: 'Clicking practice' }
-            ];
-            container.innerHTML = '';
-            allPhotos.forEach(photo => {
-                const div = document.createElement('div');
-                div.className = 'photo-card';
-                div.innerHTML = `<img src="${photo.src}" onclick="openLightbox(this.src)"><p>${photo.alt}</p>`;
-                container.appendChild(div);
-            });
-        }
-        
-        loadSkillsGrid();
-        loadMainGallery();
-    </script>
+<script>
+    // ============ BASIC FUNCTIONS ============
+    function openLightbox(src) { document.getElementById('lightbox').style.display = 'flex'; document.getElementById('lightbox-img').src = src; }
+    function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
+    function openModal() { document.getElementById('skillModal').style.display = 'block'; }
+    function closeModal() { document.getElementById('skillModal').style.display = 'none'; }
+    window.openLightbox = openLightbox; window.closeLightbox = closeLightbox; window.closeModal = closeModal;
+
+    function toggleTheme() {
+        if (document.body.classList.contains('light-mode')) { document.body.classList.remove('light-mode'); localStorage.setItem('theme', 'dark'); }
+        else { document.body.classList.add('light-mode'); localStorage.setItem('theme', 'light'); }
+    }
+    if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
+
+    function showSection(section) {
+        const sections = ['dashboard', 'videos', 'quizzes', 'certificate', 'leaderboard', 'announcements', 'contact'];
+        sections.forEach(s => { document.getElementById(s + 'Section').style.display = 'none'; });
+        document.getElementById(section + 'Section').style.display = 'block';
+    }
+
+    // Visitor Counter
+    function updateVisitorCount() { let count = localStorage.getItem('visitorCount') || 1247; document.getElementById('visitorCount').innerHTML = parseInt(count).toLocaleString(); const lastVisit = localStorage.getItem('lastVisit'); const today = new Date().toDateString(); if (lastVisit !== today) { localStorage.setItem('visitorCount', parseInt(count) + 1); localStorage.setItem('lastVisit', today); document.getElementById('visitorCount').innerHTML = (parseInt(count) + 1).toLocaleString(); } }
+    updateVisitorCount();
+
+    // Student Login
+    function loginStudent() { const name = document.getElementById('studentName').value.trim(); if (name) { localStorage.setItem('studentName', name); document.getElementById('studentProgress').style.display = 'block'; showStudentProgress(name); } }
+    function showStudentProgress(name) { let completed = localStorage.getItem(`progress_${name}`); if (!completed) completed = JSON.stringify(['Mouse Skills', 'Keyboard Basics', 'File Management']); const skills = JSON.parse(completed); document.getElementById('completedSkills').innerHTML = skills.map(s => `<p>✅ ${s}</p>`).join(''); }
+    if (localStorage.getItem('studentName')) { const savedName = localStorage.getItem('studentName'); document.getElementById('studentName').value = savedName; document.getElementById('studentProgress').style.display = 'block'; showStudentProgress(savedName); }
+
+    // Photo Data & Skills
+    const skillPhotos = {
+        'mouse-skills': { name: '🖱️ Mouse Skills', photos: [{ file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Mouse practice' }, { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Learning to click' }] },
+        'keyboard-basics': { name: '⌨️ Keyboard Basics', photos: [{ file: 'keyboard1.png', name: 'Keyboard practice' }, { file: 'keyboard2.png', name: 'Shortcuts' }] },
+        'file-management': { name: '📁 File Management', photos: [{ file: 'photo1.png', name: 'Creating folders' }] },
+        'computer-basics': { name: '🖥️ Computer Basics', photos: [{ file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Startup' }, { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Desktop' }, { file: '675948469_1339105404771762_6931199817119341293_n.jpg', name: 'Hardware' }, { file: 'photo2.png', name: 'Shutdown' }] },
+        'typing-documents': { name: '📝 Typing Documents', photos: [] }, 'sound-display': { name: '🔊 Sound & Display', photos: [] }
+    };
+
+    function loadSkillsGrid() {
+        const container = document.getElementById('skills-grid');
+        const skills = [{ key: 'mouse-skills', name: '🖱️ Mouse Skills', desc: 'Click, double-click, right-click' }, { key: 'keyboard-basics', name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts' }, { key: 'file-management', name: '📁 File Management', desc: 'Folders, organizing' }, { key: 'computer-basics', name: '🖥️ Computer Basics', desc: 'Startup, shutdown' }, { key: 'typing-documents', name: '📝 Typing Documents', desc: 'Notepad, saving' }, { key: 'sound-display', name: '🔊 Sound & Display', desc: 'Volume, brightness' }];
+        container.innerHTML = '';
+        skills.forEach(skill => { const photos = skillPhotos[skill.key]?.photos || []; const div = document.createElement('div'); div.className = 'skill-item'; div.onclick = () => showSkillPhotos(skill.key); div.innerHTML = `<div class="skill-info"><h4>${skill.name}</h4><p>${skill.desc}</p></div><div class="skill-count">${photos.length} photo${photos.length !== 1 ? 's' : ''}</div>`; container.appendChild(div); });
+        document.getElementById('achievementsList').innerHTML = `<p>⭐ Mouse Skills: 8 students</p><p>⭐ Keyboard Basics: 6 students</p><p>⭐ File Management: 4 students</p><p>⭐ Computer Basics: 2 students</p><p>⭐ Typing Documents: 0 students</p><p>⭐ Sound & Display: 0 students</p><div style="margin-top:15px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.1);"><p>🎯 Next Goal: Complete Computer Basics by Friday!</p></div>`;
+    }
+    function showSkillPhotos(skillKey) { const skill = skillPhotos[skillKey]; if (!skill) return; document.getElementById('modal-title').innerHTML = `📸 ${skill.name}`; const grid = document.getElementById('modal-photo-grid'); if (skill.photos.length === 0) grid.innerHTML = '<p style="text-align:center; padding:40px;">📸 No photos yet</p>'; else { grid.innerHTML = ''; skill.photos.forEach(photo => { const div = document.createElement('div'); div.className = 'modal-photo-item'; div.innerHTML = `<img src="images/${skillKey}/${photo.file}" onclick="openLightbox(this.src)"><p>${photo.name}</p>`; grid.appendChild(div); }); } openModal(); }
+    function loadMainGallery() { const container = document.getElementById('main-gallery'); const photos = [{ src: 'images/photo3.png', alt: 'Teaching session' }, { src: 'images/photo4.png', alt: 'Kids learning' }, { src: 'images/mouse-skills/674466373_932257053134443_8229112906871439629_n.jpg', alt: 'Mouse practice' }]; container.innerHTML = ''; photos.forEach(photo => { const div = document.createElement('div'); div.className = 'photo-card'; div.innerHTML = `<img src="${photo.src}" onclick="openLightbox(this.src)"><p>${photo.alt}</p>`; container.appendChild(div); }); }
+
+    // Daily Plan
+    let dailyPlan = null;
+    fetch('daily-plan.json').then(r => r.json()).then(d => { dailyPlan = d; updateTodaySection(); }).catch(e => console.log('No daily plan'));
+    function updateTodaySection() { if (!dailyPlan) return; const today = dailyPlan.schedule.find(d => d.day === dailyPlan.currentDay); if (today) { document.getElementById('today-date').innerHTML = today.date; document.getElementById('today-title').innerHTML = today.title; document.getElementById('today-description').innerHTML = today.whatWeLearned || ''; const photos = skillPhotos[today.photosFolder]?.photos || []; const c = document.getElementById('today-photos'); if (photos.length === 0) c.innerHTML = '<p>📸 No photos yet</p>'; else { c.innerHTML = ''; photos.forEach(p => { const div = document.createElement('div'); div.className = 'photo-card'; div.innerHTML = `<img src="images/${today.photosFolder}/${p.file}" onclick="openLightbox(this.src)"><p>${p.name}</p>`; c.appendChild(div); }); } } }
+
+    // ============ QUIZ SYSTEM ============
+    const quizzes = {
+        'mouse': { title: '🖱️ Mouse Skills Quiz', questions: [{ text: 'Which button is used to select an item?', options: ['Left click', 'Right click', 'Double click'], correct: 0 }, { text: 'What does double-click do?', options: ['Select', 'Open', 'Delete'], correct: 1 }] },
+        'keyboard': { title: '⌨️ Keyboard Basics Quiz', questions: [{ text: 'What does Ctrl+C do?', options: ['Paste', 'Copy', 'Cut'], correct: 1 }, { text: 'What does Ctrl+V do?', options: ['Copy', 'Paste', 'Undo'], correct: 1 }] }
+    };
+    function loadQuizzes() { const container = document.getElementById('quizList'); container.innerHTML = ''; Object.keys(quizzes).forEach(key => { const div = document.createElement('div'); div.className = 'skill-item'; div.innerHTML = `<div><h4>${quizzes[key].title}</h4><p>Test your knowledge</p></div><span class="skill-count">Take Quiz →</span>`; div.onclick = () => startQuiz(key); container.appendChild(div); }); }
+    function startQuiz(quizKey) { const quiz = quizzes[quizKey]; let html = `<h3 style="color:#ffd54f;">${quiz.title}</h3>`; quiz.questions.forEach((q, i) => { html += `<div class="quiz-question"><p><strong>${i+1}. ${q.text}</strong></p>`; q.options.forEach((opt, optIndex) => { html += `<label class="quiz-option"><input type="radio" name="q${i}" value="${optIndex}"> ${opt}</label>`; }); html += `</div>`; }); html += `<button class="button" onclick="submitQuiz('${quizKey}')">Submit Answers</button>`; document.getElementById('quizDisplay').innerHTML = html; }
+    function submitQuiz(quizKey) { const quiz = quizzes[quizKey]; let score = 0; quiz.questions.forEach((q, i) => { const selected = document.querySelector(`input[name="q${i}"]:checked`); if (selected && parseInt(selected.value) === q.correct) score++; }); const result = `You scored ${score}/${quiz.questions.length}!`; document.getElementById('quizResult').innerHTML = `<div class="card" style="margin-top:20px;"><p>${result}</p>${score === quiz.questions.length ? '<p>🎉 Perfect! You earned 10 points!</p>' : '<p>📚 Review the lesson and try again!</p>'}</div>`; if (score === quiz.questions.length) { let points = parseInt(localStorage.getItem('quizPoints') || 0) + 10; localStorage.setItem('quizPoints', points); updateLeaderboard(); } }
+    function updateLeaderboard() { const points = parseInt(localStorage.getItem('quizPoints') || 0); const name = localStorage.getItem('studentName') || 'Guest'; const leaderboard = [{ name: 'Top Student', points: 120 }, { name: 'Second Place', points: 95 }, { name: name, points: points }]; leaderboard.sort((a,b) => b.points - a.points); const container = document.getElementById('leaderboardList'); container.innerHTML = '<div class="leaderboard-item"><strong>Rank</strong><strong>Student</strong><strong>Points</strong></div>'; leaderboard.forEach((s, i) => { container.innerHTML += `<div class="leaderboard-item"><span>#${i+1}</span><span>${s.name}</span><span>${s.points}</span></div>`; }); }
+
+    // ============ CERTIFICATE ============
+    function checkCertificate() { const name = localStorage.getItem('studentName'); const completed = localStorage.getItem(`progress_${name}`); if (completed && JSON.parse(completed).length >= 6) { document.getElementById('certificateDisplay').style.display = 'block'; document.getElementById('certName').innerHTML = name; document.getElementById('certDate').innerHTML = new Date().toDateString(); document.getElementById('certStatus').innerHTML = '🎉 Congratulations! You earned your certificate!'; } else { document.getElementById('certStatus').innerHTML = `Complete all 6 skills to earn your certificate! (${JSON.parse(completed || '[]').length}/6 completed)`; } }
+    function downloadCertificate() { const name = localStorage.getItem('studentName'); const date = new Date().toDateString(); const certHTML = `<div style="text-align:center; padding:40px; border:5px solid gold;"><h1>🎓 Certificate of Completion</h1><p>This certifies that</p><h2>${name}</h2><p>has successfully completed all computer skills at</p><h3>Digital Gashora</h3><p>Date: ${date}</p></div>`; const blob = new Blob([certHTML], {type: 'text/html'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `certificate_${name}.html`; a.click(); }
+
+    // ============ ANNOUNCEMENTS ============
+    let announcements = JSON.parse(localStorage.getItem('announcements') || '[{"title":"Welcome to Digital Gashora!","message":"We are starting our computer skills training this week. All students are welcome!","date":"May 1, 2026"}]');
+    function loadAnnouncements() { const container = document.getElementById('announcementsList'); container.innerHTML = ''; announcements.forEach(a => { container.innerHTML += `<div class="announcement"><strong>📢 ${a.title}</strong><br><small>${a.date}</small><p>${a.message}</p></div>`; }); }
+    function postAnnouncement() { const title = document.getElementById('announcementTitle').value; const message = document.getElementById('announcementMessage').value; if (title && message) { announcements.unshift({ title, message, date: new Date().toDateString() }); localStorage.setItem('announcements', JSON.stringify(announcements)); loadAnnouncements(); document.getElementById('announcementTitle').value = ''; document.getElementById('announcementMessage').value = ''; alert('Announcement posted!'); } else alert('Please fill both fields'); }
+    function sendMessageContact() { const name = document.getElementById('contactName').value; const email = document.getElementById('contactEmail').value; const msg = document.getElementById('contactMessage').value; if (name && email && msg) { document.getElementById('contactStatus').innerHTML = '<span style="color:#ffd54f;">✅ Message sent! We\'ll get back to you.</span>'; document.getElementById('contactName').value = ''; document.getElementById('contactEmail').value = ''; document.getElementById('contactMessage').value = ''; } else document.getElementById('contactStatus').innerHTML = '<span style="color:#ff8888;">❌ Please fill all fields.</span>'; }
+
+    // ============ VIDEOS ============
+    function playVideo(skill) { const player = document.getElementById('videoPlayer'); const videoEl = document.getElementById('videoElement'); const videos = { mouse: 'videos/mouse-skills.mp4', keyboard: 'videos/keyboard-basics.mp4', file: 'videos/file-management.mp4', computer: 'videos/computer-basics.mp4' }; if (videos[skill]) { videoEl.src = videos[skill]; player.style.display = 'block'; } else { alert('Video coming soon!'); } }
+    function closeVideo() { document.getElementById('videoPlayer').style.display = 'none'; document.getElementById('videoElement').pause(); }
+
+    // Initialize everything
+    loadSkillsGrid();
+    loadMainGallery();
+    loadQuizzes();
+    loadAnnouncements();
+    updateLeaderboard();
+    setInterval(() => { if (document.getElementById('certificateSection').style.display !== 'none') checkCertificate(); }, 1000);
+    document.getElementById('achievementsList').innerHTML = `<p>⭐ Mouse Skills: 8 students</p><p>⭐ Keyboard Basics: 6 students</p><p>⭐ File Management: 4 students</p><p>⭐ Computer Basics: 2 students</p><p>⭐ Typing Documents: 0 students</p><p>⭐ Sound & Display: 0 students</p><div style="margin-top:15px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.1);"><p>🎯 Next Goal: Complete Computer Basics by Friday!</p></div>`;
+</script>
 </body>
 </html>
