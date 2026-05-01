@@ -135,6 +135,11 @@
             background: rgba(255, 213, 79, 0.2);
             transform: translateX(5px);
         }
+        
+        .active-nav {
+            background: rgba(255, 213, 79, 0.2);
+            border-left: 3px solid #ffd54f;
+        }
 
         .main-content {
             flex: 1;
@@ -294,7 +299,6 @@
             gap: 25px;
         }
 
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -359,7 +363,6 @@
             object-fit: cover;
         }
 
-        /* Quiz Styles */
         .quiz-question {
             margin-bottom: 20px;
             padding: 15px;
@@ -469,6 +472,26 @@
             opacity: 0.7;
             margin-bottom: 5px;
         }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #ffd54f;
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+        
+        .back-button {
+            margin-bottom: 20px;
+        }
 
         @media (max-width: 900px) {
             .dashboard { flex-direction: column; }
@@ -490,6 +513,7 @@
         </div>
         <ul class="sidebar-menu">
             <li><a onclick="showSection('dashboard')">🏠 Dashboard</a></li>
+            <li><a onclick="showSection('skills')">📚 All Skills</a></li>
             <li><a onclick="showSection('videos')">🎬 Video Tutorials</a></li>
             <li><a onclick="showSection('quizzes')">📝 Quizzes</a></li>
             <li><a onclick="showSection('certificate')">📜 Certificate</a></li>
@@ -507,6 +531,7 @@
     <div class="main-content">
         <div class="top-nav">
             <a onclick="showSection('dashboard')">Dashboard</a>
+            <a onclick="showSection('skills')">Skills</a>
             <a onclick="showSection('videos')">Videos</a>
             <a onclick="showSection('quizzes')">Quizzes</a>
             <a onclick="showSection('certificate')">Certificate</a>
@@ -527,12 +552,18 @@
                         <div id="today-description" class="lesson-description" style="opacity:0.9; line-height:1.8;">Loading...</div>
                         <div id="today-photos" class="photo-grid"></div>
                     </div>
-                    <div id="skills" class="card">
-                        <div class="card-header">
-                            <h2>📚 ALL SKILLS WE TEACH</h2>
-                            <span class="badge">Click any skill to view photos</span>
+                    <div id="studentProgressCard" class="card">
+                        <div class="card-header"><h2>🔐 Your Progress</h2><span class="badge">Student Portal</span></div>
+                        <div style="text-align:center;">
+                            <input type="text" id="studentName" placeholder="Enter your name" style="width:100%; padding:10px; margin-bottom:10px; border-radius:10px;">
+                            <button onclick="loginStudent()" class="button" style="width:100%;">Login / Track Progress</button>
+                            <div id="studentProgress" style="margin-top:15px; display:none;">
+                                <p>⭐ Your completed skills:</p>
+                                <div id="completedSkills"></div>
+                                <div class="progress-bar"><div id="progressFill" class="progress-fill" style="width:0%"></div></div>
+                                <p id="progressPercent">0% complete</p>
+                            </div>
                         </div>
-                        <div id="skills-grid" class="skills-grid"></div>
                     </div>
                 </div>
                 <div>
@@ -543,39 +574,59 @@
                     <div class="card">
                         <div class="card-header"><h2>📅 This Week's Schedule</h2><span class="badge">May 1-7, 2026</span></div>
                         <div style="line-height: 2;">
-                            <p>📆 Monday: Mouse Skills ✅</p><p>📆 Tuesday: Keyboard Basics ✅</p>
-                            <p>📆 Wednesday: File Management ✅</p><p>📆 Thursday: Computer Basics 🔄 (Today)</p>
-                            <p>📆 Friday: Typing Documents ⏳</p><p>📆 Next Week: Sound & Display</p>
+                            <p>📆 Monday: Mouse Skills ✅</p>
+                            <p>📆 Tuesday: Keyboard Basics ✅</p>
+                            <p>📆 Wednesday: File Management ✅</p>
+                            <p>📆 Thursday: Computer Basics 🔄 (Today)</p>
+                            <p>📆 Friday: Typing Documents ⏳</p>
+                            <p>📆 Next Week: Sound & Display</p>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header"><h2>🔐 Student Portal</h2><span class="badge">Track Progress</span></div>
-                        <div style="text-align:center;"><p style="margin-bottom:15px;">Enter your name to track your progress</p>
-                        <input type="text" id="studentName" placeholder="Your name" style="width:100%; padding:10px; margin-bottom:10px; border-radius:10px;">
-                        <button onclick="loginStudent()" class="button" style="width:100%;">Login / Track Progress</button>
-                        <div id="studentProgress" style="margin-top:15px; display:none;"><p>⭐ Your completed skills:</p><div id="completedSkills"></div></div></div>
+                    <div class="card" style="text-align:center;">
+                        <h2>👀 Site Visitors</h2>
+                        <div id="visitorCount" style="font-size:36px; color:#ffd54f;">Loading...</div>
+                        <p>Total visits to this site</p>
                     </div>
-                    <div class="card" style="text-align:center;"><h2>👀 Site Visitors</h2><div id="visitorCount" style="font-size:36px; color:#ffd54f;">Loading...</div><p>Total visits</p></div>
                 </div>
             </div>
-            <div id="gallery" class="card"><div class="card-header"><h2>📸 Class Gallery</h2><span class="badge">Latest moments</span></div><div id="main-gallery" class="photo-grid"></div></div>
+            <div id="gallery" class="card">
+                <div class="card-header"><h2>📸 Class Gallery</h2><span class="badge">Latest moments</span></div>
+                <div id="main-gallery" class="photo-grid"></div>
+            </div>
+        </div>
+
+        <!-- All Skills Section -->
+        <div id="skillsSection" class="section-container" style="display:none;">
+            <div class="card">
+                <div class="card-header"><h2>📚 ALL SKILLS WE TEACH</h2><span class="badge">6 skills total</span></div>
+                <p style="margin-bottom:15px;">👇 <strong>Click any skill</strong> to see photos from that lesson</p>
+                <div id="skills-grid" class="skills-grid"></div>
+                <p style="margin-top:15px; opacity:0.7;">Complete all 6 skills to earn your certificate!</p>
+            </div>
         </div>
 
         <!-- Video Tutorials Section -->
         <div id="videosSection" class="section-container" style="display:none;">
             <div class="card">
                 <div class="card-header"><h2>🎬 Video Tutorials</h2><span class="badge">Watch and Learn</span></div>
-                <div class="skills-grid">
-                    <div class="skill-item" onclick="playVideo('mouse')"><div><h4>🖱️ Mouse Skills</h4><p>Learn how to use a mouse</p></div><span class="skill-count">▶️ Watch</span></div>
-                    <div class="skill-item" onclick="playVideo('keyboard')"><div><h4>⌨️ Keyboard Basics</h4><p>Typing and shortcuts</p></div><span class="skill-count">▶️ Watch</span></div>
-                    <div class="skill-item" onclick="playVideo('file')"><div><h4>📁 File Management</h4><p>Organize your files</p></div><span class="skill-count">▶️ Watch</span></div>
-                    <div class="skill-item" onclick="playVideo('computer')"><div><h4>🖥️ Computer Basics</h4><p>Startup and shutdown</p></div><span class="skill-count">▶️ Watch</span></div>
-                </div>
+                <div class="skills-grid" id="videoList"></div>
                 <div id="videoPlayer" style="margin-top:20px; display:none;">
-                    <div class="video-container"><video id="videoElement" controls style="width:100%;"><source src="" type="video/mp4">Your browser doesn't support video.</video></div>
-                    <button class="button" style="margin-top:15px;" onclick="closeVideo()">Close Video</button>
+                    <div class="video-container">
+                        <video id="videoElement" controls style="width:100%;">
+                            <source src="" type="video/mp4">
+                            Your browser doesn't support video.
+                        </video>
+                    </div>
+                    <button class="button" style="margin-top:15px; width:auto;" onclick="closeVideo()">✕ Close Video</button>
                 </div>
-                <p style="margin-top:15px; opacity:0.7;">🎥 Videos will be added soon. Check back after our lessons!</p>
+                <div id="demoVideos" style="margin-top:20px;">
+                    <p style="opacity:0.7;">🎥 Demo videos are available. To add your own videos:</p>
+                    <ol style="margin-left:20px; margin-top:10px; opacity:0.7;">
+                        <li>Create a "videos" folder in your project</li>
+                        <li>Add your video files (mouse.mp4, keyboard.mp4, etc.)</li>
+                        <li>They will automatically appear here</li>
+                    </ol>
+                </div>
             </div>
         </div>
 
@@ -583,6 +634,7 @@
         <div id="quizzesSection" class="section-container" style="display:none;">
             <div class="card">
                 <div class="card-header"><h2>📝 Skills Quizzes</h2><span class="badge">Test Your Knowledge</span></div>
+                <p style="margin-bottom:15px;">Complete quizzes to earn points and track your progress!</p>
                 <div class="skills-grid" id="quizList"></div>
                 <div id="quizDisplay" style="margin-top:20px;"></div>
                 <div id="quizResult"></div>
@@ -592,13 +644,15 @@
         <!-- Certificate Section -->
         <div id="certificateSection" class="section-container" style="display:none;">
             <div class="card" style="text-align:center;">
-                <div class="card-header"><h2>📜 Get Your Certificate</h2><span class="badge">Complete all skills</span></div>
-                <p id="certStatus" style="margin-bottom:20px;">Complete all 6 skills to earn your certificate!</p>
-                <div id="certificateDisplay" style="background:linear-gradient(135deg,#fff,#f0f0f0); padding:40px; border-radius:20px; color:#333; display:none;">
+                <div class="card-header"><h2>📜 Get Your Certificate</h2><span class="badge">Complete all 6 skills</span></div>
+                <p id="certStatus" style="margin-bottom:20px;">You need to complete all 6 skills to earn your certificate!</p>
+                <div class="progress-bar"><div id="certProgressFill" class="progress-fill" style="width:0%"></div></div>
+                <p id="certProgressText" style="margin:10px 0;">0/6 skills completed</p>
+                <div id="certificateDisplay" style="background:linear-gradient(135deg,#fff,#f0f0f0); padding:40px; border-radius:20px; color:#333; display:none; margin-top:20px;">
                     <h2 style="color:#ff8c00;">🎓 Certificate of Completion</h2>
                     <p>This certificate is awarded to</p>
                     <h3 id="certName" style="margin:20px 0;">___________</h3>
-                    <p>for successfully completing all computer skills at</p>
+                    <p>for successfully completing all 6 computer skills at</p>
                     <h3>Digital Gashora</h3>
                     <p style="margin-top:20px;">Date: <span id="certDate"></span></p>
                     <button class="button" style="margin-top:20px;" onclick="downloadCertificate()">📥 Download Certificate</button>
@@ -611,7 +665,8 @@
             <div class="card">
                 <div class="card-header"><h2>🏆 Student Leaderboard</h2><span class="badge">Top Performers</span></div>
                 <div id="leaderboardList"></div>
-                <p style="margin-top:15px; opacity:0.7;">Complete quizzes to earn points!</p>
+                <p style="margin-top:15px; opacity:0.7;">Complete quizzes to earn points and climb the leaderboard!</p>
+                <button class="button" style="margin-top:10px;" onclick="updateLeaderboard()">🔄 Refresh Leaderboard</button>
             </div>
         </div>
 
@@ -620,8 +675,8 @@
             <div class="card">
                 <div class="card-header"><h2>📢 Announcements & News</h2><span class="badge">Stay Updated</span></div>
                 <div id="announcementsList"></div>
-                <div style="margin-top:20px;">
-                    <h3 style="color:#ffd54f; margin-bottom:10px;">Post an Announcement (Staff)</h3>
+                <div style="margin-top:25px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1);">
+                    <h3 style="color:#ffd54f; margin-bottom:10px;">Post an Announcement</h3>
                     <input type="text" id="announcementTitle" placeholder="Title" style="width:100%; margin-bottom:10px;">
                     <textarea id="announcementMessage" placeholder="Message" rows="3" style="width:100%; margin-bottom:10px;"></textarea>
                     <button onclick="postAnnouncement()" class="button">Post Announcement</button>
@@ -649,99 +704,524 @@
             </div>
         </div>
 
-        <div class="card" style="text-align:center;"><p>&copy; 2026 Digital Gashora | Building digital skills in Gashora Centre, Bugesera</p><p style="font-size:12px; opacity:0.6;">An initiative of Journey House Actions Rwanda (JHA)</p></div>
+        <div class="card" style="text-align:center;">
+            <p>&copy; 2026 Digital Gashora | Building digital skills in Gashora Centre, Bugesera</p>
+            <p style="font-size:12px; opacity:0.6;">An initiative of Journey House Actions Rwanda (JHA)</p>
+        </div>
     </div>
 </div>
 
 <!-- Modals -->
-<div id="skillModal" class="modal"><div class="modal-content"><div class="modal-header"><h2 id="modal-title">📸 Lesson Photos</h2><button class="close-modal" onclick="closeModal()">✕ Close</button></div><div id="modal-photo-grid" class="modal-photo-grid"></div></div></div>
-<div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" alt="Full size photo"></div>
+<div id="skillModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modal-title">📸 Lesson Photos</h2>
+            <button class="close-modal" onclick="closeModal()">✕ Close</button>
+        </div>
+        <div id="modal-photo-grid" class="modal-photo-grid"></div>
+    </div>
+</div>
+<div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" alt="Full size photo">
+</div>
 
 <script>
     // ============ BASIC FUNCTIONS ============
-    function openLightbox(src) { document.getElementById('lightbox').style.display = 'flex'; document.getElementById('lightbox-img').src = src; }
-    function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
-    function openModal() { document.getElementById('skillModal').style.display = 'block'; }
-    function closeModal() { document.getElementById('skillModal').style.display = 'none'; }
-    window.openLightbox = openLightbox; window.closeLightbox = closeLightbox; window.closeModal = closeModal;
+    function openLightbox(src) { 
+        document.getElementById('lightbox').style.display = 'flex'; 
+        document.getElementById('lightbox-img').src = src; 
+    }
+    
+    function closeLightbox() { 
+        document.getElementById('lightbox').style.display = 'none'; 
+    }
+    
+    function openModal() { 
+        document.getElementById('skillModal').style.display = 'block'; 
+    }
+    
+    function closeModal() { 
+        document.getElementById('skillModal').style.display = 'none'; 
+    }
 
     function toggleTheme() {
-        if (document.body.classList.contains('light-mode')) { document.body.classList.remove('light-mode'); localStorage.setItem('theme', 'dark'); }
-        else { document.body.classList.add('light-mode'); localStorage.setItem('theme', 'light'); }
+        if (document.body.classList.contains('light-mode')) { 
+            document.body.classList.remove('light-mode'); 
+            localStorage.setItem('theme', 'dark'); 
+        } else { 
+            document.body.classList.add('light-mode'); 
+            localStorage.setItem('theme', 'light'); 
+        }
     }
-    if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
+    
+    if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.add('light-mode');
+    }
 
     function showSection(section) {
-        const sections = ['dashboard', 'videos', 'quizzes', 'certificate', 'leaderboard', 'announcements', 'contact'];
-        sections.forEach(s => { document.getElementById(s + 'Section').style.display = 'none'; });
+        const sections = ['dashboard', 'skills', 'videos', 'quizzes', 'certificate', 'leaderboard', 'announcements', 'contact'];
+        sections.forEach(s => { 
+            const el = document.getElementById(s + 'Section');
+            if (el) el.style.display = 'none';
+        });
         document.getElementById(section + 'Section').style.display = 'block';
     }
 
     // Visitor Counter
-    function updateVisitorCount() { let count = localStorage.getItem('visitorCount') || 1247; document.getElementById('visitorCount').innerHTML = parseInt(count).toLocaleString(); const lastVisit = localStorage.getItem('lastVisit'); const today = new Date().toDateString(); if (lastVisit !== today) { localStorage.setItem('visitorCount', parseInt(count) + 1); localStorage.setItem('lastVisit', today); document.getElementById('visitorCount').innerHTML = (parseInt(count) + 1).toLocaleString(); } }
+    function updateVisitorCount() { 
+        let count = localStorage.getItem('visitorCount'); 
+        if (!count) count = 1247; 
+        document.getElementById('visitorCount').innerHTML = parseInt(count).toLocaleString(); 
+        const lastVisit = localStorage.getItem('lastVisit'); 
+        const today = new Date().toDateString(); 
+        if (lastVisit !== today) { 
+            localStorage.setItem('visitorCount', parseInt(count) + 1); 
+            localStorage.setItem('lastVisit', today); 
+            document.getElementById('visitorCount').innerHTML = (parseInt(count) + 1).toLocaleString(); 
+        } 
+    }
     updateVisitorCount();
 
-    // Student Login
-    function loginStudent() { const name = document.getElementById('studentName').value.trim(); if (name) { localStorage.setItem('studentName', name); document.getElementById('studentProgress').style.display = 'block'; showStudentProgress(name); } }
-    function showStudentProgress(name) { let completed = localStorage.getItem(`progress_${name}`); if (!completed) completed = JSON.stringify(['Mouse Skills', 'Keyboard Basics', 'File Management']); const skills = JSON.parse(completed); document.getElementById('completedSkills').innerHTML = skills.map(s => `<p>✅ ${s}</p>`).join(''); }
-    if (localStorage.getItem('studentName')) { const savedName = localStorage.getItem('studentName'); document.getElementById('studentName').value = savedName; document.getElementById('studentProgress').style.display = 'block'; showStudentProgress(savedName); }
+    // Student Login & Progress
+    const allSkillsList = ['Mouse Skills', 'Keyboard Basics', 'File Management', 'Computer Basics', 'Typing Documents', 'Sound & Display'];
+    
+    function loginStudent() { 
+        const name = document.getElementById('studentName').value.trim(); 
+        if (name) { 
+            localStorage.setItem('studentName', name); 
+            document.getElementById('studentProgress').style.display = 'block'; 
+            showStudentProgress(name); 
+            updateCertificateStatus();
+        } else {
+            alert('Please enter your name');
+        }
+    }
+    
+    function showStudentProgress(name) { 
+        let completed = localStorage.getItem(`progress_${name}`); 
+        if (!completed) completed = JSON.stringify([]); 
+        const skills = JSON.parse(completed); 
+        document.getElementById('completedSkills').innerHTML = skills.map(s => `<p>✅ ${s}</p>`).join('');
+        if (skills.length === 0) document.getElementById('completedSkills').innerHTML = '<p>No skills completed yet. Click on skills to mark them complete!</p>';
+        
+        const percent = (skills.length / 6) * 100;
+        document.getElementById('progressFill').style.width = percent + '%';
+        document.getElementById('progressPercent').innerHTML = Math.round(percent) + '% complete';
+    }
+    
+    function markSkillComplete(skillName) {
+        const name = localStorage.getItem('studentName');
+        if (!name) {
+            alert('Please login first using the student portal on the dashboard!');
+            showSection('dashboard');
+            return false;
+        }
+        let completed = JSON.parse(localStorage.getItem(`progress_${name}`) || '[]');
+        if (!completed.includes(skillName)) {
+            completed.push(skillName);
+            localStorage.setItem(`progress_${name}`, JSON.stringify(completed));
+            showStudentProgress(name);
+            updateCertificateStatus();
+            updateLeaderboard();
+            return true;
+        }
+        return false;
+    }
+    
+    function updateCertificateStatus() {
+        const name = localStorage.getItem('studentName');
+        if (!name) {
+            document.getElementById('certStatus').innerHTML = 'Please login on the dashboard to track your certificate progress!';
+            document.getElementById('certProgressText').innerHTML = 'Login to see progress';
+            document.getElementById('certProgressFill').style.width = '0%';
+            return;
+        }
+        const completed = JSON.parse(localStorage.getItem(`progress_${name}`) || '[]');
+        const count = completed.length;
+        const percent = (count / 6) * 100;
+        document.getElementById('certProgressFill').style.width = percent + '%';
+        document.getElementById('certProgressText').innerHTML = `${count}/6 skills completed`;
+        
+        if (count >= 6) {
+            document.getElementById('certStatus').innerHTML = '🎉 Congratulations! You have completed all 6 skills! Your certificate is ready below! 🎉';
+            document.getElementById('certificateDisplay').style.display = 'block';
+            document.getElementById('certName').innerHTML = name;
+            document.getElementById('certDate').innerHTML = new Date().toDateString();
+        } else {
+            document.getElementById('certStatus').innerHTML = `Complete all 6 skills to earn your certificate! (${count}/6 completed)`;
+            document.getElementById('certificateDisplay').style.display = 'none';
+        }
+    }
+    
+    function downloadCertificate() {
+        const name = localStorage.getItem('studentName');
+        if (!name) {
+            alert('Please login first!');
+            return;
+        }
+        const completed = JSON.parse(localStorage.getItem(`progress_${name}`) || '[]');
+        if (completed.length < 6) {
+            alert('You need to complete all 6 skills first!');
+            return;
+        }
+        const date = new Date().toDateString();
+        const certHTML = `<!DOCTYPE html>
+        <html>
+        <head><title>Certificate - ${name}</title>
+        <style>
+            body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+            .certificate { border: 10px solid gold; padding: 40px; max-width: 800px; margin: auto; }
+            h1 { color: #ff8c00; }
+            h2 { margin: 30px 0; }
+        </style>
+        </head>
+        <body>
+        <div class="certificate">
+            <h1>🎓 Certificate of Completion</h1>
+            <p>This certifies that</p>
+            <h2>${name}</h2>
+            <p>has successfully completed all 6 computer skills at</p>
+            <h3>Digital Gashora</h3>
+            <p>Date: ${date}</p>
+            <hr>
+            <p>Skills completed: ${completed.join(', ')}</p>
+            <p>Digital Gashora - Gashora Centre, Bugesera, Rwanda</p>
+        </div>
+        </body>
+        </html>`;
+        
+        const blob = new Blob([certHTML], {type: 'text/html'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `certificate_${name}.html`;
+        a.click();
+    }
+    
+    if (localStorage.getItem('studentName')) { 
+        const savedName = localStorage.getItem('studentName'); 
+        document.getElementById('studentName').value = savedName; 
+        document.getElementById('studentProgress').style.display = 'block'; 
+        showStudentProgress(savedName);
+        updateCertificateStatus();
+    }
 
-    // Photo Data & Skills
+    // Photo Data - Only working photos
     const skillPhotos = {
-        'mouse-skills': { name: '🖱️ Mouse Skills', photos: [{ file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Mouse practice' }, { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Learning to click' }] },
-        'keyboard-basics': { name: '⌨️ Keyboard Basics', photos: [{ file: 'keyboard1.png', name: 'Keyboard practice' }, { file: 'keyboard2.png', name: 'Shortcuts' }] },
-        'file-management': { name: '📁 File Management', photos: [{ file: 'photo1.png', name: 'Creating folders' }] },
-        'computer-basics': { name: '🖥️ Computer Basics', photos: [{ file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Startup' }, { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Desktop' }, { file: '675948469_1339105404771762_6931199817119341293_n.jpg', name: 'Hardware' }, { file: 'photo2.png', name: 'Shutdown' }] },
-        'typing-documents': { name: '📝 Typing Documents', photos: [] }, 'sound-display': { name: '🔊 Sound & Display', photos: [] }
+        'mouse-skills': { 
+            name: '🖱️ Mouse Skills', 
+            photos: [
+                { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Mouse practice session' }
+            ] 
+        },
+        'keyboard-basics': { 
+            name: '⌨️ Keyboard Basics', 
+            photos: [
+                { file: 'keyboard1.png', name: 'Keyboard practice' }
+            ] 
+        },
+        'file-management': { 
+            name: '📁 File Management', 
+            photos: [
+                { file: 'photo1.png', name: 'Creating folders' }
+            ] 
+        },
+        'computer-basics': { 
+            name: '🖥️ Computer Basics', 
+            photos: [
+                { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Computer startup' },
+                { file: 'photo2.png', name: 'Shutdown procedure' }
+            ] 
+        },
+        'typing-documents': { name: '📝 Typing Documents', photos: [] },
+        'sound-display': { name: '🔊 Sound & Display', photos: [] }
     };
 
     function loadSkillsGrid() {
         const container = document.getElementById('skills-grid');
-        const skills = [{ key: 'mouse-skills', name: '🖱️ Mouse Skills', desc: 'Click, double-click, right-click' }, { key: 'keyboard-basics', name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts' }, { key: 'file-management', name: '📁 File Management', desc: 'Folders, organizing' }, { key: 'computer-basics', name: '🖥️ Computer Basics', desc: 'Startup, shutdown' }, { key: 'typing-documents', name: '📝 Typing Documents', desc: 'Notepad, saving' }, { key: 'sound-display', name: '🔊 Sound & Display', desc: 'Volume, brightness' }];
+        const skills = [
+            { key: 'mouse-skills', name: '🖱️ Mouse Skills', desc: 'Click, double-click, right-click' },
+            { key: 'keyboard-basics', name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts, volume' },
+            { key: 'file-management', name: '📁 File Management', desc: 'Folders, organizing files' },
+            { key: 'computer-basics', name: '🖥️ Computer Basics', desc: 'Startup, shutdown, desktop' },
+            { key: 'typing-documents', name: '📝 Typing Documents', desc: 'Notepad, saving files' },
+            { key: 'sound-display', name: '🔊 Sound & Display', desc: 'Volume, mute, brightness' }
+        ];
         container.innerHTML = '';
-        skills.forEach(skill => { const photos = skillPhotos[skill.key]?.photos || []; const div = document.createElement('div'); div.className = 'skill-item'; div.onclick = () => showSkillPhotos(skill.key); div.innerHTML = `<div class="skill-info"><h4>${skill.name}</h4><p>${skill.desc}</p></div><div class="skill-count">${photos.length} photo${photos.length !== 1 ? 's' : ''}</div>`; container.appendChild(div); });
-        document.getElementById('achievementsList').innerHTML = `<p>⭐ Mouse Skills: 8 students</p><p>⭐ Keyboard Basics: 6 students</p><p>⭐ File Management: 4 students</p><p>⭐ Computer Basics: 2 students</p><p>⭐ Typing Documents: 0 students</p><p>⭐ Sound & Display: 0 students</p><div style="margin-top:15px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.1);"><p>🎯 Next Goal: Complete Computer Basics by Friday!</p></div>`;
+        skills.forEach(skill => { 
+            const photos = skillPhotos[skill.key]?.photos || []; 
+            const div = document.createElement('div'); 
+            div.className = 'skill-item'; 
+            div.onclick = () => { 
+                showSkillPhotos(skill.key);
+                markSkillComplete(skill.name);
+            }; 
+            div.innerHTML = `<div class="skill-info"><h4>${skill.name}</h4><p>${skill.desc}</p></div><div class="skill-count">${photos.length} photo${photos.length !== 1 ? 's' : ''}</div>`; 
+            container.appendChild(div); 
+        });
+        
+        document.getElementById('achievementsList').innerHTML = `
+            <p>⭐ <strong>Mouse Skills:</strong> <span id="achievementMouse">8</span> students</p>
+            <p>⭐ <strong>Keyboard Basics:</strong> <span id="achievementKeyboard">6</span> students</p>
+            <p>⭐ <strong>File Management:</strong> <span id="achievementFile">4</span> students</p>
+            <p>⭐ <strong>Computer Basics:</strong> <span id="achievementComputer">2</span> students</p>
+            <p>⭐ <strong>Typing Documents:</strong> <span id="achievementTyping">0</span> students</p>
+            <p>⭐ <strong>Sound & Display:</strong> <span id="achievementSound">0</span> students</p>
+            <div style="margin-top:15px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.1);">
+                <p>🎯 <strong>Next Goal:</strong> Complete Computer Basics by Friday!</p>
+            </div>
+        `;
     }
-    function showSkillPhotos(skillKey) { const skill = skillPhotos[skillKey]; if (!skill) return; document.getElementById('modal-title').innerHTML = `📸 ${skill.name}`; const grid = document.getElementById('modal-photo-grid'); if (skill.photos.length === 0) grid.innerHTML = '<p style="text-align:center; padding:40px;">📸 No photos yet</p>'; else { grid.innerHTML = ''; skill.photos.forEach(photo => { const div = document.createElement('div'); div.className = 'modal-photo-item'; div.innerHTML = `<img src="images/${skillKey}/${photo.file}" onclick="openLightbox(this.src)"><p>${photo.name}</p>`; grid.appendChild(div); }); } openModal(); }
-    function loadMainGallery() { const container = document.getElementById('main-gallery'); const photos = [{ src: 'images/photo3.png', alt: 'Teaching session' }, { src: 'images/photo4.png', alt: 'Kids learning' }, { src: 'images/mouse-skills/674466373_932257053134443_8229112906871439629_n.jpg', alt: 'Mouse practice' }]; container.innerHTML = ''; photos.forEach(photo => { const div = document.createElement('div'); div.className = 'photo-card'; div.innerHTML = `<img src="${photo.src}" onclick="openLightbox(this.src)"><p>${photo.alt}</p>`; container.appendChild(div); }); }
+    
+    function showSkillPhotos(skillKey) { 
+        const skill = skillPhotos[skillKey]; 
+        if (!skill) return; 
+        document.getElementById('modal-title').innerHTML = `📸 ${skill.name}`; 
+        const grid = document.getElementById('modal-photo-grid'); 
+        if (skill.photos.length === 0) { 
+            grid.innerHTML = '<p style="text-align:center; padding:40px;">📸 Add photos to this folder to see them here!</p>'; 
+        } else { 
+            grid.innerHTML = ''; 
+            skill.photos.forEach(photo => { 
+                const div = document.createElement('div'); 
+                div.className = 'modal-photo-item'; 
+                div.innerHTML = `<img src="images/${skillKey}/${photo.file}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23333%22/%3E%3Ctext x=%22100%22 y=%2275%22 text-anchor=%22middle%22 fill=%22%23888%22%3EAdd photo here%3C/text%3E%3C/svg%3E'" onclick="openLightbox(this.src)"><p>${photo.name}</p>`; 
+                grid.appendChild(div); 
+            }); 
+        } 
+        openModal(); 
+    }
+    
+    function loadMainGallery() { 
+        const container = document.getElementById('main-gallery'); 
+        const photos = [
+            { src: 'images/photo3.png', alt: 'Teaching session' },
+            { src: 'images/photo4.png', alt: 'Kids learning' }
+        ]; 
+        container.innerHTML = ''; 
+        photos.forEach(photo => { 
+            const div = document.createElement('div'); 
+            div.className = 'photo-card'; 
+            div.innerHTML = `<img src="${photo.src}" onerror="this.style.display='none'" onclick="openLightbox(this.src)"><p>${photo.alt}</p>`; 
+            container.appendChild(div); 
+        }); 
+    }
 
     // Daily Plan
     let dailyPlan = null;
-    fetch('daily-plan.json').then(r => r.json()).then(d => { dailyPlan = d; updateTodaySection(); }).catch(e => console.log('No daily plan'));
-    function updateTodaySection() { if (!dailyPlan) return; const today = dailyPlan.schedule.find(d => d.day === dailyPlan.currentDay); if (today) { document.getElementById('today-date').innerHTML = today.date; document.getElementById('today-title').innerHTML = today.title; document.getElementById('today-description').innerHTML = today.whatWeLearned || ''; const photos = skillPhotos[today.photosFolder]?.photos || []; const c = document.getElementById('today-photos'); if (photos.length === 0) c.innerHTML = '<p>📸 No photos yet</p>'; else { c.innerHTML = ''; photos.forEach(p => { const div = document.createElement('div'); div.className = 'photo-card'; div.innerHTML = `<img src="images/${today.photosFolder}/${p.file}" onclick="openLightbox(this.src)"><p>${p.name}</p>`; c.appendChild(div); }); } } }
+    try {
+        fetch('daily-plan.json').then(r => r.json()).then(d => { 
+            dailyPlan = d; 
+            updateTodaySection(); 
+        }).catch(e => console.log('No daily plan file'));
+    } catch(e) {}
+    
+    function updateTodaySection() { 
+        if (!dailyPlan) return; 
+        const today = dailyPlan.schedule.find(d => d.day === dailyPlan.currentDay); 
+        if (today) { 
+            document.getElementById('today-date').innerHTML = today.date; 
+            document.getElementById('today-title').innerHTML = today.title; 
+            document.getElementById('today-description').innerHTML = today.whatWeLearned || ''; 
+            const photos = skillPhotos[today.photosFolder]?.photos || []; 
+            const c = document.getElementById('today-photos'); 
+            if (photos.length === 0) { 
+                c.innerHTML = '<p style="text-align:center;">📸 No photos yet. Will add after class!</p>'; 
+            } else { 
+                c.innerHTML = ''; 
+                photos.forEach(p => { 
+                    const div = document.createElement('div'); 
+                    div.className = 'photo-card'; 
+                    div.innerHTML = `<img src="images/${today.photosFolder}/${p.file}" onerror="this.style.display='none'" onclick="openLightbox(this.src)"><p>${p.name}</p>`; 
+                    c.appendChild(div); 
+                }); 
+            } 
+        } 
+    }
 
     // ============ QUIZ SYSTEM ============
     const quizzes = {
-        'mouse': { title: '🖱️ Mouse Skills Quiz', questions: [{ text: 'Which button is used to select an item?', options: ['Left click', 'Right click', 'Double click'], correct: 0 }, { text: 'What does double-click do?', options: ['Select', 'Open', 'Delete'], correct: 1 }] },
-        'keyboard': { title: '⌨️ Keyboard Basics Quiz', questions: [{ text: 'What does Ctrl+C do?', options: ['Paste', 'Copy', 'Cut'], correct: 1 }, { text: 'What does Ctrl+V do?', options: ['Copy', 'Paste', 'Undo'], correct: 1 }] }
+        'mouse': { title: '🖱️ Mouse Skills Quiz', skillName: 'Mouse Skills', questions: [
+            { text: 'Which button is used to select an item?', options: ['Left click', 'Right click', 'Double click'], correct: 0 },
+            { text: 'What does double-click do?', options: ['Selects one item', 'Opens a file/folder', 'Deletes the item'], correct: 1 },
+            { text: 'What is the right mouse button used for?', options: ['Open context menu', 'Select text', 'Close window'], correct: 0 }
+        ] },
+        'keyboard': { title: '⌨️ Keyboard Basics Quiz', skillName: 'Keyboard Basics', questions: [
+            { text: 'What does Ctrl+C do?', options: ['Paste', 'Copy', 'Cut'], correct: 1 },
+            { text: 'What does Ctrl+V do?', options: ['Copy', 'Paste', 'Undo'], correct: 1 },
+            { text: 'What does Ctrl+Z do?', options: ['Redo', 'Save', 'Undo'], correct: 2 }
+        ] }
     };
-    function loadQuizzes() { const container = document.getElementById('quizList'); container.innerHTML = ''; Object.keys(quizzes).forEach(key => { const div = document.createElement('div'); div.className = 'skill-item'; div.innerHTML = `<div><h4>${quizzes[key].title}</h4><p>Test your knowledge</p></div><span class="skill-count">Take Quiz →</span>`; div.onclick = () => startQuiz(key); container.appendChild(div); }); }
-    function startQuiz(quizKey) { const quiz = quizzes[quizKey]; let html = `<h3 style="color:#ffd54f;">${quiz.title}</h3>`; quiz.questions.forEach((q, i) => { html += `<div class="quiz-question"><p><strong>${i+1}. ${q.text}</strong></p>`; q.options.forEach((opt, optIndex) => { html += `<label class="quiz-option"><input type="radio" name="q${i}" value="${optIndex}"> ${opt}</label>`; }); html += `</div>`; }); html += `<button class="button" onclick="submitQuiz('${quizKey}')">Submit Answers</button>`; document.getElementById('quizDisplay').innerHTML = html; }
-    function submitQuiz(quizKey) { const quiz = quizzes[quizKey]; let score = 0; quiz.questions.forEach((q, i) => { const selected = document.querySelector(`input[name="q${i}"]:checked`); if (selected && parseInt(selected.value) === q.correct) score++; }); const result = `You scored ${score}/${quiz.questions.length}!`; document.getElementById('quizResult').innerHTML = `<div class="card" style="margin-top:20px;"><p>${result}</p>${score === quiz.questions.length ? '<p>🎉 Perfect! You earned 10 points!</p>' : '<p>📚 Review the lesson and try again!</p>'}</div>`; if (score === quiz.questions.length) { let points = parseInt(localStorage.getItem('quizPoints') || 0) + 10; localStorage.setItem('quizPoints', points); updateLeaderboard(); } }
-    function updateLeaderboard() { const points = parseInt(localStorage.getItem('quizPoints') || 0); const name = localStorage.getItem('studentName') || 'Guest'; const leaderboard = [{ name: 'Top Student', points: 120 }, { name: 'Second Place', points: 95 }, { name: name, points: points }]; leaderboard.sort((a,b) => b.points - a.points); const container = document.getElementById('leaderboardList'); container.innerHTML = '<div class="leaderboard-item"><strong>Rank</strong><strong>Student</strong><strong>Points</strong></div>'; leaderboard.forEach((s, i) => { container.innerHTML += `<div class="leaderboard-item"><span>#${i+1}</span><span>${s.name}</span><span>${s.points}</span></div>`; }); }
-
-    // ============ CERTIFICATE ============
-    function checkCertificate() { const name = localStorage.getItem('studentName'); const completed = localStorage.getItem(`progress_${name}`); if (completed && JSON.parse(completed).length >= 6) { document.getElementById('certificateDisplay').style.display = 'block'; document.getElementById('certName').innerHTML = name; document.getElementById('certDate').innerHTML = new Date().toDateString(); document.getElementById('certStatus').innerHTML = '🎉 Congratulations! You earned your certificate!'; } else { document.getElementById('certStatus').innerHTML = `Complete all 6 skills to earn your certificate! (${JSON.parse(completed || '[]').length}/6 completed)`; } }
-    function downloadCertificate() { const name = localStorage.getItem('studentName'); const date = new Date().toDateString(); const certHTML = `<div style="text-align:center; padding:40px; border:5px solid gold;"><h1>🎓 Certificate of Completion</h1><p>This certifies that</p><h2>${name}</h2><p>has successfully completed all computer skills at</p><h3>Digital Gashora</h3><p>Date: ${date}</p></div>`; const blob = new Blob([certHTML], {type: 'text/html'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `certificate_${name}.html`; a.click(); }
-
-    // ============ ANNOUNCEMENTS ============
-    let announcements = JSON.parse(localStorage.getItem('announcements') || '[{"title":"Welcome to Digital Gashora!","message":"We are starting our computer skills training this week. All students are welcome!","date":"May 1, 2026"}]');
-    function loadAnnouncements() { const container = document.getElementById('announcementsList'); container.innerHTML = ''; announcements.forEach(a => { container.innerHTML += `<div class="announcement"><strong>📢 ${a.title}</strong><br><small>${a.date}</small><p>${a.message}</p></div>`; }); }
-    function postAnnouncement() { const title = document.getElementById('announcementTitle').value; const message = document.getElementById('announcementMessage').value; if (title && message) { announcements.unshift({ title, message, date: new Date().toDateString() }); localStorage.setItem('announcements', JSON.stringify(announcements)); loadAnnouncements(); document.getElementById('announcementTitle').value = ''; document.getElementById('announcementMessage').value = ''; alert('Announcement posted!'); } else alert('Please fill both fields'); }
-    function sendMessageContact() { const name = document.getElementById('contactName').value; const email = document.getElementById('contactEmail').value; const msg = document.getElementById('contactMessage').value; if (name && email && msg) { document.getElementById('contactStatus').innerHTML = '<span style="color:#ffd54f;">✅ Message sent! We\'ll get back to you.</span>'; document.getElementById('contactName').value = ''; document.getElementById('contactEmail').value = ''; document.getElementById('contactMessage').value = ''; } else document.getElementById('contactStatus').innerHTML = '<span style="color:#ff8888;">❌ Please fill all fields.</span>'; }
+    
+    function loadQuizzes() { 
+        const container = document.getElementById('quizList'); 
+        container.innerHTML = ''; 
+        Object.keys(quizzes).forEach(key => { 
+            const div = document.createElement('div'); 
+            div.className = 'skill-item'; 
+            div.innerHTML = `<div><h4>${quizzes[key].title}</h4><p>Test your knowledge</p></div><span class="skill-count">Take Quiz →</span>`; 
+            div.onclick = () => startQuiz(key); 
+            container.appendChild(div); 
+        }); 
+    }
+    
+    let currentQuizKey = null;
+    
+    function startQuiz(quizKey) { 
+        currentQuizKey = quizKey;
+        const quiz = quizzes[quizKey]; 
+        let html = `<h3 style="color:#ffd54f;">${quiz.title}</h3>`; 
+        quiz.questions.forEach((q, i) => { 
+            html += `<div class="quiz-question"><p><strong>${i+1}. ${q.text}</strong></p>`; 
+            q.options.forEach((opt, optIndex) => { 
+                html += `<label class="quiz-option"><input type="radio" name="q${i}" value="${optIndex}"> ${opt}</label>`; 
+            }); 
+            html += `</div>`; 
+        }); 
+        html += `<button class="button" onclick="submitQuiz()">Submit Answers</button>`;
+        html += `<button class="button" style="margin-left:10px; background:#555;" onclick="cancelQuiz()">Cancel</button>`;
+        document.getElementById('quizDisplay').innerHTML = html; 
+        document.getElementById('quizResult').innerHTML = '';
+    }
+    
+    function cancelQuiz() {
+        document.getElementById('quizDisplay').innerHTML = '';
+        document.getElementById('quizResult').innerHTML = '';
+        currentQuizKey = null;
+    }
+    
+    function submitQuiz() { 
+        if (!currentQuizKey) return;
+        const quiz = quizzes[currentQuizKey]; 
+        let score = 0; 
+        quiz.questions.forEach((q, i) => { 
+            const selected = document.querySelector(`input[name="q${i}"]:checked`); 
+            if (selected && parseInt(selected.value) === q.correct) score++; 
+        }); 
+        const result = `You scored ${score}/${quiz.questions.length}!`; 
+        let message = '';
+        if (score === quiz.questions.length) { 
+            message = '<p>🎉 Perfect! You earned 10 points and completed this skill!</p>';
+            let points = parseInt(localStorage.getItem('quizPoints') || 0) + 10;
+            localStorage.setItem('quizPoints', points);
+            markSkillComplete(quiz.skillName);
+        } else { 
+            message = '<p>📚 Review the lesson and try again!</p>'; 
+        }
+        document.getElementById('quizResult').innerHTML = `<div class="card" style="margin-top:20px;"><p>${result}</p>${message}<button class="button" style="margin-top:10px;" onclick="cancelQuiz()">Try Another Quiz</button></div>`;
+        updateLeaderboard(); 
+    }
+    
+    function updateLeaderboard() { 
+        const points = parseInt(localStorage.getItem('quizPoints') || 0); 
+        const name = localStorage.getItem('studentName') || 'Guest';
+        const completed = name !== 'Guest' ? JSON.parse(localStorage.getItem(`progress_${name}`) || '[]') : [];
+        const skillPoints = completed.length * 10;
+        const totalPoints = points + skillPoints;
+        
+        const leaderboard = [
+            { name: 'Top Performer', points: 85 },
+            { name: 'Rising Star', points: 60 },
+            { name: name, points: totalPoints }
+        ];
+        leaderboard.sort((a,b) => b.points - a.points);
+        const container = document.getElementById('leaderboardList'); 
+        container.innerHTML = '<div class="leaderboard-item"><strong>Rank</strong><strong>Student</strong><strong>Points</strong></div>'; 
+        leaderboard.forEach((s, i) => { 
+            container.innerHTML += `<div class="leaderboard-item"><span>#${i+1}</span><span>${s.name}</span><span>${s.points}</span></div>`; 
+        }); 
+    }
 
     // ============ VIDEOS ============
-    function playVideo(skill) { const player = document.getElementById('videoPlayer'); const videoEl = document.getElementById('videoElement'); const videos = { mouse: 'videos/mouse-skills.mp4', keyboard: 'videos/keyboard-basics.mp4', file: 'videos/file-management.mp4', computer: 'videos/computer-basics.mp4' }; if (videos[skill]) { videoEl.src = videos[skill]; player.style.display = 'block'; } else { alert('Video coming soon!'); } }
-    function closeVideo() { document.getElementById('videoPlayer').style.display = 'none'; document.getElementById('videoElement').pause(); }
+    function loadVideos() {
+        const container = document.getElementById('videoList');
+        const demoVideos = [
+            { name: '🖱️ Mouse Skills Demo', type: 'demo', url: 'https://www.w3schools.com/html/mov_bbb.mp4' },
+            { name: '⌨️ Keyboard Basics Demo', type: 'demo', url: 'https://www.w3schools.com/html/mov_bbb.mp4' },
+            { name: '📁 File Management Demo', type: 'demo', url: 'https://www.w3schools.com/html/mov_bbb.mp4' }
+        ];
+        container.innerHTML = '';
+        demoVideos.forEach(video => {
+            const div = document.createElement('div');
+            div.className = 'skill-item';
+            div.innerHTML = `<div><h4>${video.name}</h4><p>Watch tutorial</p></div><span class="skill-count">▶️ Play</span>`;
+            div.onclick = () => playDemoVideo(video.url, video.name);
+            container.appendChild(div);
+        });
+    }
+    
+    function playDemoVideo(url, title) {
+        const player = document.getElementById('videoPlayer');
+        const videoEl = document.getElementById('videoElement');
+        player.style.display = 'block';
+        videoEl.src = url;
+        videoEl.play();
+        videoEl.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function closeVideo() { 
+        const player = document.getElementById('videoPlayer');
+        const videoEl = document.getElementById('videoElement');
+        player.style.display = 'none'; 
+        videoEl.pause();
+        videoEl.src = '';
+    }
+
+    // ============ ANNOUNCEMENTS ============
+    let announcements = [];
+    try {
+        const saved = localStorage.getItem('announcements');
+        if (saved) announcements = JSON.parse(saved);
+        else announcements = [{title:'Welcome to Digital Gashora!',message:'We are starting our computer skills training this week. All students are welcome! Login using your name to track your progress.',date:new Date().toDateString()}];
+    } catch(e) {}
+    
+    function loadAnnouncements() { 
+        const container = document.getElementById('announcementsList'); 
+        container.innerHTML = ''; 
+        announcements.forEach(a => { 
+            container.innerHTML += `<div class="announcement"><strong>📢 ${a.title}</strong><br><small>${a.date}</small><p>${a.message}</p></div>`; 
+        }); 
+        if (announcements.length === 0) container.innerHTML = '<p>No announcements yet. Be the first to post!</p>';
+    }
+    
+    function postAnnouncement() { 
+        const title = document.getElementById('announcementTitle').value; 
+        const message = document.getElementById('announcementMessage').value; 
+        if (title && message) { 
+            announcements.unshift({ title, message, date: new Date().toDateString() }); 
+            localStorage.setItem('announcements', JSON.stringify(announcements)); 
+            loadAnnouncements(); 
+            document.getElementById('announcementTitle').value = ''; 
+            document.getElementById('announcementMessage').value = ''; 
+            alert('Announcement posted!');
+        } else { 
+            alert('Please fill both fields'); 
+        } 
+    }
+    
+    function sendMessageContact() { 
+        const name = document.getElementById('contactName').value; 
+        const email = document.getElementById('contactEmail').value; 
+        const msg = document.getElementById('contactMessage').value; 
+        if (name && email && msg) { 
+            document.getElementById('contactStatus').innerHTML = '<span style="color:#ffd54f;">✅ Message sent! We\'ll get back to you soon.</span>'; 
+            document.getElementById('contactName').value = ''; 
+            document.getElementById('contactEmail').value = ''; 
+            document.getElementById('contactMessage').value = ''; 
+            setTimeout(() => { document.getElementById('contactStatus').innerHTML = ''; }, 3000);
+        } else { 
+            document.getElementById('contactStatus').innerHTML = '<span style="color:#ff8888;">❌ Please fill all fields.</span>'; 
+        } 
+    }
 
     // Initialize everything
     loadSkillsGrid();
     loadMainGallery();
     loadQuizzes();
     loadAnnouncements();
+    loadVideos();
     updateLeaderboard();
-    setInterval(() => { if (document.getElementById('certificateSection').style.display !== 'none') checkCertificate(); }, 1000);
-    document.getElementById('achievementsList').innerHTML = `<p>⭐ Mouse Skills: 8 students</p><p>⭐ Keyboard Basics: 6 students</p><p>⭐ File Management: 4 students</p><p>⭐ Computer Basics: 2 students</p><p>⭐ Typing Documents: 0 students</p><p>⭐ Sound & Display: 0 students</p><div style="margin-top:15px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.1);"><p>🎯 Next Goal: Complete Computer Basics by Friday!</p></div>`;
+    
+    setInterval(() => updateCertificateStatus(), 1000);
 </script>
 </body>
 </html>
