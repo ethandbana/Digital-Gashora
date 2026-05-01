@@ -13,24 +13,84 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             min-height: 100vh;
-            background-attachment: fixed;
             color: #fff;
+            background: radial-gradient(ellipse at 20% 30%, #0a0a2a, #060618, #020210);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated glowing orbs for bokeh effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(255, 180, 50, 0.15), transparent 40%),
+                radial-gradient(circle at 20% 70%, rgba(50, 100, 200, 0.12), transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 213, 79, 0.08), transparent 60%),
+                radial-gradient(circle at 90% 80%, rgba(100, 50, 150, 0.1), transparent 45%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Floating bokeh light particles */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 15% 30%, rgba(255, 213, 79, 0.6), rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 65% 45%, rgba(255, 180, 50, 0.5), rgba(0,0,0,0)),
+                radial-gradient(4px 4px at 85% 70%, rgba(200, 220, 255, 0.4), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 35% 85%, rgba(255, 213, 79, 0.5), rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 55% 15%, rgba(100, 150, 255, 0.4), rgba(0,0,0,0)),
+                radial-gradient(5px 5px at 92% 35%, rgba(255, 200, 100, 0.3), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 8% 65%, rgba(255, 213, 79, 0.4), rgba(0,0,0,0)),
+                radial-gradient(4px 4px at 45% 92%, rgba(150, 100, 200, 0.35), rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 72% 8%, rgba(255, 180, 50, 0.45), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 28% 48%, rgba(200, 220, 255, 0.5), rgba(0,0,0,0));
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatBokeh 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatBokeh {
+            0% {
+                background-position: 
+                    15% 30%, 65% 45%, 85% 70%, 35% 85%, 55% 15%,
+                    92% 35%, 8% 65%, 45% 92%, 72% 8%, 28% 48%;
+                opacity: 0.6;
+            }
+            100% {
+                background-position: 
+                    18% 28%, 62% 48%, 82% 68%, 38% 82%, 58% 18%,
+                    89% 38%, 12% 62%, 48% 88%, 75% 12%, 32% 52%;
+                opacity: 1;
+            }
         }
 
         /* Dashboard Layout */
         .dashboard {
             display: flex;
             min-height: 100vh;
+            position: relative;
+            z-index: 1;
         }
 
         /* Sidebar */
         .sidebar {
             width: 280px;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(5, 5, 20, 0.4);
             backdrop-filter: blur(15px);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: 1px solid rgba(255, 213, 79, 0.1);
             padding: 30px 20px;
             position: sticky;
             top: 0;
@@ -99,10 +159,10 @@
             flex-wrap: wrap;
             margin-bottom: 30px;
             padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(10, 10, 25, 0.35);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 213, 79, 0.1);
         }
 
         .top-nav a {
@@ -121,12 +181,12 @@
 
         /* Cards */
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 15, 35, 0.4);
+            backdrop-filter: blur(12px);
             border-radius: 24px;
             padding: 25px;
             margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 213, 79, 0.15);
             transition: transform 0.3s;
         }
 
@@ -159,8 +219,8 @@
 
         /* Today's Lesson */
         .today-card {
-            background: linear-gradient(135deg, rgba(255, 213, 79, 0.1), rgba(255, 255, 255, 0.03));
-            border: 1px solid rgba(255, 213, 79, 0.3);
+            background: linear-gradient(135deg, rgba(255, 213, 79, 0.08), rgba(15, 15, 50, 0.4));
+            border: 1px solid rgba(255, 213, 79, 0.25);
         }
 
         .lesson-title {
@@ -354,6 +414,18 @@
             object-fit: contain;
         }
 
+        /* Wooden desk reflection */
+        .desk-reflection {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(to top, rgba(50, 35, 20, 0.4), rgba(50, 35, 20, 0) 80%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             .dashboard {
@@ -383,6 +455,10 @@
     </style>
 </head>
 <body>
+
+    <!-- Wooden desk reflection overlay -->
+    <div class="desk-reflection"></div>
+
     <div class="dashboard">
         <!-- Sidebar -->
         <div class="sidebar">
