@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Digital Gashora | Professional Dashboard</title>
+    <title>Digital Gashora | Professional Computer Skills Training</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             min-height: 100vh;
             background-attachment: fixed;
@@ -25,7 +25,7 @@
             min-height: 100vh;
         }
 
-        /* Sidebar - Left Menu */
+        /* Sidebar */
         .sidebar {
             width: 280px;
             background: rgba(0, 0, 0, 0.3);
@@ -83,11 +83,6 @@
         .sidebar-menu a:hover {
             background: rgba(255, 213, 79, 0.15);
             transform: translateX(5px);
-        }
-
-        .sidebar-menu .active a {
-            background: rgba(255, 213, 79, 0.2);
-            border-left: 3px solid #ffd54f;
         }
 
         /* Main Content */
@@ -151,7 +146,7 @@
 
         .card-header h2 {
             color: #ffd54f;
-            font-size: 24px;
+            font-size: 22px;
         }
 
         .badge {
@@ -162,14 +157,14 @@
             color: #ffd54f;
         }
 
-        /* Today's Lesson Special */
+        /* Today's Lesson */
         .today-card {
             background: linear-gradient(135deg, rgba(255, 213, 79, 0.1), rgba(255, 255, 255, 0.03));
             border: 1px solid rgba(255, 213, 79, 0.3);
         }
 
         .lesson-title {
-            font-size: 32px;
+            font-size: 28px;
             background: linear-gradient(135deg, #ffd54f, #fff);
             -webkit-background-clip: text;
             background-clip: text;
@@ -183,7 +178,7 @@
             margin-bottom: 20px;
         }
 
-        /* Skills Grid - 2 columns on desktop */
+        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -260,32 +255,11 @@
             text-align: center;
         }
 
-        /* Two column layout for content */
+        /* Two Columns */
         .two-columns {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
-        }
-
-        /* Stats Cards */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 32px;
-            color: #ffd54f;
-            font-weight: bold;
         }
 
         /* Modal */
@@ -399,13 +373,6 @@
             .sidebar-menu li {
                 margin-bottom: 0;
             }
-            .sidebar-menu a {
-                padding: 8px 16px;
-                font-size: 13px;
-            }
-            .logo {
-                display: none;
-            }
             .skills-grid {
                 grid-template-columns: 1fr;
             }
@@ -413,20 +380,11 @@
                 grid-template-columns: 1fr;
             }
         }
-
-        @media (max-width: 600px) {
-            .main-content {
-                padding: 15px;
-            }
-            .lesson-title {
-                font-size: 24px;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="dashboard">
-        <!-- Left Sidebar Menu -->
+        <!-- Sidebar -->
         <div class="sidebar">
             <div class="logo">
                 <h1>Digital Gashora</h1>
@@ -436,27 +394,25 @@
                 <li><a href="#today">🏠 Dashboard</a></li>
                 <li><a href="#skills">📚 All Skills</a></li>
                 <li><a href="#gallery">📸 Class Gallery</a></li>
-                <li><a href="#projects">🎯 Projects</a></li>
                 <li><a href="#contact">📞 Contact</a></li>
             </ul>
         </div>
 
         <!-- Main Content -->
         <div class="main-content">
-            <!-- Top Navigation -->
+            <!-- Top Nav -->
             <div class="top-nav">
                 <a href="#today">Today</a>
-                <a href="#tomorrow">Tomorrow</a>
                 <a href="#skills">Skills</a>
                 <a href="#gallery">Gallery</a>
                 <a href="#contact">Contact</a>
             </div>
 
-            <!-- Two Column Layout -->
+            <!-- Two Columns -->
             <div class="two-columns">
                 <!-- Left Column -->
                 <div>
-                    <!-- Today's Lesson Card -->
+                    <!-- Today's Lesson -->
                     <div id="today" class="card today-card">
                         <div class="card-header">
                             <h2>📅 TODAY'S LESSON</h2>
@@ -467,7 +423,7 @@
                         <div id="today-photos" class="photo-grid"></div>
                     </div>
 
-                    <!-- All Skills Card -->
+                    <!-- All Skills -->
                     <div id="skills" class="card">
                         <div class="card-header">
                             <h2>📚 ALL SKILLS WE TEACH</h2>
@@ -479,32 +435,26 @@
 
                 <!-- Right Column -->
                 <div>
-                    <!-- Stats / Features Card -->
+                    <!-- Student Achievements -->
                     <div class="card">
                         <div class="card-header">
-                            <h2>✨ Professional Features</h2>
+                            <h2>🎓 Student Achievements</h2>
+                            <span class="badge">This Week</span>
                         </div>
-                        <div class="stats-grid">
-                            <div class="stat-card">
-                                <div class="stat-number">Glass</div>
-                                <p>Glassmorphism Design</p>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">📱</div>
-                                <p>Responsive All Devices</p>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">🎯</div>
-                                <p>Interactive Skill Popups</p>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">📸</div>
-                                <p>Photo Galleries</p>
-                            </div>
+                        <div style="line-height: 2.2;">
+                            <p>⭐ <strong>Mouse Skills:</strong> 8 students</p>
+                            <p>⭐ <strong>Keyboard Basics:</strong> 6 students</p>
+                            <p>⭐ <strong>File Management:</strong> 4 students</p>
+                            <p>⭐ <strong>Computer Basics:</strong> 2 students</p>
+                            <p>⭐ <strong>Typing Documents:</strong> 0 students</p>
+                            <p>⭐ <strong>Sound & Display:</strong> 0 students</p>
+                        </div>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
+                            <p>🎯 <strong>Next Goal:</strong> Complete Computer Basics by Friday!</p>
                         </div>
                     </div>
 
-                    <!-- Tomorrow's Plan Card -->
+                    <!-- Tomorrow's Plan -->
                     <div id="tomorrow" class="card">
                         <div class="card-header">
                             <h2>🔮 Tomorrow's Plan</h2>
@@ -513,7 +463,7 @@
                         <div id="tomorrow-preview" style="opacity: 0.8;">Loading...</div>
                     </div>
 
-                    <!-- Quick Stats -->
+                    <!-- Program Stats -->
                     <div class="card">
                         <div class="card-header">
                             <h2>📊 Program Stats</h2>
@@ -525,7 +475,7 @@
                 </div>
             </div>
 
-            <!-- Class Gallery Section -->
+            <!-- Class Gallery -->
             <div id="gallery" class="card">
                 <div class="card-header">
                     <h2>📸 Class Gallery</h2>
@@ -534,7 +484,7 @@
                 <div id="main-gallery" class="photo-grid"></div>
             </div>
 
-            <!-- Contact Section -->
+            <!-- Contact -->
             <div id="contact" class="card">
                 <div class="card-header">
                     <h2>📞 Contact Us</h2>
@@ -545,6 +495,7 @@
                 <p>📘 Facebook: Digital Gashora Initiative</p>
             </div>
 
+            <!-- Footer -->
             <div class="card" style="text-align: center;">
                 <p>&copy; 2026 Digital Gashora | Building digital skills in Gashora Centre, Bugesera</p>
                 <p style="font-size: 12px; opacity: 0.6;">An initiative of Journey House Actions Rwanda (JHA)</p>
@@ -552,7 +503,7 @@
         </div>
     </div>
 
-    <!-- Modal for skill photos -->
+    <!-- Modal -->
     <div id="skillModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -571,10 +522,8 @@
     <script>
         // Lightbox
         function openLightbox(src) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightbox.style.display = 'flex';
-            lightboxImg.src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+            document.getElementById('lightbox-img').src = src;
         }
         
         function closeLightbox() {
@@ -582,15 +531,14 @@
         }
         
         // Modal
-        const modal = document.getElementById('skillModal');
-        function openModal() { modal.style.display = 'block'; }
-        function closeModal() { modal.style.display = 'none'; }
+        function openModal() { document.getElementById('skillModal').style.display = 'block'; }
+        function closeModal() { document.getElementById('skillModal').style.display = 'none'; }
         
         window.openLightbox = openLightbox;
         window.closeLightbox = closeLightbox;
         window.closeModal = closeModal;
         
-        // All photos data - Updated with correct counts
+        // Photo Data
         const skillPhotos = {
             'mouse-skills': {
                 name: '🖱️ Mouse Skills',
@@ -609,29 +557,23 @@
             'file-management': {
                 name: '📁 File Management',
                 photos: [
-                    { file: 'photo1.png', name: 'Creating and organizing folders' }
+                    { file: 'photo1.png', name: 'Creating folders' }
                 ]
             },
             'computer-basics': {
                 name: '🖥️ Computer Basics',
                 photos: [
-                    { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Computer startup basics' },
-                    { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Understanding the desktop' },
-                    { file: '675948469_1339105404771762_6931199817119341293_n.jpg', name: 'Computer hardware introduction' },
+                    { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Computer startup' },
+                    { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Desktop navigation' },
+                    { file: '675948469_1339105404771762_6931199817119341293_n.jpg', name: 'Hardware intro' },
                     { file: 'photo2.png', name: 'Shutdown procedure' }
                 ]
             },
-            'typing-documents': {
-                name: '📝 Typing Documents',
-                photos: []
-            },
-            'sound-display': {
-                name: '🔊 Sound & Display',
-                photos: []
-            }
+            'typing-documents': { name: '📝 Typing Documents', photos: [] },
+            'sound-display': { name: '🔊 Sound & Display', photos: [] }
         };
         
-        // Load daily plan
+        // Daily Plan
         let dailyPlan = null;
         
         fetch('daily-plan.json')
@@ -645,17 +587,13 @@
         
         function updateTodaySection() {
             if (!dailyPlan) return;
-            const currentDay = dailyPlan.currentDay;
-            const todayLesson = dailyPlan.schedule.find(day => day.day === currentDay);
-            
+            const todayLesson = dailyPlan.schedule.find(day => day.day === dailyPlan.currentDay);
             if (todayLesson) {
                 document.getElementById('today-date').innerHTML = todayLesson.date;
                 document.getElementById('today-title').innerHTML = todayLesson.title;
-                document.getElementById('today-description').innerHTML = todayLesson.whatWeLearned || 'No description yet.';
-                
+                document.getElementById('today-description').innerHTML = todayLesson.whatWeLearned || '';
                 const photos = skillPhotos[todayLesson.photosFolder]?.photos || [];
                 const container = document.getElementById('today-photos');
-                
                 if (photos.length === 0) {
                     container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; opacity: 0.5;">📸 No photos yet. Will add after class!</p>';
                 } else {
@@ -672,9 +610,7 @@
         
         function updateTomorrowSection() {
             if (!dailyPlan) return;
-            const currentDay = dailyPlan.currentDay;
-            const tomorrowLesson = dailyPlan.schedule.find(day => day.day === currentDay + 1);
-            
+            const tomorrowLesson = dailyPlan.schedule.find(day => day.day === dailyPlan.currentDay + 1);
             if (tomorrowLesson) {
                 document.getElementById('tomorrow-title').innerHTML = `📖 ${tomorrowLesson.title}`;
                 document.getElementById('tomorrow-preview').innerHTML = tomorrowLesson.nextLesson || 'Stay tuned!';
@@ -684,55 +620,36 @@
             }
         }
         
-        // Build skills grid
         function loadSkillsGrid() {
             const container = document.getElementById('skills-grid');
             const skills = [
                 { key: 'mouse-skills', name: '🖱️ Mouse Skills', desc: 'Clicking, double-clicking, right-click' },
-                { key: 'keyboard-basics', name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts, volume control' },
-                { key: 'file-management', name: '📁 File Management', desc: 'Folders, organizing documents' },
+                { key: 'keyboard-basics', name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts, volume' },
+                { key: 'file-management', name: '📁 File Management', desc: 'Folders, organizing' },
                 { key: 'computer-basics', name: '🖥️ Computer Basics', desc: 'Startup, shutdown, desktop' },
                 { key: 'typing-documents', name: '📝 Typing Documents', desc: 'Notepad, saving files' },
                 { key: 'sound-display', name: '🔊 Sound & Display', desc: 'Volume, mute, brightness' }
             ];
-            
             container.innerHTML = '';
             let totalPhotos = 0;
-            
             skills.forEach(skill => {
                 const photos = skillPhotos[skill.key]?.photos || [];
                 const count = photos.length;
                 totalPhotos += count;
-                
                 const div = document.createElement('div');
                 div.className = 'skill-item';
                 div.onclick = () => showSkillPhotos(skill.key);
-                div.innerHTML = `
-                    <div class="skill-info">
-                        <h4>${skill.name}</h4>
-                        <p>${skill.desc}</p>
-                    </div>
-                    <div class="skill-count">${count} photo${count !== 1 ? 's' : ''}</div>
-                `;
+                div.innerHTML = `<div class="skill-info"><h4>${skill.name}</h4><p>${skill.desc}</p></div><div class="skill-count">${count} photo${count !== 1 ? 's' : ''}</div>`;
                 container.appendChild(div);
             });
-            
-            // Update stats
-            document.getElementById('stats-content').innerHTML = `
-                <p>📸 Total Photos: ${totalPhotos}</p>
-                <p>📚 Skills Taught: 6</p>
-                <p>🎓 Students: In progress</p>
-                <p>💻 One Computer, Many Minds</p>
-            `;
+            document.getElementById('stats-content').innerHTML = `<p>📸 Total Photos: ${totalPhotos}</p><p>📚 Skills Taught: 6</p><p>💻 One Computer, Many Minds</p>`;
         }
         
         function showSkillPhotos(skillKey) {
             const skill = skillPhotos[skillKey];
             if (!skill) return;
-            
             document.getElementById('modal-title').innerHTML = `📸 ${skill.name}`;
             const grid = document.getElementById('modal-photo-grid');
-            
             if (skill.photos.length === 0) {
                 grid.innerHTML = '<p style="text-align: center; padding: 40px; opacity: 0.6;">📸 No photos yet. Check back after our lesson!</p>';
             } else {
@@ -747,17 +664,14 @@
             openModal();
         }
         
-        // Load main gallery
         function loadMainGallery() {
             const container = document.getElementById('main-gallery');
             const allPhotos = [
                 { src: 'images/photo3.png', alt: 'Teaching session' },
                 { src: 'images/photo4.png', alt: 'Kids learning' },
                 { src: 'images/mouse-skills/674466373_932257053134443_8229112906871439629_n.jpg', alt: 'Mouse practice' },
-                { src: 'images/mouse-skills/674994811_981099904335215_7658704008394680199_n.jpg', alt: 'Clicking practice' },
-                { src: 'images/computer-basics/675948469_1339105404771762_6931199817119341293_n.jpg', alt: 'Computer hardware' }
+                { src: 'images/mouse-skills/674994811_981099904335215_7658704008394680199_n.jpg', alt: 'Clicking practice' }
             ];
-            
             container.innerHTML = '';
             allPhotos.forEach(photo => {
                 const div = document.createElement('div');
@@ -767,7 +681,6 @@
             });
         }
         
-        // Initialize
         loadSkillsGrid();
         loadMainGallery();
     </script>
