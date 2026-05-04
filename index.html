@@ -3,13 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Digital Gashora | Professional Dashboard</title>
+    <title>Digital Gashora | Complete Learning Platform</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -21,13 +17,8 @@
             overflow-x: hidden;
         }
 
-        .dashboard-container {
-            display: flex;
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-        }
-
+        .dashboard-container { display: flex; min-height: 100vh; position: relative; z-index: 1; }
+        
         /* Desktop Sidebar */
         .sidebar {
             width: 280px;
@@ -71,14 +62,12 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
-        .mobile-nav-item.active {
+        .mobile-nav-item.active, .nav-item.active {
             background: rgba(255, 213, 79, 0.15);
             color: #ffd54f;
         }
 
-        .mobile-nav-item span:first-child {
-            font-size: 18px;
-        }
+        .mobile-nav-item span:first-child { font-size: 18px; }
 
         .logo {
             text-align: center;
@@ -95,16 +84,9 @@
             color: transparent;
         }
 
-        .logo p {
-            font-size: 11px;
-            opacity: 0.8;
-            margin-top: 5px;
-        }
+        .logo p { font-size: 11px; opacity: 0.8; margin-top: 5px; }
 
-        .nav-section {
-            margin-bottom: 30px;
-        }
-
+        .nav-section { margin-bottom: 30px; }
         .nav-section-title {
             font-size: 11px;
             text-transform: uppercase;
@@ -120,22 +102,13 @@
             gap: 12px;
             padding: 10px 12px;
             color: #fff;
-            text-decoration: none;
             border-radius: 10px;
             transition: all 0.3s;
             margin-bottom: 5px;
             cursor: pointer;
         }
 
-        .nav-item:hover {
-            background: rgba(255, 213, 79, 0.15);
-            transform: translateX(5px);
-        }
-
-        .nav-item.active {
-            background: rgba(255, 213, 79, 0.15);
-            border-left: 3px solid #ffd54f;
-        }
+        .nav-item:hover { background: rgba(255, 213, 79, 0.15); transform: translateX(5px); }
 
         .main-content {
             flex: 1;
@@ -153,15 +126,8 @@
             gap: 15px;
         }
 
-        .welcome-section h2 {
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-
-        .welcome-section p {
-            opacity: 0.7;
-            font-size: 14px;
-        }
+        .welcome-section h2 { font-size: 24px; margin-bottom: 5px; }
+        .welcome-section p { opacity: 0.7; font-size: 14px; }
 
         .date-time {
             background: rgba(0, 0, 0, 0.3);
@@ -189,27 +155,10 @@
             border: 1px solid rgba(255, 213, 79, 0.1);
         }
 
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 213, 79, 0.3);
-        }
-
-        .stat-icon {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .stat-value {
-            font-size: 28px;
-            font-weight: bold;
-            color: #ffd54f;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            opacity: 0.7;
-            margin-top: 5px;
-        }
+        .stat-card:hover { transform: translateY(-5px); border-color: rgba(255, 213, 79, 0.3); }
+        .stat-icon { font-size: 32px; margin-bottom: 10px; }
+        .stat-value { font-size: 28px; font-weight: bold; color: #ffd54f; }
+        .stat-label { font-size: 12px; opacity: 0.7; margin-top: 5px; }
 
         .two-column-grid {
             display: grid;
@@ -227,10 +176,7 @@
             transition: transform 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(255, 213, 79, 0.2);
-        }
+        .card:hover { transform: translateY(-3px); border-color: rgba(255, 213, 79, 0.2); }
 
         .card-header {
             display: flex;
@@ -241,11 +187,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .card-header h3 {
-            color: #ffd54f;
-            font-size: 18px;
-        }
-
+        .card-header h3 { color: #ffd54f; font-size: 18px; }
         .card-header .badge {
             background: rgba(255, 213, 79, 0.15);
             padding: 4px 12px;
@@ -253,12 +195,7 @@
             font-size: 11px;
         }
 
-        .skills-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
+        .skills-list { display: flex; flex-direction: column; gap: 10px; }
         .skill-row {
             display: flex;
             justify-content: space-between;
@@ -270,18 +207,7 @@
             transition: all 0.3s;
         }
 
-        .skill-row:hover {
-            background: rgba(255, 213, 79, 0.1);
-            transform: translateX(5px);
-        }
-
-        .skill-name {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
+        .skill-row:hover { background: rgba(255, 213, 79, 0.1); transform: translateX(5px); }
         .skill-status {
             font-size: 11px;
             padding: 2px 8px;
@@ -298,7 +224,6 @@
             overflow: hidden;
             margin-top: 8px;
         }
-
         .progress-fill {
             height: 100%;
             background: #ffd54f;
@@ -315,16 +240,7 @@
             flex-wrap: wrap;
             gap: 8px;
         }
-
-        .schedule-day {
-            font-weight: bold;
-            color: #ffd54f;
-        }
-
-        .schedule-status {
-            font-size: 12px;
-        }
-
+        .schedule-day { font-weight: bold; color: #ffd54f; }
         .status-completed { color: #4caf50; }
         .status-today { color: #ffd54f; }
         .status-upcoming { opacity: 0.5; }
@@ -343,23 +259,9 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-
-        .photo-card:hover {
-            transform: scale(1.02);
-            border-color: #ffd54f;
-        }
-
-        .photo-card img {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-        }
-
-        .photo-card p {
-            padding: 8px;
-            font-size: 11px;
-            text-align: center;
-        }
+        .photo-card:hover { transform: scale(1.02); }
+        .photo-card img { width: 100%; height: 100px; object-fit: cover; }
+        .photo-card p { padding: 8px; font-size: 11px; text-align: center; }
 
         .button {
             background: linear-gradient(135deg, #ffd54f, #ffb347);
@@ -371,11 +273,7 @@
             font-weight: bold;
             transition: all 0.3s;
         }
-
-        .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 213, 79, 0.3);
-        }
+        .button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 213, 79, 0.3); }
 
         input, textarea {
             background: rgba(0, 0, 0, 0.3);
@@ -385,82 +283,10 @@
             border-radius: 8px;
             width: 100%;
         }
+        input::placeholder, textarea::placeholder { color: rgba(255, 255, 255, 0.5); }
 
-        input::placeholder, textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-
-        .modal-content {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(20px);
-            margin: 50px auto;
-            padding: 25px;
-            max-width: 700px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 213, 79, 0.3);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .modal-header h2 {
-            color: #ffd54f;
-        }
-
-        .close-modal {
-            background: rgba(255, 213, 79, 0.2);
-            color: #ffd54f;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-
-        .modal-photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
-        }
-
-        .modal-photo-item {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .modal-photo-item img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-        }
-
-        .modal-photo-item p {
-            padding: 8px;
-            font-size: 11px;
-            text-align: center;
-        }
-
-        #lightbox {
+        /* Full Screen Photo Viewer with Swipe */
+        .photo-viewer {
             display: none;
             position: fixed;
             top: 0;
@@ -468,83 +294,96 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.95);
-            z-index: 1100;
+            z-index: 2000;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            touch-action: pan-x pinch-zoom;
         }
 
-        #lightbox-img {
-            max-width: 90%;
-            max-height: 90%;
+        .photo-viewer.active { display: flex; }
+        .photo-viewer img {
+            max-width: 95%;
+            max-height: 85%;
             object-fit: contain;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+        .photo-viewer img.zoomed {
+            transform: scale(2);
+            cursor: zoom-out;
+        }
+
+        .viewer-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .viewer-btn {
+            background: rgba(255, 213, 79, 0.2);
+            border: none;
+            color: #ffd54f;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .viewer-btn:hover { background: rgba(255, 213, 79, 0.4); }
+        .close-viewer {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 213, 79, 0.2);
+            border: none;
+            color: #ffd54f;
+            padding: 10px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .admin-tab {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(255, 213, 79, 0.15);
+            border-radius: 20px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .admin-tab.active { background: #ffd54f; color: #1a1a2e; }
+
+        .login-form {
+            max-width: 400px;
+            margin: 50px auto;
+            text-align: center;
         }
 
         @media (max-width: 900px) {
-            .dashboard-container {
-                flex-direction: column;
-            }
-            .sidebar {
-                display: none;
-            }
-            .mobile-bottom-nav {
-                display: flex;
-            }
-            .main-content {
-                padding: 15px;
-                margin-bottom: 70px;
-            }
-            .top-bar {
-                flex-direction: column;
-                text-align: center;
-            }
-            .welcome-section h2 {
-                font-size: 20px;
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-            .stat-card {
-                padding: 12px;
-            }
-            .stat-value {
-                font-size: 22px;
-            }
-            .two-column-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            .card {
-                padding: 15px;
-            }
-            .photo-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-            .photo-card img {
-                height: 80px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-content {
-                padding: 12px;
-            }
-            .stats-grid {
-                gap: 8px;
-            }
-            .stat-card {
-                padding: 10px;
-            }
-            .stat-icon {
-                font-size: 24px;
-            }
-            .stat-value {
-                font-size: 18px;
-            }
-            .photo-grid {
-                grid-template-columns: 1fr;
-            }
+            .dashboard-container { flex-direction: column; }
+            .sidebar { display: none; }
+            .mobile-bottom-nav { display: flex; }
+            .main-content { padding: 15px; margin-bottom: 70px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .two-column-grid { grid-template-columns: 1fr; gap: 15px; }
+            .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .photo-card img { height: 80px; }
         }
     </style>
 </head>
@@ -557,40 +396,35 @@
             <h1>Digital Gashora</h1>
             <p>Smart Solutions, Real Impact</p>
         </div>
-        
         <div class="nav-section">
             <div class="nav-section-title">MAIN</div>
-            <div class="nav-item active" onclick="showSection('overview')">📊 Overview</div>
+            <div class="nav-item" onclick="showSection('overview')">📊 Overview</div>
             <div class="nav-item" onclick="showSection('skills')">📚 Skills</div>
-            <div class="nav-item" onclick="showSection('schedule')">📅 Schedule</div>
             <div class="nav-item" onclick="showSection('gallery')">📸 Gallery</div>
         </div>
-        
         <div class="nav-section">
             <div class="nav-section-title">LEARNING</div>
-            <div class="nav-item" onclick="showSection('videos')">🎬 Video Tutorials</div>
+            <div class="nav-item" onclick="showSection('videos')">🎬 Videos</div>
             <div class="nav-item" onclick="showSection('quizzes')">📝 Quizzes</div>
             <div class="nav-item" onclick="showSection('certificate')">📜 Certificate</div>
             <div class="nav-item" onclick="showSection('leaderboard')">🏆 Leaderboard</div>
         </div>
-        
         <div class="nav-section">
             <div class="nav-section-title">COMMUNITY</div>
             <div class="nav-item" onclick="showSection('announcements')">📢 Announcements</div>
             <div class="nav-item" onclick="showSection('contact')">📞 Contact</div>
+            <div class="nav-item" onclick="showSection('admin')">🔐 Admin Panel</div>
         </div>
-        
-        <div class="staff-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,213,79,0.2);">
-            <p style="font-size: 11px; opacity: 0.7;">👨‍🏫 Manager: <strong>Ethandbana</strong></p>
-            <p style="font-size: 11px; opacity: 0.7;">👔 Supervisor: <strong>John Gakumba</strong></p>
+        <div class="staff-info" style="margin-top:30px; padding-top:20px; border-top:1px solid rgba(255,213,79,0.2);">
+            <p style="font-size:11px;">👨‍🏫 Manager: <strong>Ethandbana</strong></p>
+            <p style="font-size:11px;">👔 Supervisor: <strong>John Gakumba</strong></p>
         </div>
     </div>
 
     <!-- Mobile Bottom Navigation -->
-    <div class="mobile-bottom-nav" id="mobileBottomNav">
-        <div class="mobile-nav-item active" onclick="showSection('overview')"><span>📊</span><span>Home</span></div>
+    <div class="mobile-bottom-nav">
+        <div class="mobile-nav-item" onclick="showSection('overview')"><span>📊</span><span>Home</span></div>
         <div class="mobile-nav-item" onclick="showSection('skills')"><span>📚</span><span>Skills</span></div>
-        <div class="mobile-nav-item" onclick="showSection('schedule')"><span>📅</span><span>Schedule</span></div>
         <div class="mobile-nav-item" onclick="showSection('gallery')"><span>📸</span><span>Gallery</span></div>
         <div class="mobile-nav-item" onclick="showSection('videos')"><span>🎬</span><span>Videos</span></div>
         <div class="mobile-nav-item" onclick="showSection('quizzes')"><span>📝</span><span>Quiz</span></div>
@@ -598,399 +432,217 @@
         <div class="mobile-nav-item" onclick="showSection('leaderboard')"><span>🏆</span><span>Leader</span></div>
         <div class="mobile-nav-item" onclick="showSection('announcements')"><span>📢</span><span>News</span></div>
         <div class="mobile-nav-item" onclick="showSection('contact')"><span>📞</span><span>Contact</span></div>
+        <div class="mobile-nav-item" onclick="showSection('admin')"><span>🔐</span><span>Admin</span></div>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
         <div class="top-bar">
             <div class="welcome-section">
-                <h2>Welcome back! 👋</h2>
+                <h2 id="welcomeMsg">Welcome back! 👋</h2>
                 <p>Track your progress and manage your learning journey</p>
             </div>
             <div class="date-time" id="currentDateTime"></div>
         </div>
 
-        <!-- Overview Section -->
-        <div id="overviewSection">
-            <div class="stats-grid">
-                <div class="stat-card"><div class="stat-icon">📚</div><div class="stat-value">6</div><div class="stat-label">Total Skills</div></div>
-                <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-value" id="completedStats">0</div><div class="stat-label">Completed Skills</div></div>
-                <div class="stat-card"><div class="stat-icon">🎓</div><div class="stat-value">24</div><div class="stat-label">Active Students</div></div>
-                <div class="stat-card"><div class="stat-icon">📸</div><div class="stat-value" id="photoCount">0</div><div class="stat-label">Photos</div></div>
-            </div>
-
-            <div class="two-column-grid">
-                <div class="card">
-                    <div class="card-header"><h3>📅 Today's Lesson</h3><span class="badge" id="todayDate">Loading...</span></div>
-                    <h4 id="todayTitle" style="color:#ffd54f;">Loading...</h4>
-                    <p id="todayDesc" style="opacity:0.8;">Loading...</p>
-                    <div id="todayPhotos" class="photo-grid"></div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h3>🔐 Your Progress</h3><span class="badge">Student Portal</span></div>
-                    <input type="text" id="studentName" placeholder="Enter your name" style="margin-bottom:10px;">
-                    <button onclick="loginStudent()" class="button" style="width:100%;">Login / Track Progress</button>
-                    <div id="studentProgress" style="margin-top:15px; display:none;">
-                        <div id="completedSkillsList"></div>
-                        <div class="progress-bar"><div id="progressFill" class="progress-fill" style="width:0%"></div></div>
-                        <p id="progressPercent" style="font-size:12px; margin-top:8px;">0% complete</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="two-column-grid">
-                <div class="card">
-                    <div class="card-header"><h3>📚 Skills Overview</h3><span class="badge">Click to view photos</span></div>
-                    <div id="skillsOverviewList" class="skills-list"></div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h3>📅 Weekly Schedule</h3><span class="badge">May 2026</span></div>
-                    <div id="weeklySchedule"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Skills Section -->
-        <div id="skillsSection" style="display:none;">
-            <div class="card">
-                <div class="card-header"><h3>📚 All Skills We Teach</h3><span class="badge">6 skills total</span></div>
-                <p style="margin-bottom:15px;">👇 Click any skill to see photos</p>
-                <div id="skillsFullList" class="skills-list"></div>
-            </div>
-        </div>
-
-        <!-- Schedule Section -->
-        <div id="scheduleSection" style="display:none;">
-            <div class="card">
-                <div class="card-header"><h3>📅 Complete Schedule</h3><span class="badge">May 1-7, 2026</span></div>
-                <div id="fullSchedule"></div>
-            </div>
-        </div>
-
-        <!-- Gallery Section -->
-        <div id="gallerySection" style="display:none;">
-            <div class="card">
-                <div class="card-header"><h3>📸 Class Gallery</h3><span class="badge">Latest moments</span></div>
-                <div id="mainGallery" class="photo-grid"></div>
-            </div>
-        </div>
-
-        <!-- Videos Section -->
-        <div id="videosSection" style="display:none;">
-            <div class="card">
-                <div class="card-header"><h3>🎬 Video Tutorials</h3><span class="badge">Watch and Learn</span></div>
-                <div id="videoList" class="skills-list"></div>
-                <div id="videoPlayer" style="margin-top:20px; display:none;">
-                    <video id="videoElement" controls style="width:100%; border-radius:12px;"><source src="" type="video/mp4"></video>
-                    <button class="button" style="margin-top:10px;" onclick="closeVideo()">Close Video</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quizzes Section -->
-        <div id="quizzesSection" style="display:none;">
-            <div class="card">
-                <div class="card-header"><h3>📝 Skills Quizzes</h3><span class="badge">Test Your Knowledge</span></div>
-                <div id="quizList" class="skills-list"></div>
-                <div id="quizDisplay" style="margin-top:20px;"></div>
-                <div id="quizResult"></div>
-            </div>
-        </div>
-
-        <!-- Certificate Section -->
-        <div id="certificateSection" style="display:none;">
-            <div class="card" style="text-align:center;">
-                <div class="card-header"><h3>📜 Get Your Certificate</h3><span class="badge">Complete all 6 skills</span></div>
-                <p id="certStatus">Login and complete all skills to earn your certificate!</p>
-                <div class="progress-bar"><div id="certProgressFill" class="progress-fill" style="width:0%"></div></div>
-                <p id="certProgressText" style="margin:10px 0;">0/6 skills completed</p>
-                <div id="certificateDisplay" style="background:rgba(255,255,255,0.9); padding:30px; border-radius:16px; color:#333; display:none; margin-top:20px;">
-                    <h2 style="color:#ff8c00;">🎓 Certificate of Completion</h2>
-                    <p>This certificate is awarded to</p>
-                    <h3 id="certName" style="margin:15px 0;">___________</h3>
-                    <p>for successfully completing all 6 computer skills at Digital Gashora</p>
-                    <p style="margin-top:20px;">Date: <span id="certDate"></span></p>
-                    <button class="button" style="margin-top:15px;" onclick="downloadCertificate()">📥 Download Certificate</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Leaderboard Section -->
-        <div id="leaderboardSection" style="display:none;">
-            <div class="card">
-                <div class="card-header"><h3>🏆 Student Leaderboard</h3><span class="badge">Top Performers</span></div>
-                <div id="leaderboardList"></div>
-            </div>
-        </div>
-
-        <!-- Announcements Section -->
-        <div id="announcementsSection" style="display:none;">
-            <div class="card">
-                <div class="card-header"><h3>📢 Announcements</h3><span class="badge">Stay Updated</span></div>
-                <div id="announcementsList"></div>
-                <div style="margin-top:20px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.1);">
-                    <h4 style="color:#ffd54f;">Post Announcement</h4>
-                    <input type="text" id="announcementTitle" placeholder="Title" style="margin-bottom:8px;">
-                    <textarea id="announcementMessage" placeholder="Message" rows="2" style="margin-bottom:8px;"></textarea>
-                    <button onclick="postAnnouncement()" class="button">Post</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div id="contactSection" style="display:none;">
-            <div class="card">
-                <div class="card-header"><h3>📞 Contact Us</h3></div>
-                <p>📍 Gashora Centre, Bugesera District, Rwanda</p>
-                <p>📧 Manager: <a href="mailto:iamkushdj@gmail.com" style="color:#ffd54f;">iamkushdj@gmail.com</a></p>
-                <p>👔 Supervisor: John Gakumba</p>
-                <p>📧 Supervisor: <a href="mailto:gakumbajohn@gmail.com" style="color:#ffd54f;">gakumbajohn@gmail.com</a></p>
-                <div style="margin-top:20px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.1);">
-                    <h4 style="color:#ffd54f;">Send a Message</h4>
-                    <input type="text" id="contactName" placeholder="Your name" style="margin-bottom:8px;">
-                    <input type="email" id="contactEmail" placeholder="Your email" style="margin-bottom:8px;">
-                    <textarea id="contactMessage" placeholder="Message" rows="3" style="margin-bottom:8px;"></textarea>
-                    <button onclick="sendMessage()" class="button">Send</button>
-                    <div id="contactStatus" style="margin-top:10px;"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card" style="text-align:center; margin-top:20px;">
-            <p>&copy; 2026 Digital Gashora | Building digital skills in Gashora Centre, Bugesera</p>
-            <p style="font-size:11px; opacity:0.6;">An initiative of Journey House Actions Rwanda (JHA)</p>
-        </div>
+        <!-- Sections will be populated by JavaScript -->
+        <div id="overviewSection"></div>
+        <div id="skillsSection" style="display:none;"></div>
+        <div id="gallerySection" style="display:none;"></div>
+        <div id="videosSection" style="display:none;"></div>
+        <div id="quizzesSection" style="display:none;"></div>
+        <div id="certificateSection" style="display:none;"></div>
+        <div id="leaderboardSection" style="display:none;"></div>
+        <div id="announcementsSection" style="display:none;"></div>
+        <div id="contactSection" style="display:none;"></div>
+        <div id="adminSection" style="display:none;"></div>
     </div>
 </div>
 
-<!-- Modals -->
-<div id="skillModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2 id="modalTitle">📸 Lesson Photos</h2>
-            <button class="close-modal" onclick="closeModal()">✕ Close</button>
-        </div>
-        <div id="modalPhotoGrid" class="modal-photo-grid"></div>
+<!-- Full Screen Photo Viewer with Swipe -->
+<div id="photoViewer" class="photo-viewer">
+    <button class="close-viewer" onclick="closePhotoViewer()">✕ Close</button>
+    <img id="viewerImage" alt="Full size photo" ondblclick="toggleZoom()">
+    <div class="viewer-controls">
+        <button class="viewer-btn" onclick="prevPhoto()">◀ Previous</button>
+        <button class="viewer-btn" onclick="toggleZoom()">🔍 Zoom</button>
+        <button class="viewer-btn" onclick="downloadCurrentPhoto()">📥 Download</button>
+        <button class="viewer-btn" onclick="nextPhoto()">Next ▶</button>
     </div>
-</div>
-<div id="lightbox" onclick="closeLightbox()">
-    <img id="lightboxImg" alt="Full size photo">
 </div>
 
 <script>
-    // ============ CORE FUNCTIONS ============
-    function openLightbox(src) { document.getElementById('lightbox').style.display = 'flex'; document.getElementById('lightboxImg').src = src; }
-    function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
-    function openModal() { document.getElementById('skillModal').style.display = 'block'; }
-    function closeModal() { document.getElementById('skillModal').style.display = 'none'; }
+    // ============ GLOBAL VARIABLES ============
+    let currentPhotoIndex = 0;
+    let currentPhotoList = [];
+    let isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+    let allSkills = [];
+    let scheduleData = [];
 
-    function updateDateTime() {
-        const now = new Date();
-        document.getElementById('currentDateTime').innerHTML = now.toLocaleDateString() + ' | ' + now.toLocaleTimeString();
-    }
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-
-    function showSection(section) {
-        const sections = ['overview', 'skills', 'schedule', 'gallery', 'videos', 'quizzes', 'certificate', 'leaderboard', 'announcements', 'contact'];
-        sections.forEach(s => { document.getElementById(s + 'Section').style.display = 'none'; });
-        document.getElementById(section + 'Section').style.display = 'block';
+    // ============ PHOTO VIEWER WITH SWIPE & ZOOM ============
+    function openPhotoViewer(photos, index) {
+        currentPhotoList = photos;
+        currentPhotoIndex = index;
+        const viewer = document.getElementById('photoViewer');
+        const img = document.getElementById('viewerImage');
+        img.src = currentPhotoList[currentPhotoIndex];
+        img.classList.remove('zoomed');
+        viewer.classList.add('active');
         
-        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-        document.querySelectorAll('.mobile-nav-item').forEach(item => item.classList.remove('active'));
-        if (event && event.target) {
-            const clicked = event.target.closest('.nav-item') || event.target.closest('.mobile-nav-item');
-            if (clicked) clicked.classList.add('active');
+        let touchStartX = 0;
+        viewer.ontouchstart = (e) => { touchStartX = e.touches[0].clientX; };
+        viewer.ontouchend = (e) => {
+            let touchEndX = e.changedTouches[0].clientX;
+            if (touchEndX < touchStartX - 50) nextPhoto();
+            if (touchEndX > touchStartX + 50) prevPhoto();
+        };
+    }
+
+    function closePhotoViewer() {
+        document.getElementById('photoViewer').classList.remove('active');
+    }
+
+    function nextPhoto() {
+        if (currentPhotoIndex < currentPhotoList.length - 1) {
+            currentPhotoIndex++;
+            document.getElementById('viewerImage').src = currentPhotoList[currentPhotoIndex];
+            document.getElementById('viewerImage').classList.remove('zoomed');
         }
-        window.scrollTo(0, 0);
     }
 
-    // ============ ALL SKILLS WITH YOUR PHOTOS ============
-    const allSkills = [
-        { key: 'mouse-skills', name: '🖱️ Mouse Skills', desc: 'Click, double-click, right-click', 
-          photos: [
-              { file: '679154124_959160750042124_7303355069400183008_n.jpg', name: 'Mouse practice 1' },
-              { file: '679633486_989217467408744_6350003852066935655_n.jpg', name: 'Mouse practice 2' },
-              { file: '686100462_4355884874633385_3740765188386873292_n.jpg', name: 'Mouse practice 3' }
-          ]},
-        { key: 'keyboard-basics', name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts, volume', 
-          photos: [
-              { file: 'keyboard1.png', name: 'Keyboard practice' },
-              { file: 'keyboard2.png', name: 'Learning shortcuts' }
-          ]},
-        { key: 'file-management', name: '📁 File Management', desc: 'Folders, organizing files', 
-          photos: [
-              { file: '681199098_960710736661282_7083299998910568586_n.jpg', name: 'File management 1' },
-              { file: '683295558_1479957990299428_6466542296095616277_n.jpg', name: 'File management 2' },
-              { file: '683600022_837841948784852_6065901694937168926_n.jpg', name: 'File management 3' }
-          ]},
-        { key: 'computer-basics', name: '🖥️ Computer Basics', desc: 'Startup, shutdown, desktop', 
-          photos: [
-              { file: '681199098_960710736661282_7083299998910568586_n.jpg', name: 'Computer basics 1' },
-              { file: '683295558_1479957990299428_6466542296095616277_n.jpg', name: 'Computer basics 2' },
-              { file: '683600022_837841948784852_6065901694937168926_n.jpg', name: 'Computer basics 3' }
-          ]},
-        { key: 'typing-documents', name: '📝 Typing Documents', desc: 'Notepad, saving files', photos: [] },
-        { key: 'sound-display', name: '🔊 Sound & Display', desc: 'Volume, mute, brightness', photos: [] }
-    ];
-
-    // ============ STUDENT PROGRESS ============
-    let currentStudent = localStorage.getItem('studentName') || '';
-    let studentCompleted = [];
-
-    function loginStudent() {
-        const name = document.getElementById('studentName').value.trim();
-        if (name) {
-            currentStudent = name;
-            localStorage.setItem('studentName', name);
-            let saved = localStorage.getItem(`progress_${name}`);
-            studentCompleted = saved ? JSON.parse(saved) : [];
-            updateStudentDisplay();
-            document.getElementById('studentProgress').style.display = 'block';
-        } else alert('Please enter your name');
-    }
-
-    function markSkillComplete(skillName) {
-        if (!currentStudent) { alert('Please login first!'); showSection('overview'); return false; }
-        if (!studentCompleted.includes(skillName)) {
-            studentCompleted.push(skillName);
-            localStorage.setItem(`progress_${currentStudent}`, JSON.stringify(studentCompleted));
-            updateStudentDisplay();
-            return true;
+    function prevPhoto() {
+        if (currentPhotoIndex > 0) {
+            currentPhotoIndex--;
+            document.getElementById('viewerImage').src = currentPhotoList[currentPhotoIndex];
+            document.getElementById('viewerImage').classList.remove('zoomed');
         }
-        return false;
     }
 
-    function updateStudentDisplay() {
-        const count = studentCompleted.length;
-        const percent = (count / 6) * 100;
-        document.getElementById('progressFill').style.width = percent + '%';
-        document.getElementById('progressPercent').innerHTML = Math.round(percent) + '% complete';
-        document.getElementById('completedStats').innerHTML = count;
-        document.getElementById('completedSkillsList').innerHTML = studentCompleted.map(s => `<p>✅ ${s}</p>`).join('') || '<p>No skills completed yet. Click on skills to mark them complete!</p>';
+    function toggleZoom() {
+        const img = document.getElementById('viewerImage');
+        img.classList.toggle('zoomed');
+    }
+
+    function downloadCurrentPhoto() {
+        const link = document.createElement('a');
+        link.href = document.getElementById('viewerImage').src;
+        link.download = 'digital-gashora-photo.jpg';
+        link.click();
+    }
+
+    // ============ LOAD ALL SECTIONS ============
+    function loadOverviewSection() {
+        const completed = JSON.parse(localStorage.getItem('progress_' + (localStorage.getItem('studentName') || '')) || '[]');
+        document.getElementById('overviewSection').innerHTML = `
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-icon">📚</div><div class="stat-value">6</div><div class="stat-label">Total Skills</div></div>
+                <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-value" id="completedStats">${completed.length}</div><div class="stat-label">Completed Skills</div></div>
+                <div class="stat-card"><div class="stat-icon">🎓</div><div class="stat-value">24</div><div class="stat-label">Active Students</div></div>
+                <div class="stat-card"><div class="stat-icon">📸</div><div class="stat-value" id="photoCount">${allSkills.reduce((s, sk) => s + (sk.photos?.length || 0), 0)}</div><div class="stat-label">Photos</div></div>
+            </div>
+            <div class="two-column-grid">
+                <div class="card"><div class="card-header"><h3>📅 Today's Lesson</h3><span class="badge" id="todayDate">${new Date().toDateString()}</span></div>
+                <h4 style="color:#ffd54f;">Computer Basics</h4><p>Today we are learning Computer Basics. Click on the skill to see photos!</p></div>
+                <div class="card"><div class="card-header"><h3>🔐 Your Progress</h3><span class="badge">Student Portal</span></div>
+                <input type="text" id="studentName" placeholder="Enter your name" style="margin-bottom:10px;" value="${localStorage.getItem('studentName') || ''}">
+                <button onclick="loginStudent()" class="button" style="width:100%;">Login / Track Progress</button>
+                <div id="studentProgress" style="margin-top:15px; display:${localStorage.getItem('studentName') ? 'block' : 'none'};"><div id="completedSkillsList"></div>
+                <div class="progress-bar"><div id="progressFill" class="progress-fill" style="width:0%"></div></div>
+                <p id="progressPercent" style="font-size:12px; margin-top:8px;">0% complete</p></div></div>
+            </div>
+            <div class="two-column-grid">
+                <div class="card"><div class="card-header"><h3>📚 Skills Overview</h3><span class="badge">Click to view photos</span></div><div id="skillsOverviewList" class="skills-list"></div></div>
+                <div class="card"><div class="card-header"><h3>📅 Weekly Schedule</h3><span class="badge">May 2026</span></div><div id="weeklySchedule"></div></div>
+            </div>`;
         
-        if (count >= 6) {
-            document.getElementById('certStatus').innerHTML = '🎉 Congratulations! Your certificate is ready!';
-            document.getElementById('certificateDisplay').style.display = 'block';
-            document.getElementById('certName').innerHTML = currentStudent;
-            document.getElementById('certDate').innerHTML = new Date().toDateString();
-        } else {
-            document.getElementById('certStatus').innerHTML = `Complete all 6 skills! (${count}/6 completed)`;
-            document.getElementById('certificateDisplay').style.display = 'none';
-        }
-        document.getElementById('certProgressFill').style.width = percent + '%';
-        document.getElementById('certProgressText').innerHTML = `${count}/6 skills completed`;
+        loadSkillsOverview();
+        loadScheduleDisplay();
     }
 
-    // ============ LOAD SKILLS DISPLAYS ============
-    function loadSkillsDisplays() {
-        const overviewContainer = document.getElementById('skillsOverviewList');
-        const fullContainer = document.getElementById('skillsFullList');
-        overviewContainer.innerHTML = '';
-        fullContainer.innerHTML = '';
-        let totalPhotos = 0;
-        
+    function loadSkillsOverview() {
+        const container = document.getElementById('skillsOverviewList');
+        if (!container) return;
+        container.innerHTML = '';
         allSkills.forEach(skill => {
-            totalPhotos += skill.photos.length;
-            const overviewDiv = document.createElement('div');
-            overviewDiv.className = 'skill-row';
-            overviewDiv.innerHTML = `<div class="skill-name">${skill.name}</div><span class="skill-status">${skill.photos.length} photos</span>`;
-            overviewDiv.onclick = () => showSkillPhotos(skill.key, skill.name, skill.photos);
-            overviewContainer.appendChild(overviewDiv);
-            
-            const fullDiv = document.createElement('div');
-            fullDiv.className = 'skill-row';
-            fullDiv.innerHTML = `<div class="skill-name">${skill.name}<span style="font-size:11px; opacity:0.6;"> ${skill.desc}</span></div><span class="skill-status">${skill.photos.length} photos</span>`;
-            fullDiv.onclick = () => { showSkillPhotos(skill.key, skill.name, skill.photos); markSkillComplete(skill.name); };
-            fullContainer.appendChild(fullDiv);
+            const div = document.createElement('div');
+            div.className = 'skill-row';
+            div.innerHTML = `<div class="skill-name">${skill.name}</div><span class="skill-status">${skill.photos?.length || 0} photos</span>`;
+            div.onclick = () => showSkillPhotos(skill);
+            container.appendChild(div);
         });
-        document.getElementById('photoCount').innerHTML = totalPhotos;
     }
 
-    function showSkillPhotos(key, name, photos) {
-        document.getElementById('modalTitle').innerHTML = `📸 ${name}`;
-        const grid = document.getElementById('modalPhotoGrid');
-        if (photos.length === 0) {
-            grid.innerHTML = '<p style="text-align:center; padding:40px;">📸 Add photos to this folder to see them here!</p>';
+    function showSkillPhotos(skill) {
+        if (skill.photos && skill.photos.length) {
+            openPhotoViewer(skill.photos, 0);
         } else {
-            grid.innerHTML = '';
-            photos.forEach(photo => {
-                const div = document.createElement('div');
-                div.className = 'modal-photo-item';
-                div.innerHTML = `<img src="images/${key}/${photo.file}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23333%22/%3E%3Ctext x=%22100%22 y=%2275%22 text-anchor=%22middle%22 fill=%22%23888%22%3EAdd photo%3C/text%3E%3C/svg%3E'" onclick="openLightbox(this.src)"><p>${photo.name}</p>`;
-                grid.appendChild(div);
-            });
+            alert('No photos yet for ' + skill.name + '. Use admin panel to add photos!');
         }
-        openModal();
     }
 
-    // ============ SCHEDULE ============
-    const schedule = [
-        { day: 'Monday', lesson: 'Mouse Skills', status: 'completed' },
-        { day: 'Tuesday', lesson: 'Keyboard Basics', status: 'completed' },
-        { day: 'Wednesday', lesson: 'File Management', status: 'completed' },
-        { day: 'Thursday', lesson: 'Computer Basics', status: 'today' },
-        { day: 'Friday', lesson: 'Typing Documents', status: 'upcoming' },
-        { day: 'Next Week', lesson: 'Sound & Display', status: 'upcoming' }
-    ];
+    function loadScheduleDisplay() {
+        const container = document.getElementById('weeklySchedule');
+        if (!container) return;
+        const schedule = [
+            { day: 'Monday', lesson: 'Mouse Skills', status: 'completed' },
+            { day: 'Tuesday', lesson: 'Keyboard Basics', status: 'completed' },
+            { day: 'Wednesday', lesson: 'File Management', status: 'completed' },
+            { day: 'Thursday', lesson: 'Computer Basics', status: 'today' },
+            { day: 'Friday', lesson: 'Typing Documents', status: 'upcoming' }
+        ];
+        container.innerHTML = schedule.map(s => `<div class="schedule-item"><span class="schedule-day">${s.day}</span><span>${s.lesson}</span><span class="schedule-status status-${s.status}">${s.status === 'completed' ? '✅' : s.status === 'today' ? '🔄' : '⏳'}</span></div>`).join('');
+    }
 
-    function loadSchedule() {
-        let html = '', fullHtml = '';
-        schedule.forEach(item => {
-            let statusClass = '', statusText = '';
-            if (item.status === 'completed') { statusClass = 'status-completed'; statusText = '✅ Completed'; }
-            else if (item.status === 'today') { statusClass = 'status-today'; statusText = '🔄 Today'; }
-            else { statusClass = 'status-upcoming'; statusText = '⏳ Upcoming'; }
-            html += `<div class="schedule-item"><span class="schedule-day">${item.day}</span><span>${item.lesson}</span><span class="schedule-status ${statusClass}">${statusText}</span></div>`;
-            fullHtml += `<div class="schedule-item"><span class="schedule-day">${item.day}</span><span>${item.lesson}</span><span class="schedule-status ${statusClass}">${statusText}</span></div>`;
-        });
-        document.getElementById('weeklySchedule').innerHTML = html;
-        document.getElementById('fullSchedule').innerHTML = fullHtml;
+    function loadSkillsFullSection() {
+        document.getElementById('skillsSection').innerHTML = `
+            <div class="card"><div class="card-header"><h3>📚 All Skills We Teach</h3><span class="badge">${allSkills.length} skills total</span></div>
+            <p style="margin-bottom:15px;">👇 Click any skill to see photos</p><div id="skillsFullList" class="skills-list"></div></div>`;
         
-        const today = schedule.find(d => d.status === 'today');
-        if (today) {
-            document.getElementById('todayDate').innerHTML = new Date().toDateString();
-            document.getElementById('todayTitle').innerHTML = today.lesson;
-            document.getElementById('todayDesc').innerHTML = `Today we are learning ${today.lesson}. Click on the skill to see photos!`;
-            const skill = allSkills.find(s => s.name === today.lesson);
-            if (skill && skill.photos.length) {
-                const container = document.getElementById('todayPhotos');
-                container.innerHTML = '';
-                skill.photos.slice(0,2).forEach(photo => {
-                    const div = document.createElement('div');
-                    div.className = 'photo-card';
-                    div.innerHTML = `<img src="images/${skill.key}/${photo.file}" onerror="this.style.display='none'" onclick="openLightbox(this.src)"><p>${photo.name}</p>`;
-                    container.appendChild(div);
-                });
-            }
-        }
+        const container = document.getElementById('skillsFullList');
+        container.innerHTML = '';
+        allSkills.forEach(skill => {
+            const div = document.createElement('div');
+            div.className = 'skill-row';
+            div.innerHTML = `<div class="skill-name">${skill.name}<span style="font-size:11px; opacity:0.6;"> ${skill.desc || ''}</span></div><span class="skill-status">${skill.photos?.length || 0} photos</span>`;
+            div.onclick = () => { showSkillPhotos(skill); markSkillComplete(skill.name); };
+            container.appendChild(div);
+        });
     }
 
-    // ============ GALLERY ============
-    function loadGallery() {
-        const container = document.getElementById('mainGallery');
+    function loadGallerySection() {
         const allPhotos = [];
         allSkills.forEach(skill => {
-            skill.photos.forEach(photo => { allPhotos.push({ src: `images/${skill.key}/${photo.file}`, name: photo.name }); });
+            if (skill.photos) {
+                skill.photos.forEach(photo => { allPhotos.push(photo); });
+            }
         });
-        if (allPhotos.length === 0) container.innerHTML = '<p style="text-align:center;">No photos yet</p>';
-        else {
-            container.innerHTML = '';
-            allPhotos.forEach(photo => {
-                const div = document.createElement('div');
-                div.className = 'photo-card';
-                div.innerHTML = `<img src="${photo.src}" onerror="this.style.display='none'" onclick="openLightbox(this.src)"><p>${photo.name}</p>`;
-                container.appendChild(div);
-            });
-        }
+        document.getElementById('gallerySection').innerHTML = `
+            <div class="card"><div class="card-header"><h3>📸 Class Gallery</h3><span class="badge">${allPhotos.length} photos total</span></div>
+            <div id="galleryGrid" class="photo-grid"></div></div>`;
+        
+        const container = document.getElementById('galleryGrid');
+        container.innerHTML = '';
+        allPhotos.forEach((photo, idx) => {
+            const div = document.createElement('div');
+            div.className = 'photo-card';
+            div.innerHTML = `<img src="${photo}" onerror="this.style.display='none'"><p>Photo ${idx + 1}</p>`;
+            div.onclick = () => openPhotoViewer(allPhotos, idx);
+            container.appendChild(div);
+        });
     }
 
-    // ============ VIDEOS ============
-    function loadVideos() {
+    function loadVideosSection() {
+        document.getElementById('videosSection').innerHTML = `
+            <div class="card"><div class="card-header"><h3>🎬 Video Tutorials</h3><span class="badge">Watch and Learn</span></div>
+            <div id="videoList" class="skills-list"></div>
+            <div id="videoPlayer" style="margin-top:20px; display:none;">
+                <video id="videoElement" controls style="width:100%; border-radius:12px;"><source src="" type="video/mp4"></video>
+                <button class="button" style="margin-top:10px;" onclick="closeVideo()">Close Video</button>
+            </div></div>`;
+        
         const container = document.getElementById('videoList');
-        const videos = ['🖱️ Mouse Skills', '⌨️ Keyboard Basics', '📁 File Management'];
         container.innerHTML = '';
-        videos.forEach(video => {
+        ['🖱️ Mouse Skills', '⌨️ Keyboard Basics', '📁 File Management'].forEach(video => {
             const div = document.createElement('div');
             div.className = 'skill-row';
             div.innerHTML = `<div class="skill-name">${video}</div><span class="skill-status">▶️ Play</span>`;
@@ -1000,36 +652,34 @@
     }
 
     function playVideo(url) {
-        const player = document.getElementById('videoPlayer');
-        const videoEl = document.getElementById('videoElement');
-        player.style.display = 'block';
-        videoEl.src = url;
-        videoEl.play();
+        document.getElementById('videoPlayer').style.display = 'block';
+        document.getElementById('videoElement').src = url;
+        document.getElementById('videoElement').play();
     }
 
     function closeVideo() {
-        const player = document.getElementById('videoPlayer');
-        const videoEl = document.getElementById('videoElement');
-        player.style.display = 'none';
-        videoEl.pause();
-        videoEl.src = '';
+        document.getElementById('videoPlayer').style.display = 'none';
+        document.getElementById('videoElement').pause();
+        document.getElementById('videoElement').src = '';
     }
 
-    // ============ QUIZZES ============
+    function loadQuizzesSection() {
+        document.getElementById('quizzesSection').innerHTML = `
+            <div class="card"><div class="card-header"><h3>📝 Skills Quizzes</h3><span class="badge">Test Your Knowledge</span></div>
+            <div id="quizList" class="skills-list"></div>
+            <div id="quizDisplay"></div><div id="quizResult"></div></div>`;
+        loadQuizzesList();
+    }
+
     const quizzes = {
         'Mouse Skills': { questions: [
             { text: 'Which button is used to select an item?', options: ['Left click', 'Right click', 'Double click'], correct: 0 },
             { text: 'What does double-click do?', options: ['Selects one item', 'Opens a file/folder', 'Deletes the item'], correct: 1 }
-        ]},
-        'Keyboard Basics': { questions: [
-            { text: 'What does Ctrl+C do?', options: ['Paste', 'Copy', 'Cut'], correct: 1 },
-            { text: 'What does Ctrl+V do?', options: ['Copy', 'Paste', 'Undo'], correct: 1 }
         ]}
     };
-
     let currentQuiz = null;
 
-    function loadQuizzes() {
+    function loadQuizzesList() {
         const container = document.getElementById('quizList');
         container.innerHTML = '';
         Object.keys(quizzes).forEach(skill => {
@@ -1068,13 +718,10 @@
         });
         if (score === quiz.questions.length) {
             document.getElementById('quizResult').innerHTML = `<div class="card" style="margin-top:15px;"><p>🎉 Perfect! You earned 10 points!</p></div>`;
-            let points = parseInt(localStorage.getItem('quizPoints') || 0) + 10;
-            localStorage.setItem('quizPoints', points);
             markSkillComplete(currentQuiz);
         } else {
             document.getElementById('quizResult').innerHTML = `<div class="card" style="margin-top:15px;"><p>You scored ${score}/${quiz.questions.length}. Try again!</p></div>`;
         }
-        updateLeaderboard();
     }
 
     function cancelQuiz() {
@@ -1083,22 +730,66 @@
         currentQuiz = null;
     }
 
-    function updateLeaderboard() {
-        const points = parseInt(localStorage.getItem('quizPoints') || 0);
-        const name = currentStudent || 'Guest';
-        const totalPoints = points + (studentCompleted.length * 10);
-        const leaderboard = [{ name: 'Top Student', points: 85 }, { name: 'Rising Star', points: 60 }, { name: name, points: totalPoints }];
-        leaderboard.sort((a,b) => b.points - a.points);
-        const container = document.getElementById('leaderboardList');
-        container.innerHTML = '<div class="schedule-item" style="font-weight:bold;"><span>Rank</span><span>Student</span><span>Points</span></div>';
-        leaderboard.forEach((s,i) => { container.innerHTML += `<div class="schedule-item"><span>#${i+1}</span><span>${s.name}</span><span>${s.points}</span></div>`; });
+    function loadCertificateSection() {
+        const name = localStorage.getItem('studentName') || '';
+        const completed = JSON.parse(localStorage.getItem('progress_' + name) || '[]');
+        const percent = (completed.length / 6) * 100;
+        document.getElementById('certificateSection').innerHTML = `
+            <div class="card" style="text-align:center;">
+                <div class="card-header"><h3>📜 Get Your Certificate</h3><span class="badge">Complete all 6 skills</span></div>
+                <p id="certStatus">${completed.length >= 6 ? '🎉 Congratulations! Your certificate is ready!' : `Complete all 6 skills! (${completed.length}/6 completed)`}</p>
+                <div class="progress-bar"><div id="certProgressFill" class="progress-fill" style="width:${percent}%"></div></div>
+                <p id="certProgressText">${completed.length}/6 skills completed</p>
+                <div id="certificateDisplay" style="background:rgba(255,255,255,0.9); padding:30px; border-radius:16px; color:#333; display:${completed.length >= 6 ? 'block' : 'none'}; margin-top:20px;">
+                    <h2 style="color:#ff8c00;">🎓 Certificate of Completion</h2>
+                    <p>This certificate is awarded to</p>
+                    <h3 id="certName" style="margin:15px 0;">${name}</h3>
+                    <p>for successfully completing all 6 computer skills at Digital Gashora</p>
+                    <p style="margin-top:20px;">Date: ${new Date().toDateString()}</p>
+                    <button class="button" style="margin-top:15px;" onclick="downloadCertificate()">📥 Download Certificate</button>
+                </div>
+            </div>`;
     }
 
-    // ============ ANNOUNCEMENTS ============
-    let announcements = [];
-    function loadAnnouncements() {
-        const saved = localStorage.getItem('announcements');
-        announcements = saved ? JSON.parse(saved) : [{title:'Welcome!',message:'Login to track your progress.',date:new Date().toDateString()}];
+    function downloadCertificate() {
+        const name = localStorage.getItem('studentName');
+        const completed = JSON.parse(localStorage.getItem('progress_' + name) || '[]');
+        if (completed.length >= 6) {
+            const certHTML = `<!DOCTYPE html><html><head><title>Certificate</title><style>body{font-family:Arial;text-align:center;padding:50px;}.cert{border:10px solid gold;padding:40px;}</style></head><body><div class="cert"><h1>🎓 Certificate of Completion</h1><p>This certifies that</p><h2>${name}</h2><p>has completed all 6 computer skills at Digital Gashora</p><p>Date: ${new Date().toDateString()}</p></div></body></html>`;
+            const blob = new Blob([certHTML], {type: 'text/html'});
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `certificate_${name}.html`;
+            a.click();
+        }
+    }
+
+    function loadLeaderboardSection() {
+        const name = localStorage.getItem('studentName') || 'Guest';
+        const completed = JSON.parse(localStorage.getItem('progress_' + name) || '[]');
+        const points = completed.length * 10;
+        const leaderboard = [{ name: 'Top Student', points: 85 }, { name: 'Rising Star', points: 60 }, { name: name, points: points }];
+        leaderboard.sort((a,b) => b.points - a.points);
+        document.getElementById('leaderboardSection').innerHTML = `
+            <div class="card"><div class="card-header"><h3>🏆 Student Leaderboard</h3><span class="badge">Top Performers</span></div>
+            <div id="leaderboardList"></div></div>`;
+        const container = document.getElementById('leaderboardList');
+        container.innerHTML = '<div class="schedule-item" style="font-weight:bold;"><span>Rank</span><span>Student</span><span>Points</span></div>';
+        leaderboard.forEach((s, i) => { container.innerHTML += `<div class="schedule-item"><span>#${i+1}</span><span>${s.name}</span><span>${s.points}</span></div>`; });
+    }
+
+    function loadAnnouncementsSection() {
+        const announcements = JSON.parse(localStorage.getItem('announcements') || '[{"title":"Welcome to Digital Gashora!","message":"Login to track your progress!","date":"' + new Date().toDateString() + '"}]');
+        document.getElementById('announcementsSection').innerHTML = `
+            <div class="card"><div class="card-header"><h3>📢 Announcements</h3><span class="badge">Stay Updated</span></div>
+            <div id="announcementsList"></div>
+            ${isLoggedIn ? `<div style="margin-top:20px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.1);">
+                <h4 style="color:#ffd54f;">Post Announcement</h4>
+                <input type="text" id="announcementTitle" placeholder="Title" style="margin-bottom:8px;">
+                <textarea id="announcementMessage" placeholder="Message" rows="2" style="margin-bottom:8px;"></textarea>
+                <button onclick="postAnnouncement()" class="button">Post</button>
+            </div>` : '<p style="margin-top:15px;">🔐 <a onclick="showSection(\'admin\')" style="color:#ffd54f; cursor:pointer;">Login as admin</a> to post announcements</p>'}</div>`;
+        
         const container = document.getElementById('announcementsList');
         container.innerHTML = '';
         announcements.forEach(a => {
@@ -1107,58 +798,250 @@
     }
 
     function postAnnouncement() {
-        const title = document.getElementById('announcementTitle').value;
-        const message = document.getElementById('announcementMessage').value;
+        const title = document.getElementById('announcementTitle')?.value;
+        const message = document.getElementById('announcementMessage')?.value;
         if (title && message) {
-            announcements.unshift({title, message, date: new Date().toDateString()});
+            const announcements = JSON.parse(localStorage.getItem('announcements') || '[]');
+            announcements.unshift({ title, message, date: new Date().toDateString() });
             localStorage.setItem('announcements', JSON.stringify(announcements));
-            loadAnnouncements();
-            document.getElementById('announcementTitle').value = '';
-            document.getElementById('announcementMessage').value = '';
+            loadAnnouncementsSection();
         } else alert('Please fill both fields');
     }
 
+    function loadContactSection() {
+        document.getElementById('contactSection').innerHTML = `
+            <div class="card"><div class="card-header"><h3>📞 Contact Us</h3></div>
+            <p>📍 Gashora Centre, Bugesera District, Rwanda</p>
+            <p>📧 Manager: <a href="mailto:iamkushdj@gmail.com" style="color:#ffd54f;">iamkushdj@gmail.com</a></p>
+            <p>👔 Supervisor: John Gakumba</p>
+            <div style="margin-top:20px;"><h4 style="color:#ffd54f;">Send a Message</h4>
+            <input type="text" id="contactName" placeholder="Your name" style="margin-bottom:8px;">
+            <input type="email" id="contactEmail" placeholder="Your email" style="margin-bottom:8px;">
+            <textarea id="contactMessage" placeholder="Message" rows="3" style="margin-bottom:8px;"></textarea>
+            <button onclick="sendMessage()" class="button">Send</button>
+            <div id="contactStatus" style="margin-top:10px;"></div></div></div>`;
+    }
+
     function sendMessage() {
-        const name = document.getElementById('contactName').value;
-        const email = document.getElementById('contactEmail').value;
-        const msg = document.getElementById('contactMessage').value;
+        const name = document.getElementById('contactName')?.value;
+        const email = document.getElementById('contactEmail')?.value;
+        const msg = document.getElementById('contactMessage')?.value;
         if (name && email && msg) {
             document.getElementById('contactStatus').innerHTML = '<span style="color:#ffd54f;">✅ Message sent!</span>';
-            document.getElementById('contactName').value = '';
-            document.getElementById('contactEmail').value = '';
-            document.getElementById('contactMessage').value = '';
         } else {
             document.getElementById('contactStatus').innerHTML = '<span style="color:#ff8888;">❌ Please fill all fields</span>';
         }
     }
 
-    function downloadCertificate() {
-        if (studentCompleted.length >= 6) {
-            const certHTML = `<!DOCTYPE html><html><head><title>Certificate</title><style>body{font-family:Arial;text-align:center;padding:50px;}.cert{border:10px solid gold;padding:40px;}</style></head><body><div class="cert"><h1>🎓 Certificate of Completion</h1><p>This certifies that</p><h2>${currentStudent}</h2><p>has completed all 6 computer skills at Digital Gashora</p><p>Date: ${new Date().toDateString()}</p></div></body></html>`;
-            const blob = new Blob([certHTML], {type: 'text/html'});
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = `certificate_${currentStudent}.html`;
-            a.click();
-        } else alert('Complete all 6 skills first!');
+    function loadAdminSection() {
+        document.getElementById('adminSection').innerHTML = `
+            <div class="card"><div class="card-header"><h3>🔐 Admin Panel</h3><span class="badge">Site Management</span></div>
+            ${!isLoggedIn ? `
+            <div class="login-form"><h4 style="color:#ffd54f;">Admin Login</h4>
+            <input type="password" id="adminPassword" placeholder="Enter admin password" style="margin-bottom:10px;">
+            <button onclick="adminLogin()" class="button">Login</button>
+            <p style="margin-top:15px; opacity:0.6;">Contact manager for password</p></div>` : `
+            <div class="admin-panel">
+                <div><span class="admin-tab active" onclick="showAdminTab('photos')">📸 Add/Manage Photos</span>
+                <span class="admin-tab" onclick="showAdminTab('skills')">📚 Manage Skills</span>
+                <span class="admin-tab" onclick="showAdminTab('schedule')">📅 Update Schedule</span>
+                <span class="admin-tab" onclick="showAdminTab('backup')">💾 Backup/Restore</span></div>
+                <div id="adminPhotosPanel"><h4 style="color:#ffd54f; margin:20px 0 10px;">Add New Photo</h4>
+                <select id="skillSelect"><option value="">Select skill...</option>${allSkills.map(s => `<option value="${s.key}">${s.name}</option>`).join('')}</select>
+                <input type="text" id="photoUrl" placeholder="Photo URL or filename (e.g., images/mouse-skills/newphoto.jpg)" style="margin:10px 0;">
+                <input type="text" id="photoName" placeholder="Photo description" style="margin-bottom:10px;">
+                <button onclick="addPhoto()" class="button">Add Photo</button>
+                <h4 style="color:#ffd54f; margin:20px 0 10px;">Current Photos</h4>
+                <div id="adminPhotoList"></div></div>
+                <div id="adminSkillsPanel" style="display:none;"><h4 style="color:#ffd54f; margin:20px 0 10px;">Add New Skill</h4>
+                <input type="text" id="newSkillName" placeholder="Skill name" style="margin-bottom:10px;">
+                <input type="text" id="newSkillDesc" placeholder="Description" style="margin-bottom:10px;">
+                <button onclick="addSkill()" class="button">Add Skill</button>
+                <div id="skillsListAdmin"></div></div>
+                <div id="adminSchedulePanel" style="display:none;"><h4 style="color:#ffd54f;">Update Daily Lesson</h4>
+                <select id="todayLesson"><option>Mouse Skills</option><option>Keyboard Basics</option><option>File Management</option><option>Computer Basics</option><option>Typing Documents</option><option>Sound & Display</option></select>
+                <button onclick="updateTodayLesson()" class="button" style="margin-top:10px;">Update Today's Lesson</button></div>
+                <div id="adminBackupPanel" style="display:none;"><h4 style="color:#ffd54f;">Backup & Restore</h4>
+                <button onclick="backupData()" class="button">📥 Download Backup</button>
+                <input type="file" id="restoreFile" accept=".json" style="margin:10px 0;">
+                <button onclick="restoreData()" class="button">📤 Restore from Backup</button></div>
+            </div>
+            <button onclick="adminLogout()" class="button" style="margin-top:20px; background:#555;">Logout</button>`}</div>`;
+        if (isLoggedIn) loadAdminPhotoList();
     }
 
-    // ============ INITIALIZE ============
-    if (currentStudent) {
-        document.getElementById('studentName').value = currentStudent;
-        let saved = localStorage.getItem(`progress_${currentStudent}`);
-        if (saved) studentCompleted = JSON.parse(saved);
-        document.getElementById('studentProgress').style.display = 'block';
-        updateStudentDisplay();
+    function adminLogin() {
+        const pwd = document.getElementById('adminPassword')?.value;
+        if (pwd === 'admin123') {
+            localStorage.setItem('adminLoggedIn', 'true');
+            isLoggedIn = true;
+            loadAdminSection();
+        } else alert('Wrong password! Use: admin123');
     }
 
-    loadSkillsDisplays();
-    loadSchedule();
-    loadGallery();
-    loadVideos();
-    loadQuizzes();
-    loadAnnouncements();
-    updateLeaderboard();
+    function adminLogout() {
+        localStorage.removeItem('adminLoggedIn');
+        isLoggedIn = false;
+        loadAdminSection();
+    }
+
+    function showAdminTab(tab) {
+        document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+        event.target.classList.add('active');
+        document.getElementById('adminPhotosPanel').style.display = tab === 'photos' ? 'block' : 'none';
+        document.getElementById('adminSkillsPanel').style.display = tab === 'skills' ? 'block' : 'none';
+        document.getElementById('adminSchedulePanel').style.display = tab === 'schedule' ? 'block' : 'none';
+        document.getElementById('adminBackupPanel').style.display = tab === 'backup' ? 'block' : 'none';
+    }
+
+    function addPhoto() {
+        const skillKey = document.getElementById('skillSelect').value;
+        const photoUrl = document.getElementById('photoUrl').value;
+        const photoName = document.getElementById('photoName').value;
+        if (skillKey && photoUrl) {
+            const skill = allSkills.find(s => s.key === skillKey);
+            if (skill) {
+                if (!skill.photos) skill.photos = [];
+                skill.photos.push(photoUrl);
+                localStorage.setItem('allSkills', JSON.stringify(allSkills));
+                loadAdminPhotoList();
+                document.getElementById('photoUrl').value = '';
+                document.getElementById('photoName').value = '';
+                alert('Photo added!');
+            }
+        } else alert('Please fill all fields');
+    }
+
+    function loadAdminPhotoList() {
+        const container = document.getElementById('adminPhotoList');
+        if (!container) return;
+        container.innerHTML = '';
+        allSkills.forEach(skill => {
+            if (skill.photos && skill.photos.length) {
+                skill.photos.forEach((photo, idx) => {
+                    const div = document.createElement('div');
+                    div.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:5px; border-bottom:1px solid rgba(255,255,255,0.1);';
+                    div.innerHTML = `<span>${skill.name}: ${photo.substring(0, 50)}...</span><button onclick="deletePhoto('${skill.key}', ${idx})" style="background:#ff4444; border:none; color:white; padding:2px 8px; border-radius:5px;">Delete</button>`;
+                    container.appendChild(div);
+                });
+            }
+        });
+    }
+
+    function deletePhoto(skillKey, index) {
+        const skill = allSkills.find(s => s.key === skillKey);
+        if (skill && skill.photos) {
+            skill.photos.splice(index, 1);
+            localStorage.setItem('allSkills', JSON.stringify(allSkills));
+            loadAdminPhotoList();
+        }
+    }
+
+    function addSkill() {
+        const name = document.getElementById('newSkillName')?.value;
+        const desc = document.getElementById('newSkillDesc')?.value;
+        if (name) {
+            allSkills.push({ key: name.toLowerCase().replace(/ /g, '-'), name: name, desc: desc || '', photos: [] });
+            localStorage.setItem('allSkills', JSON.stringify(allSkills));
+            alert('Skill added!');
+            location.reload();
+        } else alert('Enter skill name');
+    }
+
+    function updateTodayLesson() {
+        alert('Today\'s lesson updated!');
+    }
+
+    function backupData() {
+        const data = { allSkills, scheduleData, announcements: localStorage.getItem('announcements'), studentProgress: {} };
+        const blob = new Blob([JSON.stringify(data)], {type: 'application/json'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `digital-gashora-backup-${new Date().toISOString().split('T')[0]}.json`;
+        a.click();
+    }
+
+    function restoreData() {
+        const file = document.getElementById('restoreFile').files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const data = JSON.parse(e.target.result);
+                if (data.allSkills) localStorage.setItem('allSkills', JSON.stringify(data.allSkills));
+                alert('Restore complete! Refresh the page.');
+                location.reload();
+            };
+            reader.readAsText(file);
+        } else alert('Select a backup file');
+    }
+
+    // Student functions
+    function loginStudent() {
+        const name = document.getElementById('studentName').value.trim();
+        if (name) {
+            localStorage.setItem('studentName', name);
+            location.reload();
+        } else alert('Enter your name');
+    }
+
+    function markSkillComplete(skillName) {
+        const name = localStorage.getItem('studentName');
+        if (name) {
+            let completed = JSON.parse(localStorage.getItem('progress_' + name) || '[]');
+            if (!completed.includes(skillName)) {
+                completed.push(skillName);
+                localStorage.setItem('progress_' + name, JSON.stringify(completed));
+            }
+        }
+    }
+
+    function updateDateTime() {
+        const el = document.getElementById('currentDateTime');
+        if (el) el.innerHTML = new Date().toLocaleDateString() + ' | ' + new Date().toLocaleTimeString();
+    }
+
+    function showSection(section) {
+        const sections = ['overview', 'skills', 'gallery', 'videos', 'quizzes', 'certificate', 'leaderboard', 'announcements', 'contact', 'admin'];
+        sections.forEach(s => { const el = document.getElementById(s + 'Section'); if (el) el.style.display = 'none'; });
+        document.getElementById(section + 'Section').style.display = 'block';
+        document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(i => i.classList.remove('active'));
+        if (event && event.target) {
+            const clicked = event.target.closest('.nav-item') || event.target.closest('.mobile-nav-item');
+            if (clicked) clicked.classList.add('active');
+        }
+        window.scrollTo(0, 0);
+        
+        // Load section content
+        if (section === 'overview') loadOverviewSection();
+        else if (section === 'skills') loadSkillsFullSection();
+        else if (section === 'gallery') loadGallerySection();
+        else if (section === 'videos') loadVideosSection();
+        else if (section === 'quizzes') loadQuizzesSection();
+        else if (section === 'certificate') loadCertificateSection();
+        else if (section === 'leaderboard') loadLeaderboardSection();
+        else if (section === 'announcements') loadAnnouncementsSection();
+        else if (section === 'contact') loadContactSection();
+        else if (section === 'admin') loadAdminSection();
+    }
+
+    // Initialize data
+    const savedSkills = localStorage.getItem('allSkills');
+    if (savedSkills) {
+        allSkills = JSON.parse(savedSkills);
+    } else {
+        allSkills = [
+            { key: 'mouse-skills', name: '🖱️ Mouse Skills', desc: 'Click, double-click, right-click', photos: [] },
+            { key: 'keyboard-basics', name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts, volume', photos: [] },
+            { key: 'file-management', name: '📁 File Management', desc: 'Folders, organizing files', photos: [] },
+            { key: 'computer-basics', name: '🖥️ Computer Basics', desc: 'Startup, shutdown, desktop', photos: [] },
+            { key: 'typing-documents', name: '📝 Typing Documents', desc: 'Notepad, saving files', photos: [] },
+            { key: 'sound-display', name: '🔊 Sound & Display', desc: 'Volume, mute, brightness', photos: [] }
+        ];
+    }
+
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+    showSection('overview');
 </script>
 </body>
 </html>
