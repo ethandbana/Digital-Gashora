@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Digital Gashora | Professional Dashboard</title>
     <style>
         * {
@@ -29,7 +29,7 @@
             z-index: 1;
         }
 
-        /* Sidebar - Fully Transparent */
+        /* Sidebar - Hidden on mobile, shown as bottom nav */
         .sidebar {
             width: 280px;
             background: rgba(0, 0, 0, 0.3);
@@ -40,6 +40,45 @@
             top: 0;
             height: 100vh;
             overflow-y: auto;
+        }
+
+        /* Mobile Bottom Navigation - Hidden on desktop */
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 213, 79, 0.2);
+            padding: 12px 16px;
+            z-index: 100;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .mobile-nav-item.active {
+            background: rgba(255, 213, 79, 0.15);
+            color: #ffd54f;
+        }
+
+        .mobile-nav-item span:first-child {
+            font-size: 20px;
         }
 
         .logo {
@@ -104,6 +143,7 @@
             flex: 1;
             padding: 25px 30px;
             overflow-x: hidden;
+            margin-bottom: 0;
         }
 
         /* Top Bar */
@@ -183,7 +223,7 @@
             margin-bottom: 30px;
         }
 
-        /* Cards - Fully Transparent */
+        /* Cards */
         .card {
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
@@ -351,6 +391,7 @@
             color: white;
             padding: 10px;
             border-radius: 8px;
+            width: 100%;
         }
 
         input::placeholder, textarea::placeholder {
@@ -386,6 +427,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .modal-header h2 {
@@ -446,30 +489,121 @@
             object-fit: contain;
         }
 
-        /* Responsive */
+        /* ============ MOBILE OPTIMIZATION ============ */
         @media (max-width: 900px) {
             .dashboard-container {
                 flex-direction: column;
             }
+            
+            /* Hide desktop sidebar on mobile */
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                padding: 15px;
+                display: none;
             }
-            .nav-section {
+            
+            /* Show mobile bottom nav */
+            .mobile-bottom-nav {
                 display: flex;
-                flex-wrap: wrap;
-                gap: 5px;
             }
-            .nav-item {
-                padding: 8px 12px;
+            
+            .main-content {
+                padding: 15px;
+                margin-bottom: 70px;
             }
-            .two-column-grid {
-                grid-template-columns: 1fr;
+            
+            .top-bar {
+                flex-direction: column;
+                text-align: center;
             }
+            
+            .welcome-section h2 {
+                font-size: 20px;
+            }
+            
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .stat-card {
+                padding: 12px;
+            }
+            
+            .stat-value {
+                font-size: 22px;
+            }
+            
+            .two-column-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+            
+            .card-header h3 {
+                font-size: 16px;
+            }
+            
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .photo-card img {
+                height: 80px;
+            }
+            
+            .schedule-item {
+                font-size: 13px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .skill-row {
+                font-size: 13px;
+            }
+            
+            .date-time {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+        }
+
+        /* Small phones */
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 12px;
+            }
+            
+            .stats-grid {
+                gap: 8px;
+            }
+            
+            .stat-card {
+                padding: 10px;
+            }
+            
+            .stat-icon {
+                font-size: 24px;
+            }
+            
+            .stat-value {
+                font-size: 18px;
+            }
+            
+            .stat-label {
+                font-size: 10px;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .photo-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -477,7 +611,7 @@
 <body>
 
 <div class="dashboard-container">
-    <!-- Sidebar -->
+    <!-- Desktop Sidebar -->
     <div class="sidebar">
         <div class="logo">
             <h1>Digital Gashora</h1>
@@ -529,6 +663,50 @@
         <div class="staff-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,213,79,0.2);">
             <p style="font-size: 11px; opacity: 0.7;">👨‍🏫 Manager: <strong>Ethandbana</strong></p>
             <p style="font-size: 11px; opacity: 0.7;">👔 Supervisor: <strong>John Gakumba</strong></p>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav" id="mobileBottomNav">
+        <div class="mobile-nav-item active" onclick="showDashboardSection('overview')">
+            <span>📊</span>
+            <span>Home</span>
+        </div>
+        <div class="mobile-nav-item" onclick="showDashboardSection('skills')">
+            <span>📚</span>
+            <span>Skills</span>
+        </div>
+        <div class="mobile-nav-item" onclick="showDashboardSection('schedule')">
+            <span>📅</span>
+            <span>Schedule</span>
+        </div>
+        <div class="mobile-nav-item" onclick="showDashboardSection('gallery')">
+            <span>📸</span>
+            <span>Gallery</span>
+        </div>
+        <div class="mobile-nav-item" onclick="showDashboardSection('videos')">
+            <span>🎬</span>
+            <span>Videos</span>
+        </div>
+        <div class="mobile-nav-item" onclick="showDashboardSection('quizzes')">
+            <span>📝</span>
+            <span>Quiz</span>
+        </div>
+        <div class="mobile-nav-item" onclick="showDashboardSection('certificate')">
+            <span>📜</span>
+            <span>Cert</span>
+        </div>
+        <div class="mobile-nav-item" onclick="showDashboardSection('leaderboard')">
+            <span>🏆</span>
+            <span>Leader</span>
+        </div>
+        <div class="mobile-nav-item" onclick="showDashboardSection('announcements')">
+            <span>📢</span>
+            <span>News</span>
+        </div>
+        <div class="mobile-nav-item" onclick="showDashboardSection('contact')">
+            <span>📞</span>
+            <span>Contact</span>
         </div>
     </div>
 
@@ -586,7 +764,7 @@
                         <h3>🔐 Your Progress</h3>
                         <span class="badge">Student Portal</span>
                     </div>
-                    <input type="text" id="studentName" placeholder="Enter your name" style="width: 100%; margin-bottom: 10px;">
+                    <input type="text" id="studentName" placeholder="Enter your name" style="margin-bottom: 10px;">
                     <button onclick="loginStudent()" class="button" style="width: 100%;">Login / Track Progress</button>
                     <div id="studentProgress" style="margin-top: 15px; display: none;">
                         <div id="completedSkillsList"></div>
@@ -722,8 +900,8 @@
                 <div id="announcementsList"></div>
                 <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
                     <h4 style="color: #ffd54f; margin-bottom: 10px;">Post Announcement</h4>
-                    <input type="text" id="announcementTitle" placeholder="Title" style="width: 100%; margin-bottom: 8px;">
-                    <textarea id="announcementMessage" placeholder="Message" rows="2" style="width: 100%; margin-bottom: 8px;"></textarea>
+                    <input type="text" id="announcementTitle" placeholder="Title" style="margin-bottom: 8px;">
+                    <textarea id="announcementMessage" placeholder="Message" rows="2" style="margin-bottom: 8px;"></textarea>
                     <button onclick="postAnnouncement()" class="button">Post</button>
                 </div>
             </div>
@@ -741,9 +919,9 @@
                 <p>📧 Supervisor: <a href="mailto:gakumbajohn@gmail.com" style="color: #ffd54f;">gakumbajohn@gmail.com</a></p>
                 <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
                     <h4 style="color: #ffd54f;">Send a Message</h4>
-                    <input type="text" id="contactName" placeholder="Your name" style="width: 100%; margin-bottom: 8px;">
-                    <input type="email" id="contactEmail" placeholder="Your email" style="width: 100%; margin-bottom: 8px;">
-                    <textarea id="contactMessage" placeholder="Message" rows="3" style="width: 100%; margin-bottom: 8px;"></textarea>
+                    <input type="text" id="contactName" placeholder="Your name" style="margin-bottom: 8px;">
+                    <input type="email" id="contactEmail" placeholder="Your email" style="margin-bottom: 8px;">
+                    <textarea id="contactMessage" placeholder="Message" rows="3" style="margin-bottom: 8px;"></textarea>
                     <button onclick="sendMessageContact()" class="button">Send</button>
                     <div id="contactStatus" style="margin-top: 10px;"></div>
                 </div>
@@ -799,9 +977,27 @@
         });
         document.getElementById(section + 'Section').style.display = 'block';
         
-        // Update active nav
+        // Update active nav - desktop
         document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-        event.target.closest('.nav-item').classList.add('active');
+        if (event && event.target) {
+            const clickedItem = event.target.closest('.nav-item');
+            if (clickedItem) clickedItem.classList.add('active');
+        }
+        
+        // Update mobile nav active
+        document.querySelectorAll('.mobile-nav-item').forEach(item => item.classList.remove('active'));
+        const mobileItems = document.querySelectorAll('.mobile-nav-item');
+        const sectionMap = {
+            'overview': 0, 'skills': 1, 'schedule': 2, 'gallery': 3,
+            'videos': 4, 'quizzes': 5, 'certificate': 6, 'leaderboard': 7,
+            'announcements': 8, 'contact': 9
+        };
+        if (mobileItems[sectionMap[section]]) {
+            mobileItems[sectionMap[section]].classList.add('active');
+        }
+        
+        // Scroll to top on mobile
+        window.scrollTo(0, 0);
     }
     
     // All Skills Data - WITH YOUR ACTUAL PHOTOS
@@ -870,10 +1066,8 @@
         document.getElementById('completedSkillsList').innerHTML = studentCompleted.map(s => `<p>✅ ${s}</p>`).join('');
         if (studentCompleted.length === 0) document.getElementById('completedSkillsList').innerHTML = '<p>No skills completed yet. Click on skills to mark them complete!</p>';
         
-        // Update stats
         document.getElementById('completedSkills').innerHTML = count;
         
-        // Update certificate
         if (count >= 6) {
             document.getElementById('certStatus').innerHTML = '🎉 Congratulations! You have completed all skills! Your certificate is ready!';
             document.getElementById('certificateDisplay').style.display = 'block';
@@ -889,37 +1083,23 @@
     
     // Load all skills displays
     function loadSkillsDisplays() {
-        // Skills Overview List
         const overviewContainer = document.getElementById('skillsOverviewList');
         overviewContainer.innerHTML = '';
-        
-        // Skills Full List
         const fullContainer = document.getElementById('skillsFullList');
         fullContainer.innerHTML = '';
         
         allSkills.forEach(skill => {
             const photoCount = skill.photos.length;
             
-            // Overview item
             const overviewDiv = document.createElement('div');
             overviewDiv.className = 'skill-row';
-            overviewDiv.innerHTML = `
-                <div class="skill-name"><span>${skill.name}</span></div>
-                <span class="skill-status">${photoCount} photo${photoCount !== 1 ? 's' : ''}</span>
-            `;
+            overviewDiv.innerHTML = `<div class="skill-name"><span>${skill.name}</span></div><span class="skill-status">${photoCount} photo${photoCount !== 1 ? 's' : ''}</span>`;
             overviewDiv.onclick = () => showSkillPhotos(skill.key, skill.name, skill.photos);
             overviewContainer.appendChild(overviewDiv);
             
-            // Full list item
             const fullDiv = document.createElement('div');
             fullDiv.className = 'skill-row';
-            fullDiv.innerHTML = `
-                <div class="skill-name">
-                    <span>${skill.name}</span>
-                    <span style="font-size: 11px; opacity: 0.6;">${skill.desc}</span>
-                </div>
-                <span class="skill-status">${photoCount} photos</span>
-            `;
+            fullDiv.innerHTML = `<div class="skill-name"><span>${skill.name}</span><span style="font-size: 11px; opacity: 0.6;">${skill.desc}</span></div><span class="skill-status">${photoCount} photos</span>`;
             fullDiv.onclick = () => {
                 showSkillPhotos(skill.key, skill.name, skill.photos);
                 markSkillComplete(skill.name);
@@ -927,7 +1107,6 @@
             fullContainer.appendChild(fullDiv);
         });
         
-        // Photo count for stats
         let totalPhotos = 0;
         allSkills.forEach(s => totalPhotos += s.photos.length);
         document.getElementById('photosCount').innerHTML = totalPhotos;
