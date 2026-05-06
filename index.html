@@ -3,14 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Digital Gashora | Complete Learning Platform</title>
+    <title>Digital Gashora | Complete Learning Platform + IAP Report</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             min-height: 100vh;
@@ -20,16 +15,7 @@
             position: relative;
             overflow-x: hidden;
         }
-
-        /* Dashboard Layout */
-        .dashboard-container {
-            display: flex;
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Sidebar */
+        .dashboard-container { display: flex; min-height: 100vh; position: relative; z-index: 1; }
         .sidebar {
             width: 280px;
             background: rgba(0, 0, 0, 0.3);
@@ -41,8 +27,6 @@
             height: 100vh;
             overflow-y: auto;
         }
-
-        /* Mobile Bottom Navigation */
         .mobile-bottom-nav {
             display: none;
             position: fixed;
@@ -58,7 +42,6 @@
             flex-wrap: wrap;
             gap: 5px;
         }
-
         .mobile-nav-item {
             display: flex;
             flex-direction: column;
@@ -67,353 +50,83 @@
             padding: 8px 12px;
             border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s;
             font-size: 10px;
             color: rgba(255, 255, 255, 0.7);
             min-width: 60px;
         }
-
-        .mobile-nav-item span:first-child {
-            font-size: 20px;
-        }
-
-        .mobile-nav-item.active {
-            background: rgba(255, 213, 79, 0.2);
-            color: #ffd54f;
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 213, 79, 0.2);
-        }
-
-        .logo h1 {
-            font-size: 22px;
-            background: linear-gradient(135deg, #ffd54f, #fff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .logo p {
-            font-size: 10px;
-            opacity: 0.7;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 12px;
-            color: #fff;
-            border-radius: 10px;
-            transition: all 0.3s;
-            margin-bottom: 5px;
-            cursor: pointer;
-        }
-
-        .nav-item:hover, .nav-item.active {
-            background: rgba(255, 213, 79, 0.15);
-        }
-
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            overflow-x: hidden;
-            margin-bottom: 0;
-        }
-
-        /* Top Bar */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .welcome-section h2 {
-            font-size: 20px;
-        }
-
-        .welcome-section p {
-            opacity: 0.7;
-            font-size: 12px;
-        }
-
-        .date-time {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px);
-            border-radius: 16px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 1px solid rgba(255, 213, 79, 0.1);
-        }
-
+        .mobile-nav-item span:first-child { font-size: 20px; }
+        .mobile-nav-item.active { background: rgba(255, 213, 79, 0.2); color: #ffd54f; }
+        .logo { text-align: center; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 1px solid rgba(255, 213, 79, 0.2); }
+        .logo h1 { font-size: 22px; background: linear-gradient(135deg, #ffd54f, #fff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .logo p { font-size: 10px; opacity: 0.7; }
+        .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; color: #fff; border-radius: 10px; margin-bottom: 5px; cursor: pointer; }
+        .nav-item:hover, .nav-item.active { background: rgba(255, 213, 79, 0.15); }
+        .main-content { flex: 1; padding: 20px; overflow-x: hidden; margin-bottom: 0; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .welcome-section h2 { font-size: 20px; }
+        .welcome-section p { opacity: 0.7; font-size: 12px; }
+        .date-time { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(8px); padding: 8px 15px; border-radius: 20px; font-size: 12px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
+        .stat-card { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(8px); border-radius: 16px; padding: 15px; text-align: center; cursor: pointer; border: 1px solid rgba(255, 213, 79, 0.1); }
         .stat-card:active { transform: scale(0.98); }
-
         .stat-icon { font-size: 28px; margin-bottom: 5px; }
         .stat-value { font-size: 24px; font-weight: bold; color: #ffd54f; }
         .stat-label { font-size: 10px; opacity: 0.7; }
-
-        /* Cards */
-        .card {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 213, 79, 0.1);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
+        .card { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(8px); border-radius: 20px; padding: 15px; margin-bottom: 20px; border: 1px solid rgba(255, 213, 79, 0.1); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); flex-wrap: wrap; gap: 10px; }
         .card-header h3 { color: #ffd54f; font-size: 16px; }
-        .badge {
-            background: rgba(255, 213, 79, 0.15);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 10px;
-        }
-
-        .two-column-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        /* Skill Cards - BIG TAP TARGETS for non-readers */
-        .skill-big-card {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 1px solid rgba(255, 213, 79, 0.15);
-        }
-
+        .badge { background: rgba(255, 213, 79, 0.15); padding: 4px 10px; border-radius: 20px; font-size: 10px; }
+        .two-column-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .skill-big-card { background: rgba(0, 0, 0, 0.4); border-radius: 16px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; border: 1px solid rgba(255, 213, 79, 0.15); }
         .skill-big-card:active { transform: scale(0.97); background: rgba(255, 213, 79, 0.2); }
         .skill-big-card .emoji { font-size: 40px; display: block; margin-bottom: 8px; }
         .skill-big-card h4 { font-size: 14px; margin-bottom: 5px; }
         .skill-big-card p { font-size: 11px; opacity: 0.7; }
-
-        .skills-grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        /* Progress Bar */
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 10px 0;
-        }
+        .skills-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .progress-bar { width: 100%; height: 8px; background: rgba(255, 255, 255, 0.2); border-radius: 4px; overflow: hidden; margin: 10px 0; }
         .progress-fill { height: 100%; background: #ffd54f; border-radius: 4px; transition: width 0.3s; }
-
-        /* Schedule */
-        .schedule-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+        .schedule-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .schedule-day { font-weight: bold; color: #ffd54f; }
         .status-completed { color: #4caf50; }
         .status-today { color: #ffd54f; }
         .status-upcoming { opacity: 0.5; }
-
-        /* Photo Grid */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 10px;
-        }
-        .photo-card {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            text-align: center;
-        }
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
+        .photo-card { background: rgba(0, 0, 0, 0.3); border-radius: 12px; overflow: hidden; cursor: pointer; text-align: center; }
         .photo-card img { width: 100%; height: 80px; object-fit: cover; }
         .photo-card p { padding: 6px; font-size: 10px; }
-
-        /* Admin Panel */
-        .admin-panel {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 16px;
-            padding: 15px;
-            margin-top: 15px;
-        }
-
-        input, textarea, select {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 213, 79, 0.3);
-            color: white;
-            padding: 12px;
-            border-radius: 12px;
-            width: 100%;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        button, .button {
-            background: linear-gradient(135deg, #ffd54f, #ffb347);
-            color: #1a1a2e;
-            padding: 12px 20px;
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            transition: all 0.2s;
-            width: 100%;
-        }
+        .admin-panel { background: rgba(0, 0, 0, 0.5); border-radius: 16px; padding: 15px; margin-top: 15px; }
+        input, textarea, select { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 213, 79, 0.3); color: white; padding: 12px; border-radius: 12px; width: 100%; font-size: 14px; margin-bottom: 10px; }
+        input[type="date"] { width: auto; }
+        button, .button { background: linear-gradient(135deg, #ffd54f, #ffb347); color: #1a1a2e; padding: 12px 20px; border-radius: 30px; border: none; cursor: pointer; font-weight: bold; font-size: 14px; width: 100%; }
         button:active, .button:active { transform: scale(0.98); }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-        .modal-content {
-            background: rgba(0, 0, 0, 0.9);
-            margin: 40px 15px;
-            padding: 20px;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 213, 79, 0.3);
-        }
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+        .remove-day-btn { background: #f44336 !important; width: auto !important; padding: 5px 15px !important; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); z-index: 1000; overflow-y: auto; }
+        .modal-content { background: rgba(0, 0, 0, 0.9); margin: 40px 15px; padding: 20px; border-radius: 24px; border: 1px solid rgba(255, 213, 79, 0.3); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
         .modal-header h2 { color: #ffd54f; font-size: 18px; }
-        .close-modal {
-            background: rgba(255, 213, 79, 0.2);
-            color: #ffd54f;
-            padding: 8px 16px;
-            border-radius: 20px;
-            width: auto;
-        }
-        .modal-photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 10px;
-        }
-
-        /* Lightbox */
-        #lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1100;
-            align-items: center;
-            justify-content: center;
-        }
+        .close-modal { background: rgba(255, 213, 79, 0.2); color: #ffd54f; padding: 8px 16px; border-radius: 20px; width: auto; }
+        .modal-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+        #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 1100; align-items: center; justify-content: center; }
         #lightbox-img { max-width: 90%; max-height: 90%; object-fit: contain; }
-
-        /* Quiz Styles */
-        .quiz-question {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 16px;
-            margin-bottom: 15px;
-        }
-        .quiz-option {
-            display: block;
-            padding: 12px;
-            margin: 8px 0;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            cursor: pointer;
-            text-align: center;
-        }
-        .quiz-option:active { background: rgba(255, 213, 79, 0.3); }
-
-        /* Announcement */
-        .announcement {
-            background: rgba(255, 213, 79, 0.1);
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            border-left: 3px solid #ffd54f;
-        }
-
+        .quiz-question { background: rgba(0, 0, 0, 0.3); padding: 15px; border-radius: 16px; margin-bottom: 15px; }
+        .quiz-option { display: block; padding: 12px; margin: 8px 0; background: rgba(255, 255, 255, 0.1); border-radius: 12px; cursor: pointer; text-align: center; }
+        .announcement { background: rgba(255, 213, 79, 0.1); padding: 12px; border-radius: 12px; margin-bottom: 10px; border-left: 3px solid #ffd54f; }
+        .day-card { background: rgba(0, 0, 0, 0.2); border-radius: 16px; padding: 15px; margin-bottom: 15px; }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .mobile-bottom-nav { display: flex; }
             .main-content { padding: 15px; margin-bottom: 70px; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .two-column-grid { grid-template-columns: 1fr; gap: 10px; }
-            .stat-value { font-size: 20px; }
             .skills-grid-2 { grid-template-columns: 1fr; }
-            .card-header h3 { font-size: 14px; }
-            .skill-big-card .emoji { font-size: 32px; }
         }
     </style>
 </head>
 <body>
 
 <div class="dashboard-container">
-    <!-- Desktop Sidebar -->
     <div class="sidebar">
-        <div class="logo">
-            <h1>Digital Gashora</h1>
-            <p>Learn Computer Skills</p>
-        </div>
+        <div class="logo"><h1>Digital Gashora</h1><p>Learn Computer Skills</p></div>
         <div class="nav-item active" onclick="showSection('overview')">📊 Overview</div>
         <div class="nav-item" onclick="showSection('skills')">📚 All Skills</div>
         <div class="nav-item" onclick="showSection('schedule')">📅 Schedule</div>
@@ -421,15 +134,15 @@
         <div class="nav-item" onclick="showSection('videos')">🎬 Videos</div>
         <div class="nav-item" onclick="showSection('quizzes')">📝 Quizzes</div>
         <div class="nav-item" onclick="showSection('certificate')">📜 Certificate</div>
+        <div class="nav-item" onclick="showSection('report')">📋 Weekly Report</div>
         <div class="nav-item" onclick="showSection('admin')">⚙️ Admin Panel</div>
         <div class="nav-item" onclick="showSection('contact')">📞 Contact</div>
-        <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,213,79,0.2);">
-            <p style="font-size: 10px;">👨‍🏫 Manager: Ethandbana</p>
-            <p style="font-size: 10px;">👔 Supervisor: John Gakumba</p>
+        <div style="margin-top:20px; padding-top:15px; border-top:1px solid rgba(255,213,79,0.2);">
+            <p style="font-size:10px;">👨‍🏫 Manager: Ethandbana</p>
+            <p style="font-size:10px;">👔 Supervisor: John Gakumba</p>
         </div>
     </div>
 
-    <!-- Mobile Bottom Nav -->
     <div class="mobile-bottom-nav" id="mobileNav">
         <div class="mobile-nav-item" onclick="showSection('overview')"><span>📊</span><span>Home</span></div>
         <div class="mobile-nav-item" onclick="showSection('skills')"><span>📚</span><span>Skills</span></div>
@@ -437,6 +150,7 @@
         <div class="mobile-nav-item" onclick="showSection('gallery')"><span>📸</span><span>Gallery</span></div>
         <div class="mobile-nav-item" onclick="showSection('videos')"><span>🎬</span><span>Videos</span></div>
         <div class="mobile-nav-item" onclick="showSection('quizzes')"><span>📝</span><span>Quiz</span></div>
+        <div class="mobile-nav-item" onclick="showSection('report')"><span>📋</span><span>Report</span></div>
         <div class="mobile-nav-item" onclick="showSection('admin')"><span>⚙️</span><span>Admin</span></div>
     </div>
 
@@ -483,148 +197,150 @@
         </div>
 
         <!-- Skills Section -->
-        <div id="skillsSection" style="display:none;">
-            <div class="card"><div class="card-header"><h3>📚 All Skills</h3><span class="badge">Tap any to see photos</span></div>
-                <div class="skills-grid-2" id="allSkillsGrid"></div>
-            </div>
+        <div id="skillsSection" style="display:none;"><div class="card"><div class="card-header"><h3>📚 All Skills</h3><span class="badge">Tap any to see photos</span></div>
+            <div class="skills-grid-2" id="allSkillsGrid"></div></div>
         </div>
 
         <!-- Schedule Section -->
-        <div id="scheduleSection" style="display:none;">
-            <div class="card"><div class="card-header"><h3>📅 Full Schedule</h3><span class="badge">Week 1</span></div>
-                <div id="fullScheduleList"></div>
-            </div>
+        <div id="scheduleSection" style="display:none;"><div class="card"><div class="card-header"><h3>📅 Full Schedule</h3><span class="badge">Week 1</span></div>
+            <div id="fullScheduleList"></div></div>
         </div>
 
         <!-- Gallery Section -->
-        <div id="gallerySection" style="display:none;">
-            <div class="card"><div class="card-header"><h3>📸 Gallery</h3><span class="badge">All photos</span></div>
-                <div id="galleryGrid" class="photo-grid"></div>
-            </div>
+        <div id="gallerySection" style="display:none;"><div class="card"><div class="card-header"><h3>📸 Gallery</h3><span class="badge">All photos</span></div>
+            <div id="galleryGrid" class="photo-grid"></div></div>
         </div>
 
         <!-- Videos Section -->
-        <div id="videosSection" style="display:none;">
-            <div class="card"><div class="card-header"><h3>🎬 Video Tutorials</h3><span class="badge">Watch & Learn</span></div>
-                <div class="skills-grid-2" id="videoGrid"></div>
-                <div id="videoPlayerContainer" style="display:none; margin-top:15px;">
-                    <video id="videoPlayer" controls style="width:100%; border-radius:16px;"></video>
-                    <button onclick="closeVideo()" style="margin-top:10px;">Close Video</button>
-                </div>
-            </div>
+        <div id="videosSection" style="display:none;"><div class="card"><div class="card-header"><h3>🎬 Video Tutorials</h3><span class="badge">Watch & Learn</span></div>
+            <div class="skills-grid-2" id="videoGrid"></div>
+            <div id="videoPlayerContainer" style="display:none; margin-top:15px;">
+                <video id="videoPlayer" controls style="width:100%; border-radius:16px;"></video>
+                <button onclick="closeVideo()" style="margin-top:10px;">Close Video</button>
+            </div></div>
         </div>
 
         <!-- Quizzes Section -->
-        <div id="quizzesSection" style="display:none;">
-            <div class="card"><div class="card-header"><h3>📝 Quizzes</h3><span class="badge">Test yourself</span></div>
-                <div class="skills-grid-2" id="quizGrid"></div>
-                <div id="quizContainer" style="margin-top:15px;"></div>
-            </div>
+        <div id="quizzesSection" style="display:none;"><div class="card"><div class="card-header"><h3>📝 Quizzes</h3><span class="badge">Test yourself</span></div>
+            <div class="skills-grid-2" id="quizGrid"></div>
+            <div id="quizContainer" style="margin-top:15px;"></div></div>
         </div>
 
         <!-- Certificate Section -->
-        <div id="certificateSection" style="display:none;">
-            <div class="card" style="text-align:center;"><div class="card-header"><h3>📜 Certificate</h3><span class="badge">Complete all skills</span></div>
-                <p id="certStatusMsg">Login and complete all 6 skills!</p>
-                <div class="progress-bar"><div id="certProgress" class="progress-fill" style="width:0%"></div></div>
-                <p id="certProgressText">0/6 completed</p>
-                <div id="certificateDisplay" style="background:rgba(255,255,255,0.9); padding:30px; border-radius:16px; color:#333; display:none; margin-top:15px;">
-                    <h2 style="color:#ff8c00;">🎓 Certificate</h2>
-                    <p>Awarded to:</p>
-                    <h3 id="certNameDisplay">________</h3>
-                    <p>for completing all computer skills</p>
-                    <p id="certDateDisplay"></p>
-                    <button onclick="downloadCertificate()" style="margin-top:15px;">📥 Download</button>
+        <div id="certificateSection" style="display:none;"><div class="card" style="text-align:center;"><div class="card-header"><h3>📜 Certificate</h3><span class="badge">Complete all skills</span></div>
+            <p id="certStatusMsg">Login and complete all 6 skills!</p>
+            <div class="progress-bar"><div id="certProgress" class="progress-fill" style="width:0%"></div></div>
+            <p id="certProgressText">0/6 completed</p>
+            <div id="certificateDisplay" style="background:rgba(255,255,255,0.9); padding:30px; border-radius:16px; color:#333; display:none; margin-top:15px;">
+                <h2 style="color:#ff8c00;">🎓 Certificate</h2><p>Awarded to:</p><h3 id="certNameDisplay">________</h3>
+                <p>for completing all computer skills</p><p id="certDateDisplay"></p>
+                <button onclick="downloadCertificate()" style="margin-top:15px;">📥 Download</button>
+            </div></div>
+        </div>
+
+        <!-- Weekly Report Section -->
+        <div id="reportSection" style="display:none;">
+            <div class="card">
+                <div class="card-header">
+                    <h3>📋 Weekly IAP Report Sheet</h3>
+                    <span class="badge">Fill daily</span>
                 </div>
+                
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+                    <div style="flex: 1;"><label style="font-size: 12px;">From Date:</label><input type="date" id="reportFromDate" style="width:100%"></div>
+                    <div style="flex: 1;"><label style="font-size: 12px;">To Date:</label><input type="date" id="reportToDate" style="width:100%"></div>
+                    <div style="flex: 1;"><label style="font-size: 12px;">Student Name:</label><input type="text" id="reportStudentName" placeholder="Your name" style="width:100%"></div>
+                </div>
+
+                <div id="dailyEntriesContainer"></div>
+
+                <button onclick="addDailyEntry()" style="background: rgba(255,213,79,0.2); color: #ffd54f; margin-bottom: 15px;">➕ Add New Day</button>
+
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+                    <button onclick="saveWeeklyReport()" style="flex: 1;">💾 Save Report</button>
+                    <button onclick="printWeeklyReport()" style="flex: 1; background: #4caf50;">🖨️ Print / PDF</button>
+                    <button onclick="clearWeeklyReport()" style="flex: 1; background: #f44336;">🗑️ Clear</button>
+                </div>
+
+                <p style="font-size: 11px; opacity: 0.6; margin-top: 15px; text-align: center;">
+                    📌 Fill at least 3 tasks per day. This report is used during IAP final interview.
+                </p>
             </div>
         </div>
 
         <!-- Admin Panel Section -->
-        <div id="adminSection" style="display:none;">
-            <div class="card"><div class="card-header"><h3>⚙️ Admin Panel</h3><span class="badge">Manage Photos</span></div>
-                <p style="margin-bottom:10px;">📸 Add photos to any skill folder:</p>
-                <div class="skills-grid-2" id="adminSkillsList"></div>
-                <div id="adminUploadArea" style="margin-top:15px; display:none;">
-                    <p><strong id="selectedSkillFolder"></strong></p>
-                    <input type="text" id="photoName" placeholder="Photo description">
-                    <input type="text" id="photoFileName" placeholder="Filename (e.g., photo.jpg)">
-                    <button onclick="addPhotoToSkill()">➕ Add Photo to Skill</button>
-                    <p style="font-size:11px; opacity:0.7; margin-top:10px;">📁 Files go in: images/[skill-folder]/</p>
-                </div>
-                <div class="admin-panel" style="margin-top:15px;">
-                    <h4 style="color:#ffd54f;">📢 Post Announcement</h4>
-                    <input type="text" id="announceTitle" placeholder="Title">
-                    <textarea id="announceMsg" rows="2" placeholder="Message"></textarea>
-                    <button onclick="postAnnouncement()">Post Announcement</button>
-                </div>
+        <div id="adminSection" style="display:none;"><div class="card"><div class="card-header"><h3>⚙️ Admin Panel</h3><span class="badge">Manage Photos</span></div>
+            <p style="margin-bottom:10px;">📸 Add photos to any skill folder:</p>
+            <div class="skills-grid-2" id="adminSkillsList"></div>
+            <div id="adminUploadArea" style="margin-top:15px; display:none;">
+                <p><strong id="selectedSkillFolder"></strong></p>
+                <input type="text" id="photoName" placeholder="Photo description">
+                <input type="text" id="photoFileName" placeholder="Filename (e.g., photo.jpg)">
+                <button onclick="addPhotoToSkill()">➕ Add Photo to Skill</button>
+                <p style="font-size:11px; opacity:0.7; margin-top:10px;">📁 Files go in: images/[skill-folder]/</p>
             </div>
+            <div class="admin-panel" style="margin-top:15px;">
+                <h4 style="color:#ffd54f;">📢 Post Announcement</h4>
+                <input type="text" id="announceTitle" placeholder="Title">
+                <textarea id="announceMsg" rows="2" placeholder="Message"></textarea>
+                <button onclick="postAnnouncement()">Post Announcement</button>
+            </div></div>
         </div>
 
         <!-- Contact Section -->
-        <div id="contactSection" style="display:none;">
-            <div class="card"><div class="card-header"><h3>📞 Contact Us</h3></div>
-                <p>📍 Gashora Centre, Bugesera, Rwanda</p>
-                <p>📧 Manager: iamkushdj@gmail.com</p>
-                <p>👔 Supervisor: John Gakumba</p>
-                <div style="margin-top:15px;"><h4 style="color:#ffd54f;">Send Message</h4>
-                    <input type="text" id="contactNameField" placeholder="Your name">
-                    <input type="email" id="contactEmailField" placeholder="Your email">
-                    <textarea id="contactMsgField" rows="3" placeholder="Message"></textarea>
-                    <button onclick="sendContactMessage()">Send Message</button>
-                    <div id="contactMsgStatus" style="margin-top:10px;"></div>
-                </div>
-            </div>
+        <div id="contactSection" style="display:none;"><div class="card"><div class="card-header"><h3>📞 Contact Us</h3></div>
+            <p>📍 Gashora Centre, Bugesera, Rwanda</p>
+            <p>📧 Manager: iamkushdj@gmail.com</p>
+            <p>👔 Supervisor: John Gakumba</p>
+            <div style="margin-top:15px;"><h4 style="color:#ffd54f;">Send Message</h4>
+                <input type="text" id="contactNameField" placeholder="Your name">
+                <input type="email" id="contactEmailField" placeholder="Your email">
+                <textarea id="contactMsgField" rows="3" placeholder="Message"></textarea>
+                <button onclick="sendContactMessage()">Send Message</button>
+                <div id="contactMsgStatus" style="margin-top:10px;"></div>
+            </div></div>
         </div>
 
         <div class="card" style="text-align:center;"><p>© 2026 Digital Gashora | Gashora Centre, Bugesera</p><p style="font-size:10px;">An initiative of Journey House Actions Rwanda (JHA)</p></div>
     </div>
 </div>
 
-<!-- Modals -->
 <div id="skillModal" class="modal"><div class="modal-content"><div class="modal-header"><h2 id="modalTitle">📸 Photos</h2><button class="close-modal" onclick="closeModal()">Close</button></div><div id="modalPhotosGrid" class="modal-photo-grid"></div></div></div>
 <div id="lightbox" onclick="closeLightbox()"><img id="lightboxImg"></div>
 
 <script>
-    // ============ DATA ============
+    // ============ SKILLS DATA WITH YOUR PHOTOS ============
     const skillsData = {
-        'mouse-skills': { name: '🖱️ Mouse Skills', desc: 'Click, double-click, right-click', emoji: '🖱️', photos: [] },
-        'keyboard-basics': { name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts, volume', emoji: '⌨️', photos: [] },
-        'file-management': { name: '📁 File Management', desc: 'Folders, organizing', emoji: '📁', photos: [] },
-        'computer-basics': { name: '🖥️ Computer Basics', desc: 'Startup, shutdown, desktop', emoji: '🖥️', photos: [] },
+        'mouse-skills': { name: '🖱️ Mouse Skills', desc: 'Click, double-click, right-click', emoji: '🖱️', photos: [
+            { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Mouse practice session' },
+            { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Learning to click' },
+            { file: '679154124_959160750042124_7303355069400183008_n.jpg', name: 'Mouse grip practice' },
+            { file: '679633486_989217467408744_6350003852066935655_n.jpg', name: 'Clicking exercise' },
+            { file: '686100462_4355884874633385_3740765188386873292_n.jpg', name: 'Mouse control activity' }
+        ] },
+        'keyboard-basics': { name: '⌨️ Keyboard Basics', desc: 'Typing, shortcuts, volume', emoji: '⌨️', photos: [
+            { file: 'keyboard1.png', name: 'Keyboard practice' },
+            { file: 'keyboard2.png', name: 'Learning shortcuts' }
+        ] },
+        'file-management': { name: '📁 File Management', desc: 'Folders, organizing', emoji: '📁', photos: [
+            { file: 'photo1.png', name: 'Creating folders' },
+            { file: '681199098_960710736661282_7083299998910568586_n.jpg', name: 'Folder organization' },
+            { file: '683295558_1479957990299428_6466542296095616277_n.jpg', name: 'File sorting' },
+            { file: '683600022_837841948784852_6065901694937168926_n.jpg', name: 'Managing documents' }
+        ] },
+        'computer-basics': { name: '🖥️ Computer Basics', desc: 'Startup, shutdown, desktop', emoji: '🖥️', photos: [
+            { file: '674466373_932257053134443_8229112906871439629_n.jpg', name: 'Computer startup' },
+            { file: '674994811_981099904335215_7658704008394680199_n.jpg', name: 'Desktop navigation' },
+            { file: '675948469_1339105404771762_6931199817119341293_n.jpg', name: 'Hardware introduction' },
+            { file: 'photo2.png', name: 'Shutdown procedure' },
+            { file: '681199098_960710736661282_7083299998910568586_n.jpg', name: 'Computer parts' },
+            { file: '683295558_1479957990299428_6466542296095616277_n.jpg', name: 'Using the desktop' },
+            { file: '683600022_837841948784852_6065901694937168926_n.jpg', name: 'Computer basics review' }
+        ] },
         'typing-documents': { name: '📝 Typing Documents', desc: 'Notepad, saving files', emoji: '📝', photos: [] },
         'sound-display': { name: '🔊 Sound & Display', desc: 'Volume, mute, brightness', emoji: '🔊', photos: [] }
     };
-    const folderMap = { '🖱️ Mouse Skills':'mouse-skills', '⌨️ Keyboard Basics':'keyboard-basics', '📁 File Management':'file-management', '🖥️ Computer Basics':'computer-basics', '📝 Typing Documents':'typing-documents', '🔊 Sound & Display':'sound-display' };
 
-    // Load photos from localStorage
-    function loadAllPhotos() {
-        for (let skill in skillsData) {
-            let saved = localStorage.getItem(`photos_${skill}`);
-            if (saved) skillsData[skill].photos = JSON.parse(saved);
-            else skillsData[skill].photos = [];
-        }
-        updatePhotoCount();
-        refreshAllDisplays();
-    }
-
-    function savePhotos(skill) {
-        localStorage.setItem(`photos_${skill}`, JSON.stringify(skillsData[skill].photos));
-        updatePhotoCount();
-        refreshAllDisplays();
-    }
-
-    function updatePhotoCount() {
-        let total = 0;
-        for (let skill in skillsData) total += skillsData[skill].photos.length;
-        document.getElementById('photoCount').innerHTML = total;
-    }
-
-    function addPhoto(skillKey, fileName, caption) {
-        skillsData[skillKey].photos.push({ file: fileName, name: caption });
-        savePhotos(skillKey);
-    }
-
-    // Student Progress
     let currentStudent = localStorage.getItem('currentStudent') || '';
     let studentProgress = [];
 
@@ -641,7 +357,7 @@
     }
 
     function markSkillComplete(skillName) {
-        if (!currentStudent) { alert('Please enter your name in "Your Progress" section first!'); return false; }
+        if (!currentStudent) { alert('Please enter your name first!'); return false; }
         if (!studentProgress.includes(skillName)) {
             studentProgress.push(skillName);
             localStorage.setItem(`progress_${currentStudent}`, JSON.stringify(studentProgress));
@@ -682,9 +398,13 @@
         document.getElementById('pointsCount').innerHTML = points;
     }
 
-    // Refresh all UI
+    function updatePhotoCount() {
+        let total = 0;
+        for (let skill in skillsData) total += skillsData[skill].photos.length;
+        document.getElementById('photoCount').innerHTML = total;
+    }
+
     function refreshAllDisplays() {
-        // Skills Overview Grid (big tap targets)
         let overviewGrid = document.getElementById('skillsOverviewGrid');
         overviewGrid.innerHTML = '';
         for (let [key, skill] of Object.entries(skillsData)) {
@@ -695,7 +415,6 @@
             overviewGrid.appendChild(div);
         }
         
-        // All Skills Grid
         let allGrid = document.getElementById('allSkillsGrid');
         if (allGrid) {
             allGrid.innerHTML = '';
@@ -708,7 +427,6 @@
             }
         }
         
-        // Gallery
         let galleryGrid = document.getElementById('galleryGrid');
         galleryGrid.innerHTML = '';
         for (let [key, skill] of Object.entries(skillsData)) {
@@ -720,9 +438,8 @@
                 galleryGrid.appendChild(div);
             });
         }
-        if (galleryGrid.children.length === 0) galleryGrid.innerHTML = '<p style="text-align:center;">No photos yet. Use Admin Panel to add!</p>';
+        if (galleryGrid.children.length === 0) galleryGrid.innerHTML = '<p style="text-align:center;">No photos yet.</p>';
         
-        // Admin Skills List
         let adminList = document.getElementById('adminSkillsList');
         if (adminList) {
             adminList.innerHTML = '';
@@ -735,7 +452,6 @@
             }
         }
         
-        // Schedule
         let schedule = [
             { day: 'Monday', lesson: 'Mouse Skills', status: 'completed' },
             { day: 'Tuesday', lesson: 'Keyboard Basics', status: 'completed' },
@@ -752,14 +468,14 @@
             fullScheduleHtml += `<div class="schedule-item"><span class="schedule-day">${item.day}</span><span>${item.lesson}</span><span class="${statusClass}">${statusText}</span></div>`;
         });
         document.getElementById('scheduleList').innerHTML = scheduleHtml;
-        if (document.getElementById('fullScheduleList')) document.getElementById('fullScheduleList').innerHTML = fullScheduleHtml;
+        let fullScheduleEl = document.getElementById('fullScheduleList');
+        if (fullScheduleEl) fullScheduleEl.innerHTML = fullScheduleHtml;
         
-        // Today's Lesson
         let today = schedule.find(d => d.status === 'today');
         if (today) {
             document.getElementById('todayDateStr').innerHTML = new Date().toDateString();
             document.getElementById('todayTitle').innerHTML = today.lesson;
-            document.getElementById('todayDesc').innerHTML = `Today we are learning ${today.lesson}. Tap the skill above to see photos!`;
+            document.getElementById('todayDesc').innerHTML = `Today: ${today.lesson}. Tap the skill above to see photos!`;
             let skillKey = Object.keys(skillsData).find(k => skillsData[k].name === today.lesson);
             let previewContainer = document.getElementById('todayPhotosPreview');
             previewContainer.innerHTML = '';
@@ -770,12 +486,9 @@
                     div.innerHTML = `<img src="images/${skillKey}/${photo.file}" onerror="this.style.display='none'"><p>${photo.name}</p>`;
                     previewContainer.appendChild(div);
                 });
-            } else {
-                previewContainer.innerHTML = '<p style="font-size:11px;">📸 No photos yet</p>';
             }
         }
         
-        // Videos
         let videoGrid = document.getElementById('videoGrid');
         if (videoGrid) {
             videoGrid.innerHTML = '';
@@ -789,7 +502,6 @@
             });
         }
         
-        // Quizzes
         let quizGrid = document.getElementById('quizGrid');
         if (quizGrid) {
             quizGrid.innerHTML = '';
@@ -803,14 +515,13 @@
             });
         }
         
-        // Announcements
-        loadAnnouncements();
+        updatePhotoCount();
     }
 
     function showSkillPhotos(key, name, photos) {
         document.getElementById('modalTitle').innerHTML = `📸 ${name}`;
         let grid = document.getElementById('modalPhotosGrid');
-        if (photos.length === 0) grid.innerHTML = '<p style="text-align:center; padding:40px;">📸 No photos yet. Add using Admin Panel!</p>';
+        if (photos.length === 0) grid.innerHTML = '<p style="text-align:center; padding:40px;">📸 No photos yet.</p>';
         else {
             grid.innerHTML = '';
             photos.forEach(photo => {
@@ -824,7 +535,6 @@
         openModal();
     }
 
-    // Admin Functions
     function showAdminUpload(key, name) {
         document.getElementById('adminUploadArea').style.display = 'block';
         document.getElementById('selectedSkillFolder').innerHTML = `Add photo to: ${name}`;
@@ -836,14 +546,13 @@
         let fileName = document.getElementById('photoFileName').value.trim();
         let caption = document.getElementById('photoName').value.trim();
         if (!fileName || !caption) { alert('Please enter both filename and caption'); return; }
-        addPhoto(skillKey, fileName, caption);
+        skillsData[skillKey].photos.push({ file: fileName, name: caption });
+        refreshAllDisplays();
         document.getElementById('photoFileName').value = '';
         document.getElementById('photoName').value = '';
-        alert('Photo added! (Make sure the file exists in images/' + skillKey + '/)');
-        refreshAllDisplays();
+        alert('Photo added!');
     }
 
-    // Quiz Functions
     let currentQuizSkill = null;
     function startQuiz(skillName) {
         currentQuizSkill = skillName;
@@ -865,21 +574,16 @@
             });
             html += `<input type="hidden" id="quizAns${i}" value="-1"></div>`;
         });
-        html += `<button onclick="submitQuiz()">Submit Answers</button> <button onclick="cancelQuiz()">Cancel</button>`;
+        html += `<button onclick="submitQuiz()">Submit</button> <button onclick="cancelQuiz()">Cancel</button>`;
         document.getElementById('quizContainer').innerHTML = html;
     }
 
-    let quizAnswers = {};
     function selectQuizAnswer(qIndex, optIndex) {
         document.getElementById(`quizAns${qIndex}`).value = optIndex;
-        let opts = document.querySelectorAll(`.quiz-question:has(input#quizAns${qIndex}) .quiz-option`);
-        opts.forEach(opt => opt.style.background = 'rgba(255,255,255,0.1)');
-        opts[optIndex].style.background = 'rgba(255,213,79,0.3)';
     }
 
     function submitQuiz() {
-        let questions = currentQuizSkill === '⌨️ Keyboard Basics' ? 
-            [{ correct: 1 }, { correct: 1 }] : [{ correct: 0 }, { correct: 1 }];
+        let questions = currentQuizSkill === '⌨️ Keyboard Basics' ? [{ correct: 1 }, { correct: 1 }] : [{ correct: 0 }, { correct: 1 }];
         let score = 0;
         for (let i = 0; i < questions.length; i++) {
             let ans = parseInt(document.getElementById(`quizAns${i}`).value);
@@ -894,14 +598,13 @@
             markSkillComplete(skillName);
             updateStats();
         } else {
-            result += ' 📚 Try again after reviewing the lesson!';
+            result += ' 📚 Try again!';
         }
-        document.getElementById('quizContainer').innerHTML = `<div class="card"><p>${result}</p><button onclick="cancelQuiz()">Try Another Quiz</button></div>`;
+        document.getElementById('quizContainer').innerHTML = `<div class="card"><p>${result}</p><button onclick="cancelQuiz()">Try Another</button></div>`;
     }
 
     function cancelQuiz() { document.getElementById('quizContainer').innerHTML = ''; currentQuizSkill = null; }
 
-    // Video
     function playDemoVideo() {
         let player = document.getElementById('videoPlayerContainer');
         let video = document.getElementById('videoPlayer');
@@ -911,36 +614,178 @@
     }
     function closeVideo() { document.getElementById('videoPlayerContainer').style.display = 'none'; document.getElementById('videoPlayer').pause(); }
 
-    // Announcements
-    let announcements = JSON.parse(localStorage.getItem('announcements') || '[{"title":"Welcome!","message":"Tap any skill to start learning!","date":"' + new Date().toDateString() + '"}]');
-    function loadAnnouncements() {
-        let container = document.getElementById('announcementsList');
-        if (container) {
-            container.innerHTML = '';
-            announcements.forEach(a => {
-                container.innerHTML += `<div class="announcement"><strong>📢 ${a.title}</strong><br><small>${a.date}</small><p>${a.message}</p></div>`;
+    // ============ WEEKLY REPORT SYSTEM ============
+    let dailyEntries = [];
+
+    function loadWeeklyReport() {
+        let saved = localStorage.getItem('weeklyReport');
+        if (saved) {
+            let data = JSON.parse(saved);
+            document.getElementById('reportFromDate').value = data.fromDate || '';
+            document.getElementById('reportToDate').value = data.toDate || '';
+            document.getElementById('reportStudentName').value = data.studentName || '';
+            dailyEntries = data.entries || [];
+        } else {
+            dailyEntries = [];
+        }
+        renderDailyEntries();
+    }
+
+    function renderDailyEntries() {
+        let container = document.getElementById('dailyEntriesContainer');
+        if (!container) return;
+        if (dailyEntries.length === 0) {
+            container.innerHTML = '<p style="text-align:center; opacity:0.7;">No days added. Click "Add New Day" to start.</p>';
+            return;
+        }
+        container.innerHTML = '';
+        dailyEntries.forEach((entry, dayIndex) => {
+            let dayCard = document.createElement('div');
+            dayCard.className = 'card';
+            dayCard.style.marginBottom = '15px';
+            dayCard.style.padding = '15px';
+            dayCard.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+                    <h4 style="color: #ffd54f;">📅 Day ${dayIndex + 1}</h4>
+                    <input type="date" value="${entry.date || ''}" class="day-date-input" data-day="${dayIndex}" style="width: auto; padding: 5px 10px;">
+                    <button class="remove-day-btn" data-day="${dayIndex}" style="background: #f44336; width: auto; padding: 5px 15px;">Remove</button>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <label>Hours worked:</label>
+                    <input type="number" value="${entry.hours || ''}" class="day-hours-input" data-day="${dayIndex}" placeholder="Hours" style="width: 100px;">
+                </div>
+                <div>
+                    <label>📝 Tasks Performed (at least 3):</label>
+                    <div class="tasks-container">
+                        ${[0,1,2,3,4].map((taskIdx, i) => `
+                            <input type="text" class="task-input" data-day="${dayIndex}" data-task="${i}" value="${entry.tasks?.[i] || ''}" placeholder="Task ${i+1}" style="margin: 5px 0;">
+                        `).join('')}
+                    </div>
+                </div>
+                <div style="margin-top: 10px;">
+                    <label>🔧 Tools, Materials, Equipment & Consumables:</label>
+                    <textarea class="tools-input" data-day="${dayIndex}" rows="2" placeholder="List all tools, materials, equipment used..." style="margin-top: 5px;">${entry.tools || ''}</textarea>
+                </div>
+            `;
+            container.appendChild(dayCard);
+        });
+        
+        document.querySelectorAll('.day-date-input').forEach(input => {
+            input.addEventListener('change', function() {
+                let day = parseInt(this.dataset.day);
+                dailyEntries[day].date = this.value;
             });
+        });
+        document.querySelectorAll('.day-hours-input').forEach(input => {
+            input.addEventListener('change', function() {
+                let day = parseInt(this.dataset.day);
+                dailyEntries[day].hours = this.value;
+            });
+        });
+        document.querySelectorAll('.task-input').forEach(input => {
+            input.addEventListener('change', function() {
+                let day = parseInt(this.dataset.day);
+                let taskIdx = parseInt(this.dataset.task);
+                if (!dailyEntries[day].tasks) dailyEntries[day].tasks = [];
+                dailyEntries[day].tasks[taskIdx] = this.value;
+            });
+        });
+        document.querySelectorAll('.tools-input').forEach(textarea => {
+            textarea.addEventListener('change', function() {
+                let day = parseInt(this.dataset.day);
+                dailyEntries[day].tools = this.value;
+            });
+        });
+        document.querySelectorAll('.remove-day-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                let day = parseInt(this.dataset.day);
+                dailyEntries.splice(day, 1);
+                renderDailyEntries();
+            });
+        });
+    }
+
+    function addDailyEntry() {
+        dailyEntries.push({ date: new Date().toISOString().split('T')[0], hours: '', tasks: ['', '', ''], tools: '' });
+        renderDailyEntries();
+    }
+
+    function saveWeeklyReport() {
+        let reportData = {
+            fromDate: document.getElementById('reportFromDate')?.value || '',
+            toDate: document.getElementById('reportToDate')?.value || '',
+            studentName: document.getElementById('reportStudentName')?.value || '',
+            entries: dailyEntries,
+            lastUpdated: new Date().toISOString()
+        };
+        localStorage.setItem('weeklyReport', JSON.stringify(reportData));
+        alert('✅ Report saved!');
+    }
+
+    function printWeeklyReport() {
+        let fromDate = document.getElementById('reportFromDate')?.value || '_____';
+        let toDate = document.getElementById('reportToDate')?.value || '_____';
+        let studentName = document.getElementById('reportStudentName')?.value || '_____';
+        let tasksHtml = '';
+        dailyEntries.forEach((entry, i) => {
+            let dateStr = entry.date ? new Date(entry.date).toLocaleDateString() : '_____';
+            let tasksList = (entry.tasks?.filter(t => t) || []).map((t, idx) => `${idx+1}. ${t}`).join('<br>') || '_____';
+            tasksHtml += `
+                <div style="border:1px solid #ccc; padding:15px; margin-bottom:15px; border-radius:8px;">
+                    <h3>Day ${i+1} - ${dateStr}</h3>
+                    <p><strong>Hours worked:</strong> ${entry.hours || '_____'}</p>
+                    <p><strong>Tasks:</strong><br>${tasksList}</p>
+                    <p><strong>Tools & Materials:</strong><br>${entry.tools || '_____'}</p>
+                </div>
+            `;
+        });
+        let printWindow = window.open('', '_blank');
+        printWindow.document.write(`
+            <!DOCTYPE html><html><head><title>IAP Weekly Report</title>
+            <style>body{font-family:Arial;padding:30px;} h1{color:#ff8c00;} .header{margin-bottom:30px;} @media print{button{display:none;}}</style>
+            </head><body>
+            <h1>Digital Gashora - IAP Weekly Report</h1>
+            <div class="header"><p><strong>Student:</strong> ${studentName}</p><p><strong>Period:</strong> ${fromDate} to ${toDate}</p><p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p></div>
+            <div><p><strong>Supervisor:</strong> John Gakumba</p><p><strong>Manager:</strong> Ethandbana</p></div>
+            ${tasksHtml}
+            <div style="margin-top:40px; text-align:center;"><p>_________________________</p><p>Student Signature</p></div>
+            </body></html>
+        `);
+        printWindow.document.close();
+        printWindow.print();
+    }
+
+    function clearWeeklyReport() {
+        if (confirm('Clear all report data?')) {
+            localStorage.removeItem('weeklyReport');
+            dailyEntries = [];
+            document.getElementById('reportFromDate').value = '';
+            document.getElementById('reportToDate').value = '';
+            document.getElementById('reportStudentName').value = '';
+            renderDailyEntries();
+            alert('Cleared.');
         }
     }
+
+    let announcements = JSON.parse(localStorage.getItem('announcements') || '[{"title":"Welcome!","message":"Tap any skill to start!","date":"' + new Date().toDateString() + '"}]');
     function postAnnouncement() {
-        let title = document.getElementById('announceTitle').value;
-        let msg = document.getElementById('announceMsg').value;
+        let title = document.getElementById('announceTitle')?.value;
+        let msg = document.getElementById('announceMsg')?.value;
         if (title && msg) {
             announcements.unshift({ title, message: msg, date: new Date().toDateString() });
             localStorage.setItem('announcements', JSON.stringify(announcements));
-            loadAnnouncements();
             document.getElementById('announceTitle').value = '';
             document.getElementById('announceMsg').value = '';
-            alert('Announcement posted!');
+            alert('Posted!');
         } else alert('Fill both fields');
     }
 
     function sendContactMessage() {
-        let name = document.getElementById('contactNameField').value;
-        let email = document.getElementById('contactEmailField').value;
-        let msg = document.getElementById('contactMsgField').value;
+        let name = document.getElementById('contactNameField')?.value;
+        let email = document.getElementById('contactEmailField')?.value;
+        let msg = document.getElementById('contactMsgField')?.value;
         if (name && email && msg) {
-            document.getElementById('contactMsgStatus').innerHTML = '<span style="color:#ffd54f;">✅ Message sent!</span>';
+            document.getElementById('contactMsgStatus').innerHTML = '<span style="color:#ffd54f;">✅ Sent!</span>';
             document.getElementById('contactNameField').value = '';
             document.getElementById('contactEmailField').value = '';
             document.getElementById('contactMsgField').value = '';
@@ -949,7 +794,7 @@
 
     function downloadCertificate() {
         if (studentProgress.length >= 6) {
-            let certHtml = `<!DOCTYPE html><html><head><title>Certificate</title><style>body{font-family:Arial;text-align:center;padding:50px;}.cert{border:10px solid gold;padding:40px;}</style></head><body><div class="cert"><h1>🎓 Certificate of Completion</h1><p>This certifies that</p><h2>${currentStudent}</h2><p>has completed all 6 computer skills at Digital Gashora</p><p>Date: ${new Date().toDateString()}</p></div></body></html>`;
+            let certHtml = `<!DOCTYPE html><html><head><title>Certificate</title><style>body{font-family:Arial;text-align:center;padding:50px;}.cert{border:10px solid gold;padding:40px;}</style></head><body><div class="cert"><h1>🎓 Certificate</h1><p>Awarded to</p><h2>${currentStudent}</h2><p>for completing all computer skills</p><p>Date: ${new Date().toDateString()}</p></div></body></html>`;
             let blob = new Blob([certHtml], {type: 'text/html'});
             let a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
@@ -958,13 +803,13 @@
         } else alert('Complete all 6 skills first!');
     }
 
-    // Navigation & Utilities
     function showSection(section) {
-        let sections = ['overview', 'skills', 'schedule', 'gallery', 'videos', 'quizzes', 'certificate', 'admin', 'contact'];
+        let sections = ['overview', 'skills', 'schedule', 'gallery', 'videos', 'quizzes', 'certificate', 'report', 'admin', 'contact'];
         sections.forEach(s => { let el = document.getElementById(s + 'Section'); if (el) el.style.display = 'none'; });
         document.getElementById(section + 'Section').style.display = 'block';
         document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
         document.querySelectorAll('.mobile-nav-item').forEach(item => item.classList.remove('active'));
+        if (section === 'report') loadWeeklyReport();
         window.scrollTo(0, 0);
     }
 
@@ -980,7 +825,6 @@
     setInterval(updateDateTime, 1000);
     updateDateTime();
 
-    // Load saved student
     if (currentStudent) {
         document.getElementById('studentNameInput').value = currentStudent;
         let saved = localStorage.getItem(`progress_${currentStudent}`);
@@ -990,7 +834,6 @@
         updateStats();
     }
 
-    loadAllPhotos();
     refreshAllDisplays();
 </script>
 </body>
