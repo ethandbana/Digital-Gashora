@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Digital Gashora | Complete Learning Platform + IAP Report</title>
+    <title>Digital Gashora | Complete Learning Platform</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta name="description" content="Digital Gashora - Teaching computer skills to children in Gashora Centre, Bugesera, Rwanda">
+    <meta name="author" content="Ethandbana">
+    <meta property="og:title" content="Digital Gashora | Computer Skills Training">
+    <meta property="og:description" content="Learn computer skills with our interactive platform">
+    <meta property="og:type" content="website">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -14,7 +20,60 @@
             background-size: cover;
             position: relative;
             overflow-x: hidden;
+            transition: all 0.3s ease;
         }
+        
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s;
+        }
+        .loader.hide { opacity: 0; pointer-events: none; }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,213,79,0.3);
+            border-top-color: #ffd54f;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* Confirmation Dialog */
+        .confirm-dialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1500;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .confirm-content {
+            background: rgba(0,0,0,0.9);
+            padding: 25px;
+            border-radius: 20px;
+            max-width: 300px;
+            text-align: center;
+            border: 1px solid #ffd54f;
+        }
+        .confirm-buttons { display: flex; gap: 10px; margin-top: 20px; justify-content: center; }
+        .confirm-buttons button { width: auto; padding: 8px 20px; }
+        
         .dashboard-container { display: flex; min-height: 100vh; position: relative; z-index: 1; }
         .sidebar {
             width: 280px;
@@ -53,13 +112,26 @@
             font-size: 10px;
             color: rgba(255, 255, 255, 0.7);
             min-width: 60px;
+            transition: all 0.2s;
         }
+        .mobile-nav-item:active { transform: scale(0.95); }
         .mobile-nav-item span:first-child { font-size: 20px; }
         .mobile-nav-item.active { background: rgba(255, 213, 79, 0.2); color: #ffd54f; }
         .logo { text-align: center; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 1px solid rgba(255, 213, 79, 0.2); }
         .logo h1 { font-size: 22px; background: linear-gradient(135deg, #ffd54f, #fff); -webkit-background-clip: text; background-clip: text; color: transparent; }
         .logo p { font-size: 10px; opacity: 0.7; }
-        .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; color: #fff; border-radius: 10px; margin-bottom: 5px; cursor: pointer; }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            color: #fff;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-item:active { transform: scale(0.98); background: rgba(255,213,79,0.2);}
         .nav-item:hover, .nav-item.active { background: rgba(255, 213, 79, 0.15); }
         .main-content { flex: 1; padding: 20px; overflow-x: hidden; margin-bottom: 0; }
         .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
@@ -67,17 +139,42 @@
         .welcome-section p { opacity: 0.7; font-size: 12px; }
         .date-time { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(8px); padding: 8px 15px; border-radius: 20px; font-size: 12px; }
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
-        .stat-card { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(8px); border-radius: 16px; padding: 15px; text-align: center; cursor: pointer; border: 1px solid rgba(255, 213, 79, 0.1); }
-        .stat-card:active { transform: scale(0.98); }
+        .stat-card {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 213, 79, 0.1);
+            transition: all 0.2s;
+        }
+        .stat-card:active { transform: scale(0.97); }
         .stat-icon { font-size: 28px; margin-bottom: 5px; }
         .stat-value { font-size: 24px; font-weight: bold; color: #ffd54f; }
         .stat-label { font-size: 10px; opacity: 0.7; }
-        .card { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(8px); border-radius: 20px; padding: 15px; margin-bottom: 20px; border: 1px solid rgba(255, 213, 79, 0.1); }
+        .card {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 213, 79, 0.1);
+            transition: all 0.2s;
+        }
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); flex-wrap: wrap; gap: 10px; }
         .card-header h3 { color: #ffd54f; font-size: 16px; }
         .badge { background: rgba(255, 213, 79, 0.15); padding: 4px 10px; border-radius: 20px; font-size: 10px; }
         .two-column-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
-        .skill-big-card { background: rgba(0, 0, 0, 0.4); border-radius: 16px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; border: 1px solid rgba(255, 213, 79, 0.15); }
+        .skill-big-card {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid rgba(255, 213, 79, 0.15);
+        }
         .skill-big-card:active { transform: scale(0.97); background: rgba(255, 213, 79, 0.2); }
         .skill-big-card .emoji { font-size: 40px; display: block; margin-bottom: 8px; }
         .skill-big-card h4 { font-size: 14px; margin-bottom: 5px; }
@@ -90,28 +187,54 @@
         .status-completed { color: #4caf50; }
         .status-today { color: #ffd54f; }
         .status-upcoming { opacity: 0.5; }
-        .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
-        .photo-card { background: rgba(0, 0, 0, 0.3); border-radius: 12px; overflow: hidden; cursor: pointer; text-align: center; }
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; max-height: 300px; overflow-y: auto; }
+        .photo-card { background: rgba(0, 0, 0, 0.3); border-radius: 12px; overflow: hidden; cursor: pointer; text-align: center; transition: all 0.2s; }
+        .photo-card:active { transform: scale(0.98); }
         .photo-card img { width: 100%; height: 80px; object-fit: cover; }
         .photo-card p { padding: 6px; font-size: 10px; }
-        .admin-panel { background: rgba(0, 0, 0, 0.5); border-radius: 16px; padding: 15px; margin-top: 15px; }
-        input, textarea, select { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 213, 79, 0.3); color: white; padding: 12px; border-radius: 12px; width: 100%; font-size: 14px; margin-bottom: 10px; }
-        input[type="date"] { width: auto; }
-        button, .button { background: linear-gradient(135deg, #ffd54f, #ffb347); color: #1a1a2e; padding: 12px 20px; border-radius: 30px; border: none; cursor: pointer; font-weight: bold; font-size: 14px; width: 100%; }
+        input, textarea, select { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 213, 79, 0.3); color: white; padding: 12px; border-radius: 12px; width: 100%; font-size: 14px; margin-bottom: 10px; transition: all 0.2s; }
+        input:focus, textarea:focus { outline: none; border-color: #ffd54f; }
+        button, .button {
+            background: linear-gradient(135deg, #ffd54f, #ffb347);
+            color: #1a1a2e;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            width: 100%;
+            transition: all 0.2s;
+        }
         button:active, .button:active { transform: scale(0.98); }
         .remove-day-btn { background: #f44336 !important; width: auto !important; padding: 5px 15px !important; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); z-index: 1000; overflow-y: auto; }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            overflow-y: auto;
+        }
         .modal-content { background: rgba(0, 0, 0, 0.9); margin: 40px 15px; padding: 20px; border-radius: 24px; border: 1px solid rgba(255, 213, 79, 0.3); }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
         .modal-header h2 { color: #ffd54f; font-size: 18px; }
         .close-modal { background: rgba(255, 213, 79, 0.2); color: #ffd54f; padding: 8px 16px; border-radius: 20px; width: auto; }
-        .modal-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+        .modal-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; max-height: 500px; overflow-y: auto; }
         #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 1100; align-items: center; justify-content: center; }
         #lightbox-img { max-width: 90%; max-height: 90%; object-fit: contain; }
         .quiz-question { background: rgba(0, 0, 0, 0.3); padding: 15px; border-radius: 16px; margin-bottom: 15px; }
-        .quiz-option { display: block; padding: 12px; margin: 8px 0; background: rgba(255, 255, 255, 0.1); border-radius: 12px; cursor: pointer; text-align: center; }
+        .quiz-option { display: block; padding: 12px; margin: 8px 0; background: rgba(255, 255, 255, 0.1); border-radius: 12px; cursor: pointer; text-align: center; transition: all 0.2s; }
+        .quiz-option:active { transform: scale(0.98); background: rgba(255,213,79,0.3); }
         .announcement { background: rgba(255, 213, 79, 0.1); padding: 12px; border-radius: 12px; margin-bottom: 10px; border-left: 3px solid #ffd54f; }
         .day-card { background: rgba(0, 0, 0, 0.2); border-radius: 16px; padding: 15px; margin-bottom: 15px; }
+        .chart-container { height: 200px; margin: 15px 0; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card, .stat-card, .skill-big-card { animation: fadeIn 0.3s ease; }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .mobile-bottom-nav { display: flex; }
@@ -123,6 +246,20 @@
     </style>
 </head>
 <body>
+
+<!-- Loading Animation -->
+<div id="loader" class="loader"><div class="spinner"></div></div>
+
+<!-- Confirmation Dialog -->
+<div id="confirmDialog" class="confirm-dialog">
+    <div class="confirm-content">
+        <p id="confirmMessage">Are you sure?</p>
+        <div class="confirm-buttons">
+            <button id="confirmYes" style="background: #4caf50;">Yes</button>
+            <button id="confirmNo" style="background: #f44336;">No</button>
+        </div>
+    </div>
+</div>
 
 <div class="dashboard-container">
     <div class="sidebar">
@@ -194,6 +331,14 @@
                     <div id="scheduleList"></div>
                 </div>
             </div>
+            
+            <!-- Progress Chart -->
+            <div class="card">
+                <div class="card-header"><h3>📊 Your Progress Chart</h3><span class="badge">Visual Overview</span></div>
+                <div id="progressChart" style="height: 200px; display: flex; align-items: center; justify-content: center;">
+                    <p>Login to see your progress chart</p>
+                </div>
+            </div>
         </div>
 
         <!-- Skills Section -->
@@ -262,6 +407,10 @@
                     <button onclick="clearWeeklyReport()" style="flex: 1; background: #f44336;">🗑️ Clear</button>
                 </div>
 
+                <div style="margin-top: 15px; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 12px;">
+                    <p style="font-size: 12px;"><strong>📊 Summary:</strong> <span id="reportSummary">0 days, 0 hours total</span></p>
+                </div>
+
                 <p style="font-size: 11px; opacity: 0.6; margin-top: 15px; text-align: center;">
                     📌 Fill at least 3 tasks per day. This report is used during IAP final interview.
                 </p>
@@ -309,6 +458,39 @@
 <div id="lightbox" onclick="closeLightbox()"><img id="lightboxImg"></div>
 
 <script>
+    // Hide loader after page loads
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            document.getElementById('loader').classList.add('hide');
+            setTimeout(function() {
+                document.getElementById('loader').style.display = 'none';
+            }, 500);
+        }, 500);
+    });
+    
+    // Confirmation Dialog
+    function showConfirm(message, callback) {
+        let dialog = document.getElementById('confirmDialog');
+        document.getElementById('confirmMessage').innerText = message;
+        dialog.style.display = 'flex';
+        let onYes = function() {
+            dialog.style.display = 'none';
+            callback(true);
+            cleanup();
+        };
+        let onNo = function() {
+            dialog.style.display = 'none';
+            callback(false);
+            cleanup();
+        };
+        function cleanup() {
+            document.getElementById('confirmYes').removeEventListener('click', onYes);
+            document.getElementById('confirmNo').removeEventListener('click', onNo);
+        }
+        document.getElementById('confirmYes').addEventListener('click', onYes);
+        document.getElementById('confirmNo').addEventListener('click', onNo);
+    }
+    
     // ============ SKILLS DATA WITH YOUR PHOTOS ============
     const skillsData = {
         'mouse-skills': { name: '🖱️ Mouse Skills', desc: 'Click, double-click, right-click', emoji: '🖱️', photos: [
@@ -354,6 +536,7 @@
         document.getElementById('progressDisplay').style.display = 'block';
         updateProgressDisplay();
         updateStats();
+        updateProgressChart();
     }
 
     function markSkillComplete(skillName) {
@@ -363,9 +546,28 @@
             localStorage.setItem(`progress_${currentStudent}`, JSON.stringify(studentProgress));
             updateProgressDisplay();
             updateStats();
+            updateProgressChart();
             return true;
         }
         return false;
+    }
+    
+    function updateProgressChart() {
+        let chartDiv = document.getElementById('progressChart');
+        if (!chartDiv) return;
+        let completed = studentProgress.length;
+        let remaining = 6 - completed;
+        let percent = (completed / 6) * 100;
+        chartDiv.innerHTML = `
+            <div style="text-align: center;">
+                <div style="font-size: 48px; color: #ffd54f; margin-bottom: 10px;">${percent}%</div>
+                <div style="background: rgba(255,255,255,0.2); height: 20px; border-radius: 10px; overflow: hidden; margin: 15px 0;">
+                    <div style="width: ${percent}%; height: 100%; background: #ffd54f; border-radius: 10px;"></div>
+                </div>
+                <p style="font-size: 12px;">✅ Completed: ${completed} / 6 skills</p>
+                <p style="font-size: 11px; opacity: 0.7;">🏆 Keep going! ${remaining} more to go</p>
+            </div>
+        `;
     }
 
     function updateProgressDisplay() {
@@ -629,6 +831,15 @@
             dailyEntries = [];
         }
         renderDailyEntries();
+        updateReportSummary();
+    }
+
+    function updateReportSummary() {
+        let totalHours = 0;
+        dailyEntries.forEach(entry => {
+            totalHours += parseInt(entry.hours) || 0;
+        });
+        document.getElementById('reportSummary').innerHTML = `${dailyEntries.length} days, ${totalHours} hours total`;
     }
 
     function renderDailyEntries() {
@@ -674,12 +885,14 @@
             input.addEventListener('change', function() {
                 let day = parseInt(this.dataset.day);
                 dailyEntries[day].date = this.value;
+                updateReportSummary();
             });
         });
         document.querySelectorAll('.day-hours-input').forEach(input => {
             input.addEventListener('change', function() {
                 let day = parseInt(this.dataset.day);
                 dailyEntries[day].hours = this.value;
+                updateReportSummary();
             });
         });
         document.querySelectorAll('.task-input').forEach(input => {
@@ -701,6 +914,7 @@
                 let day = parseInt(this.dataset.day);
                 dailyEntries.splice(day, 1);
                 renderDailyEntries();
+                updateReportSummary();
             });
         });
     }
@@ -708,6 +922,7 @@
     function addDailyEntry() {
         dailyEntries.push({ date: new Date().toISOString().split('T')[0], hours: '', tasks: ['', '', ''], tools: '' });
         renderDailyEntries();
+        updateReportSummary();
     }
 
     function saveWeeklyReport() {
@@ -739,16 +954,19 @@
                 </div>
             `;
         });
+        let totalHours = dailyEntries.reduce((sum, e) => sum + (parseInt(e.hours) || 0), 0);
         let printWindow = window.open('', '_blank');
         printWindow.document.write(`
             <!DOCTYPE html><html><head><title>IAP Weekly Report</title>
-            <style>body{font-family:Arial;padding:30px;} h1{color:#ff8c00;} .header{margin-bottom:30px;} @media print{button{display:none;}}</style>
+            <style>body{font-family:Arial;padding:30px;} h1{color:#ff8c00;} .header{margin-bottom:30px;} .footer{margin-top:40px;} @media print{button{display:none;}}</style>
             </head><body>
             <h1>Digital Gashora - IAP Weekly Report</h1>
             <div class="header"><p><strong>Student:</strong> ${studentName}</p><p><strong>Period:</strong> ${fromDate} to ${toDate}</p><p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p></div>
             <div><p><strong>Supervisor:</strong> John Gakumba</p><p><strong>Manager:</strong> Ethandbana</p></div>
             ${tasksHtml}
-            <div style="margin-top:40px; text-align:center;"><p>_________________________</p><p>Student Signature</p></div>
+            <div class="footer"><p><strong>Total Hours: ${totalHours} hours</strong></p></div>
+            <div style="margin-top:40px;"><p>_________________________</p><p>Student Signature</p></div>
+            <div><p>_________________________</p><p>Supervisor Signature</p></div>
             </body></html>
         `);
         printWindow.document.close();
@@ -756,15 +974,18 @@
     }
 
     function clearWeeklyReport() {
-        if (confirm('Clear all report data?')) {
-            localStorage.removeItem('weeklyReport');
-            dailyEntries = [];
-            document.getElementById('reportFromDate').value = '';
-            document.getElementById('reportToDate').value = '';
-            document.getElementById('reportStudentName').value = '';
-            renderDailyEntries();
-            alert('Cleared.');
-        }
+        showConfirm('Clear all report data? This cannot be undone.', function(confirmed) {
+            if (confirmed) {
+                localStorage.removeItem('weeklyReport');
+                dailyEntries = [];
+                document.getElementById('reportFromDate').value = '';
+                document.getElementById('reportToDate').value = '';
+                document.getElementById('reportStudentName').value = '';
+                renderDailyEntries();
+                updateReportSummary();
+                alert('Report cleared.');
+            }
+        });
     }
 
     let announcements = JSON.parse(localStorage.getItem('announcements') || '[{"title":"Welcome!","message":"Tap any skill to start!","date":"' + new Date().toDateString() + '"}]');
@@ -794,7 +1015,7 @@
 
     function downloadCertificate() {
         if (studentProgress.length >= 6) {
-            let certHtml = `<!DOCTYPE html><html><head><title>Certificate</title><style>body{font-family:Arial;text-align:center;padding:50px;}.cert{border:10px solid gold;padding:40px;}</style></head><body><div class="cert"><h1>🎓 Certificate</h1><p>Awarded to</p><h2>${currentStudent}</h2><p>for completing all computer skills</p><p>Date: ${new Date().toDateString()}</p></div></body></html>`;
+            let certHtml = `<!DOCTYPE html><html><head><title>Certificate</title><style>body{font-family:Arial;text-align:center;padding:50px;}.cert{border:10px solid gold;padding:40px;}</style></head><body><div class="cert"><h1>🎓 Certificate</h1><p>Awarded to</p><h2>${currentStudent}</h2><p>for completing all computer skills</p><p>Date: ${new Date().toDateString()}</p><p>Digital Gashora - Gashora Centre, Bugesera</p></div></body></html>`;
             let blob = new Blob([certHtml], {type: 'text/html'});
             let a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
@@ -832,6 +1053,7 @@
         document.getElementById('progressDisplay').style.display = 'block';
         updateProgressDisplay();
         updateStats();
+        updateProgressChart();
     }
 
     refreshAllDisplays();
